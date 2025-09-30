@@ -13,7 +13,7 @@ public class Vector2(int x, int y)
 
     public override bool Equals(object? obj)
     {
-        return base.Equals(obj);
+        return obj is Vector2 other && X == other.X && Y == other.Y;
     }
 
     public override int GetHashCode()

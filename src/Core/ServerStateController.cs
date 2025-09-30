@@ -4,6 +4,7 @@ using System.Text;
 using System.Text.Json;
 using System.Collections.Concurrent;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 
 class ServerStateController : IStateController
@@ -111,11 +112,19 @@ class ServerStateController : IStateController
             return;
         }
 
+        List<Task> clientTasks = [];
+
         Console.WriteLine($"Running TCP server on {_port}");
         while (true)
         {
             TcpClient client = await listener.AcceptTcpClientAsync();
+            clientTasks.Add(HandleClient(client));
+        }
 
+        Task.WaitAll(clientTasks);
+    }
+
+    public async Task HandleClient(TcpClient client) {
             // Address:port will be the universal identifier
             string clientIdentity = client.Client.RemoteEndPoint!.ToString()!;
 
@@ -127,7 +136,6 @@ class ServerStateController : IStateController
             Player _ = AddPlayer(clientIdentity);
             await SendCommand(GetSnapshotCommand(clientIdentity), client.GetStream());
             await ListenForClient(client);
-        }
     }
 
     private async Task SyncAll()

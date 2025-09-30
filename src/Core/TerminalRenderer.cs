@@ -40,7 +40,7 @@ class TerminalRenderer
             Console.Write('S');
         }
 
-        foreach (var p in state.players.Where(p => p.Room.WorldGridPosition == currentRoom.WorldGridPosition))
+        foreach (var p in state.players.Where(p => p.Room.Equals(state.Identity?.Room)))
         {
             Console.ForegroundColor = (ConsoleColor)p.Color; // Simple cast for the prototype
             Console.SetCursorPosition(p.PositionInRoom.X, p.PositionInRoom.Y);
@@ -49,5 +49,11 @@ class TerminalRenderer
 
         Console.SetCursorPosition(0, currentRoom.Shape.Y + 1);
         Console.ResetColor();
+
+        foreach (var p in state.players)
+        {
+            Console.WriteLine($"plr:{p.identity}");
+            Console.WriteLine($"-sameRoom:{p.Room.Equals(state.Identity?.Room)}");
+        }
     }
 }

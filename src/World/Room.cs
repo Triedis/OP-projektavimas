@@ -16,6 +16,11 @@ class Room(Vector2 worldGridPosition, Vector2 shape)
         Occupants.Add(character);
     }
 
+    public override bool Equals(object? obj)
+    {
+        return obj is Room room && room.WorldGridPosition.Equals(WorldGridPosition);
+    }
+
     public void Exit(Character character, Room other)
     {
         character.EnterRoom(other);

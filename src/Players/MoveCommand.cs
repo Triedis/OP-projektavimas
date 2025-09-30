@@ -14,12 +14,13 @@ class MoveCommand(Vector2 position, Character character) : ICommand
     {
         await Task.Run(() =>
         {
-            Console.WriteLine($"Mock server execution of MoveCommand: pos={Position},char={Character}");
+            Console.WriteLine($"Mock server execution of MoveCommand: pos={Position},char={Character.identity}");
             Character? target = gameState.players.FirstOrDefault((player) => player.Equals(Character));
             if (target is null) {
                 Console.WriteLine("Failed to replicate movement on server. Nil.");
             } else {
                 target.SetPositionInRoom(Position);
+
             }
         });
     }
