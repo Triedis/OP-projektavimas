@@ -84,7 +84,7 @@ class ClientStateController : IStateController
         while ((bytesRead = await _stream.ReadAsync(buffer)) != 0)
         {
             string jsonWrapperString = Encoding.UTF8.GetString(buffer, 0, bytesRead);
-            Console.WriteLine($"shell: {jsonWrapperString}");
+            // Console.WriteLine($"shell: {jsonWrapperString}");
             PacketWrapper? wrapper = JsonSerializer.Deserialize<PacketWrapper>(jsonWrapperString, NetworkSerializer.Options);
             if (wrapper is null || wrapper.TypeName is null || wrapper.JsonPayload is null)
             {
