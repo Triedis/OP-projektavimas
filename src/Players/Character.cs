@@ -35,6 +35,10 @@ abstract class Character
         if (Health <= 0)
         {
             Dead = true;
+            Health = 0;
+
+            LogEntry characterDiedLogEntry = LogEntry.ForRoom($"{this} has died", Room);
+            MessageLog.Instance.Add(characterDiedLogEntry);
         }
     }
 

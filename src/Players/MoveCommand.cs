@@ -47,7 +47,7 @@ class MoveCommand(Vector2 position, Character character) : ICommand
                         continue;
                     }
 
-                    if (occupant.PositionInRoom.Equals(pos))
+                    if (occupant.PositionInRoom.Equals(pos) && !occupant.Dead)
                     {
                         clear = false;
                     }

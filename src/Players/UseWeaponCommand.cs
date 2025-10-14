@@ -28,9 +28,16 @@ class UseWeaponCommand(Guid actorIdentity) : ICommand
             return Task.CompletedTask;
         }
 
-        if (weapon.CanUse(actor, target, gameState)) {
+        if (weapon.CanUse(actor, target, gameState))
+        {
             Log.Information("Weapon acting on {tgt} {id}", target, target.Identity);
-            weapon.Act(actor, target);
+            LogEntry weaponUseLogEntry = LogEntry.ForRoom($"{actor} swings and hits {target}", room);
+            MessageLog.Instance.Add(weaponUseLogEntry);
+            
+            IReadOnlyList<IActionCommand> consequencues = weapon.Act(actor, target);
+            foreach (IActionCommand consequence in consequencues) {
+                consequence.Execute(gameState);
+            }
         }
 
         return Task.CompletedTask;

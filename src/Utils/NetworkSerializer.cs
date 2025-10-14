@@ -8,5 +8,6 @@ public static class NetworkSerializer
         PropertyNameCaseInsensitive = true,
         IncludeFields = true,
         //ReferenceHandler = ReferenceHandler.Preserve,
+
     };
 }

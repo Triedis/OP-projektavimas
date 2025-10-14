@@ -52,9 +52,15 @@ class TerminalRenderer
         }
 
         Console.ForegroundColor = ConsoleColor.White;
-        foreach (var skeleton in state.skeletons.Where(s => s.Room.Equals(currentRoom)))
+        foreach (Skeleton skeleton in state.skeletons.Where(s => s.Room.Equals(currentRoom)))
         {
-            Console.ForegroundColor = ConsoleColor.Red;
+            ConsoleColor color;
+            if (!skeleton.Dead) {
+                color = ConsoleColor.Red;
+            } else {
+                color = ConsoleColor.Gray;
+            }
+            Console.ForegroundColor = color;
             Console.SetCursorPosition(skeleton.PositionInRoom.X, skeleton.PositionInRoom.Y);
             Console.Write('S');
         }
@@ -69,20 +75,25 @@ class TerminalRenderer
         Console.SetCursorPosition(0, currentRoom.Shape.Y + 1);
         Console.ResetColor();
 
-        foreach (var p in state.players)
-        {
-            Console.WriteLine($"plr:{p.Identity}");
-            Console.WriteLine($"-sameRoom:{p.Room.Equals(state.Identity?.Room)}");
+        // Unimportant debug logging.
+        // foreach (var p in state.players)
+        // {
+        //     Console.WriteLine($"plr:{p.Identity}");
+        //     Console.WriteLine($"-sameRoom:{p.Room.Equals(state.Identity?.Room)}");
+        // }
+
+        // foreach (var p in state.skeletons)
+        // {
+        //     Console.WriteLine($"skl:{p.Identity}");
+        //     Console.WriteLine($"-sameRoom:{p.Room.Equals(state.Identity?.Room)}");
+        // }
+
+
+        // Console.WriteLine($"room:{currentRoom.WorldGridPosition}");
+        // Console.WriteLine($"-numBoundaryPoints:{currentRoom.BoundaryPoints.Count}");
+
+        foreach (string message in state.MessagesToDisplay) {
+            Console.WriteLine(message);
         }
-
-        foreach (var p in state.skeletons)
-        {
-            Console.WriteLine($"skl:{p.Identity}");
-            Console.WriteLine($"-sameRoom:{p.Room.Equals(state.Identity?.Room)}");
-        }
-
-
-        Console.WriteLine($"room:{currentRoom.WorldGridPosition}");
-        Console.WriteLine($"-numBoundaryPoints:{currentRoom.BoundaryPoints.Count}");
     }
 }

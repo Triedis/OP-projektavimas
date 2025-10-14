@@ -8,15 +8,15 @@ class SyncCommand(GameStateSnapshot snapshot, Guid identity) : ICommand
 
     public Task ExecuteOnClient(ClientStateController gameState)
     {
-        Log.Debug("Received new identity {Identity}", Identity);
+        Log.Debug("Received new game snapshot as {Identity}", Identity);
         gameState.ApplySnapshot(Snapshot);
-        gameState.SetIdentity(Identity); // Must happen after the snapshot brings in all players
+        gameState.SetIdentity(Identity);
         return Task.CompletedTask;
     }
 
     public Task ExecuteOnServer(ServerStateController gameState)
     {
-        Console.WriteLine("SyncCommand::ExecuteOnServer should not be called on the server.");
+        Log.Error("SyncCommand::ExecuteOnServer should not be called on the server.");
         throw new InvalidOperationException("SyncCommand::ExecuteOnServer should not be called on the server.");
     }
 }

@@ -11,7 +11,10 @@ class ClientStateController : IStateController
 {
     private readonly TcpClient _client; // Don't interact with directly.
     private readonly NetworkStream _stream; // Don't interact with directly. Use ICommand.ExecuteOnClient().
-    public ConcurrentQueue<ConsoleKey> InputQueue { get; } = [];
+    public ConcurrentQueue<ConsoleKey> InputQueue { get; private set; } = [];
+
+    private LogView _clientLogView = new(); // Helper class to filter relevant messages
+    public IReadOnlyList<string> MessagesToDisplay { get; private set; } = []; // List of relevant messages
 
     public Player? Identity; // Reference to actual local player..
 
@@ -176,24 +179,13 @@ class ClientStateController : IStateController
                 try
                 {
                     string jsonWrapperString = Encoding.UTF8.GetString(messageBuffer, 0, messageLength);
+                    jsonWrapperString = jsonWrapperString.TrimStart('\uFEFF');
+
                     Log.Debug("Received server payload {payload}", jsonWrapperString);
-                    PacketWrapper? wrapper = JsonSerializer.Deserialize<PacketWrapper>(jsonWrapperString, NetworkSerializer.Options);
-                    if (wrapper is null || wrapper.TypeName is null || wrapper.JsonPayload is null)
+                    ICommand? command = JsonSerializer.Deserialize<ICommand>(jsonWrapperString, NetworkSerializer.Options);
+                    if (command is null)
                     {
-                        Console.WriteLine("Malformed wrapper from server?");
-                        continue;
-                    }
-
-                    Type? commandType = Type.GetType(wrapper.TypeName);
-                    if (commandType is null)
-                    {
-                        Console.WriteLine($"Unknown command type from server: {wrapper.TypeName}");
-                        continue;
-                    }
-
-                    if (JsonSerializer.Deserialize(wrapper.JsonPayload, commandType, NetworkSerializer.Options) is not ICommand command)
-                    {
-                        Console.WriteLine("Failed to deserialize command payload.");
+                        Console.WriteLine("Malformed command from server?");
                         continue;
                     }
 
@@ -225,7 +217,10 @@ class ClientStateController : IStateController
         Log.Debug($"Identity updated to {identity}");
     }
 
-
+    /// <summary>
+    /// Applies a dumb (entire game state) snapshot to the current world.
+    /// </summary>
+    /// <param name="snapshot">snapshot</param>
     public void ApplySnapshot(GameStateSnapshot snapshot)
     {
         players = snapshot.Players;
@@ -238,7 +233,7 @@ class ClientStateController : IStateController
         }
 
         var allCharacters = players.Cast<Character>().Concat(skeletons);
-        // fix references...
+        // fix references... todo: use Dtos and proper guid referencing
         foreach (var character in allCharacters)
         {
             var worldPos = character.Room.WorldGridPosition;
@@ -253,20 +248,16 @@ class ClientStateController : IStateController
                 Log.Warning("Character {id} had a room at {pos} which was not found in the WorldGrid.", character.Identity, worldPos);
             }
         }
+
+        MessagesToDisplay = _clientLogView.GetRelevantMessages(snapshot.LogEntries);
+        Log.Information("got relevant messages ...", MessagesToDisplay);
     }
 
     public async Task SendCommand(ICommand command)
     {
         try
         {
-            Type commandType = command.GetType();
-            var wrapper = new PacketWrapper
-            {
-                TypeName = commandType.AssemblyQualifiedName!,
-                JsonPayload = JsonSerializer.Serialize(command, commandType, NetworkSerializer.Options)
-            };
-
-            byte[] jsonBytes = JsonSerializer.SerializeToUtf8Bytes(wrapper, NetworkSerializer.Options);
+            byte[] jsonBytes = JsonSerializer.SerializeToUtf8Bytes(command, NetworkSerializer.Options);
 
             int messageLength = jsonBytes.Length; // required for length-prefixing. TCP can be annoying.
             byte[] lengthPrefix = BitConverter.GetBytes(messageLength);

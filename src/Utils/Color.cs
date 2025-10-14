@@ -6,5 +6,4 @@ enum Color
     Blue,
     Magenta,
     Yellow,
-    White,
 }

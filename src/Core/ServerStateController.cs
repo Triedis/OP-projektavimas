@@ -81,7 +81,8 @@ class ServerStateController(int port) : IStateController
         {
             ICommand? command = skeleton.TickAI();
 
-            if (command is not null) {
+            if (command is not null)
+            {
                 Log.Debug("Entity {skeleton} decided to {command}", skeleton, command.GetType());
             }
             command?.ExecuteOnServer(this);
@@ -103,14 +104,7 @@ class ServerStateController(int port) : IStateController
             }
         }
 
-        Type commandType = command.GetType();
-        var wrapper = new PacketWrapper
-        {
-            TypeName = commandType.AssemblyQualifiedName!,
-            JsonPayload = JsonSerializer.Serialize(command, commandType, NetworkSerializer.Options)
-        };
-
-        byte[] jsonBytes = JsonSerializer.SerializeToUtf8Bytes(wrapper, NetworkSerializer.Options);
+        byte[] jsonBytes = JsonSerializer.SerializeToUtf8Bytes(command, NetworkSerializer.Options);
 
         int messageLength = jsonBytes.Length; // required for length-prefixing. TCP can be annoying.
         byte[] lengthPrefix = BitConverter.GetBytes(messageLength);
@@ -130,7 +124,7 @@ class ServerStateController(int port) : IStateController
             throw;
         }
 
-        Log.Debug($"Sent of type {command.GetType()}");
+        Log.Debug($"Sent of type {command.GetType()} with length {messageLength}");
     }
 
     private async Task ListenForClients()
@@ -152,7 +146,8 @@ class ServerStateController(int port) : IStateController
     public async Task HandleClient(TcpClient client)
     {
         string? username = client.Client.RemoteEndPoint?.ToString();
-        if (username is null) {
+        if (username is null)
+        {
             return;
         }
         Guid clientIdentity = Guid.NewGuid();
@@ -162,10 +157,13 @@ class ServerStateController(int port) : IStateController
         Log.Information($"Received client connection ... {clientIdentity}");
 
         Player _ = AddPlayer(clientIdentity, username);
-        try {
+        try
+        {
             await SendCommand(GetSnapshotCommand(clientIdentity), client.GetStream());
             await ListenForClient(client);
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             Log.Warning("Looks like {e} really would just brick the server ...", e);
         }
     }
@@ -193,8 +191,9 @@ class ServerStateController(int port) : IStateController
     private void Disconnect(Guid identity)
     {
         Player? player = players.Where(player => player.Identity == identity).FirstOrDefault();
-        
-        if (player is null) {
+
+        if (player is null)
+        {
             Log.Warning("Attempted to disconnect client {identity} which is not bound to any player object");
             return;
         }
@@ -234,7 +233,16 @@ class ServerStateController(int port) : IStateController
 
     private SyncCommand GetSnapshotCommand(Guid clientIdentity)
     {
-        GameStateSnapshot snapshot = new(players, skeletons, worldGrid);
+        IReadOnlyList<LogEntry> serverLogEntries = MessageLog.Instance.GetAllMessages();
+        List<LogEntryDto> logDtos = serverLogEntries.Select(entry => new LogEntryDto
+        {
+            Text = entry.Text,
+            Scope = entry.Scope,
+            PlayerIdentity = entry.PlayerIdentity,
+            RoomPosition = entry.RoomPosition
+        }).ToList();
+
+        GameStateSnapshot snapshot = new(players, skeletons, worldGrid, logDtos);
         return new SyncCommand(snapshot, clientIdentity);
     }
 
@@ -247,33 +255,21 @@ class ServerStateController(int port) : IStateController
 
         byte[] lengthBuffer = new byte[4];
 
-        while (true) {
+        while (true)
+        {
             await stream.ReadExactlyAsync(lengthBuffer, 0, 4);
             int messageLength = BitConverter.ToInt32(lengthBuffer, 0);
 
             byte[] messageBuffer = new byte[messageLength];
             await stream.ReadExactlyAsync(messageBuffer, 0, messageLength);
 
-            string jsonWrapperString = Encoding.UTF8.GetString(messageBuffer);
+            string jsonCommandString = Encoding.UTF8.GetString(messageBuffer);
             try
             {
-                PacketWrapper? wrapper = JsonSerializer.Deserialize<PacketWrapper>(jsonWrapperString, NetworkSerializer.Options);
-                if (wrapper is null || wrapper.TypeName is null || wrapper.JsonPayload is null)
+                ICommand? command = JsonSerializer.Deserialize<ICommand>(jsonCommandString, NetworkSerializer.Options);
+                if (command is null)
                 {
-                    _log.Warning("Malformed wrapper from client?");
-                    continue;
-                }
-
-                Type? commandType = Type.GetType(wrapper.TypeName);
-                if (commandType is null)
-                {
-                    _log.Warning($"Unknown command type from client: {wrapper.TypeName}");
-                    continue;
-                }
-
-                if (JsonSerializer.Deserialize(wrapper.JsonPayload, commandType, NetworkSerializer.Options) is not ICommand command)
-                {
-                    _log.Warning("Failed to deserialize command payload.");
+                    _log.Warning("Malformed command from client?");
                     continue;
                 }
 
