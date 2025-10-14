@@ -1,15 +1,6 @@
-class GameStateSnapshot
+class GameStateSnapshot(List<Player> players, List<Skeleton> skeletons, WorldGrid worldGrid)
 {
-    public List<Player> Players { get; }
-    public List<Skeleton> Skeletons { get; }
-    public WorldGrid WorldGrid { get; }
-    public GameConsole GameConsole { get; }
-
-    public GameStateSnapshot(List<Player> players, List<Skeleton> skeletons, WorldGrid worldGrid, GameConsole gameConsole)
-    {
-        Players = players;
-        Skeletons = skeletons;
-        WorldGrid = worldGrid;
-        GameConsole = gameConsole;
-    }
+    public List<Player> Players { get; } = players;
+    public List<Skeleton> Skeletons { get; } = skeletons;
+    public WorldGrid WorldGrid { get; } = worldGrid;
 }

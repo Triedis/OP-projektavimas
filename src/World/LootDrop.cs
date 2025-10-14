@@ -1,11 +1,5 @@
-class LootDrop
+class LootDrop(Sword item, Vector2 positionInRoom)
 {
-    Sword Item { get; }
-    Vector2 PositionInRoom { get; }
-
-    public LootDrop(Sword item, Vector2 positionInRoom)
-    {
-        this.Item = item;
-        this.PositionInRoom = positionInRoom;
-    }
+    Sword Item { get; } = item;
+    Vector2 PositionInRoom { get; } = positionInRoom;
 }

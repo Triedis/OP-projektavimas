@@ -1,19 +1,22 @@
 
-class SyncCommand(GameStateSnapshot snapshot, string identity) : ICommand
+using Serilog;
+
+class SyncCommand(GameStateSnapshot snapshot, Guid identity) : ICommand
 {
     public GameStateSnapshot Snapshot = snapshot;
-    public string Identity = identity;
+    public Guid Identity = identity;
 
-    public async Task ExecuteOnClient(ClientStateController gameState)
+    public Task ExecuteOnClient(ClientStateController gameState)
     {
-        Console.WriteLine($"Received new identity {Identity}");
+        Log.Debug("Received new identity {Identity}", Identity);
         gameState.ApplySnapshot(Snapshot);
         gameState.SetIdentity(Identity); // Must happen after the snapshot brings in all players
+        return Task.CompletedTask;
     }
 
-    public async Task ExecuteOnServer(ServerStateController gameState)
+    public Task ExecuteOnServer(ServerStateController gameState)
     {
-        Console.WriteLine("you've hit a terrible stub");
-        throw new NotImplementedException();
+        Console.WriteLine("SyncCommand::ExecuteOnServer should not be called on the server.");
+        throw new InvalidOperationException("SyncCommand::ExecuteOnServer should not be called on the server.");
     }
 }

@@ -1,4 +1,6 @@
 using System.Text;
+using Serilog;
+using Serilog.Core;
 
 namespace DungeonCrawler;
 
@@ -28,13 +30,18 @@ static class DungeonCrawler
         }
         catch
         {
-            Console.WriteLine("You must pass either --server or --client to the differentiable binary");
-            throw new ArgumentException();
+            Log.Error("You must pass either --server or --client to the differentiable binary");
+            throw;
         }
         switch (partition)
         {
             case Partition.SERVER:
                 {
+                    using var log = new LoggerConfiguration()
+                        .MinimumLevel.Debug()
+                        .WriteTo.Console()
+                        .CreateLogger();
+                    Log.Logger = log;
 
                     ServerStateController server = new(port);
                     await server.Run();
@@ -43,16 +50,22 @@ static class DungeonCrawler
                 ;
             case Partition.CLIENT:
                 {
+                    using var log = new LoggerConfiguration()
+                        .MinimumLevel.Debug()
+                        .WriteTo.File("client_log.txt", rollingInterval: RollingInterval.Infinite)
+                        .CreateLogger();
+                    Log.Logger = log;
+
+
                     ClientStateController client;
                     try
                     {
-                        client = new(ipAddress, port);
+                        client = await ClientStateController.CreateAsync(ipAddress, port);
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine($"Failed to connect to server. Is it running? {e}");
-                        System.Environment.Exit(1);
-                        return;
+                        Log.Error("Failed to connect to server. Is it running? {e}", e);
+                        throw;
                     }
                     await client.Run();
                     break;

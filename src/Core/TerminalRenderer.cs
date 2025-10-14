@@ -1,48 +1,67 @@
+using System.Diagnostics;
+using Serilog;
+
 class TerminalRenderer
 {
-    public void Render(ClientStateController state)
+    public static void Render(ClientStateController state)
     {
+        Log.Debug("Hello, render");
         Console.Clear();
+        List<string> log = [];
 
         if (state.worldGrid == null)
         {
             Console.SetCursorPosition(0, 0);
-            Console.WriteLine("Waiting for initial state ...");
+            Log.Debug("Waiting for initial state ...");
             return;
         }
 
         Player? player = state.players.FirstOrDefault(p => p.Username == state.Identity?.Username);
         if (player == null || player.Room == null)
         {
-            Console.WriteLine("Player not found in a room. Waiting for state update ...");
+            Log.Warning("Player not found in a room. Waiting for state update ...");
             return;
         }
 
-        Room currentRoom = player.Room;
+        Room? currentRoom = player.Room;
+        if (currentRoom is null) {
+            Log.Warning("No current room. Waiting for state update ...");
+            return;
+        }
 
         Console.ForegroundColor = ConsoleColor.Gray;
         for (int y = 0; y < currentRoom.Shape.Y; y++)
         {
             for (int x = 0; x < currentRoom.Shape.X; x++)
             {
+                Vector2 position = new(x, y);
                 if (y == 0 || y == currentRoom.Shape.Y - 1 || x == 0 || x == currentRoom.Shape.X - 1)
                 {
+                    log.Add($"calc room pixel {position}");
+                    RoomBoundary? boundary = currentRoom.BoundaryPoints.Select(pair => pair.Value).Where(boundary => boundary.PositionInRoom.Equals(position)).FirstOrDefault();
                     Console.SetCursorPosition(x, y);
-                    Console.Write('#');
+                    if (boundary is null) {
+                        log.Add($"NO BOUND");
+                        Console.Write('#');
+                    } else {
+                        log.Add($"BOUNDARY");
+                        Console.Write('-');
+                    }
                 }
             }
         }
 
         Console.ForegroundColor = ConsoleColor.White;
-        foreach (var skeleton in state.skeletons.Where(s => s.Room.WorldGridPosition == currentRoom.WorldGridPosition))
+        foreach (var skeleton in state.skeletons.Where(s => s.Room.Equals(currentRoom)))
         {
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.SetCursorPosition(skeleton.PositionInRoom.X, skeleton.PositionInRoom.Y);
             Console.Write('S');
         }
 
         foreach (var p in state.players.Where(p => p.Room.Equals(state.Identity?.Room)))
         {
-            Console.ForegroundColor = (ConsoleColor)p.Color; // Simple cast for the prototype
+            Console.ForegroundColor = (ConsoleColor)p.Color;
             Console.SetCursorPosition(p.PositionInRoom.X, p.PositionInRoom.Y);
             Console.Write('@');
         }
@@ -52,8 +71,18 @@ class TerminalRenderer
 
         foreach (var p in state.players)
         {
-            Console.WriteLine($"plr:{p.identity}");
+            Console.WriteLine($"plr:{p.Identity}");
             Console.WriteLine($"-sameRoom:{p.Room.Equals(state.Identity?.Room)}");
         }
+
+        foreach (var p in state.skeletons)
+        {
+            Console.WriteLine($"skl:{p.Identity}");
+            Console.WriteLine($"-sameRoom:{p.Room.Equals(state.Identity?.Room)}");
+        }
+
+
+        Console.WriteLine($"room:{currentRoom.WorldGridPosition}");
+        Console.WriteLine($"-numBoundaryPoints:{currentRoom.BoundaryPoints.Count}");
     }
 }

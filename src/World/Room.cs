@@ -5,15 +5,40 @@ class Room(Vector2 worldGridPosition, Vector2 shape)
     public Vector2 WorldGridPosition = worldGridPosition;
     public Vector2 Shape = shape;
     public List<LootDrop> LootDrops = [];
-    [JsonIgnore] // fucked up
-    public List<Character> Occupants = [];
-    public Dictionary<Direction, RoomBoundary> EntryPoints = new();
-    public Dictionary<Direction, RoomBoundary> ExitPoints = new();
+    [JsonIgnore] // resolve infinite-recursion serialization bug
+    public List<Character> Occupants { get; private set; } = [];
+    public Dictionary<Direction, RoomBoundary> BoundaryPoints = [];
+
+    public IEnumerable<Character> GetCharacters() {
+        return Occupants;
+    }
 
     public void Enter(Character character)
     {
+        character.Room.Exit(character);
         character.EnterRoom(this);
         Occupants.Add(character);
+    }
+
+    public void Exit(Character character)
+    {
+        Occupants.Remove(character);
+    }
+
+    public void Enter(Character character, Direction enteringFrom) {
+        Enter(character);
+
+        RoomBoundary? entryPoint = BoundaryPoints.GetValueOrDefault(enteringFrom!);
+        if (entryPoint is null)
+        {
+            Console.WriteLine("Entering from nothing? Logic bug guard triggered");
+            throw new Exception();
+        }
+
+        character.SetPositionInRoom(entryPoint.PositionInRoom
+            + DirectionUtils.GetVectorDirection(
+                enteringFrom!
+            ).ToScreenSpace());
     }
 
     public override bool Equals(object? obj)
@@ -25,5 +50,15 @@ class Room(Vector2 worldGridPosition, Vector2 shape)
     {
         character.EnterRoom(other);
         Occupants.Remove(character);
+    }
+
+    public override int GetHashCode()
+    {
+        return WorldGridPosition.GetHashCode();
+    }
+
+    public override string? ToString()
+    {
+        return WorldGridPosition.ToString();
     }
 }
