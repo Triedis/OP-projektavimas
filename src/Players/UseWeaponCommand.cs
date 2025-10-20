@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using Serilog;
 
 class UseWeaponCommand(Guid actorIdentity) : ICommand

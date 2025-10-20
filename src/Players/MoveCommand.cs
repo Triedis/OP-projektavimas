@@ -1,9 +1,16 @@
+using System.Text.Json.Serialization;
 using Serilog;
 
-class MoveCommand(Vector2 position, Character character) : ICommand
+class MoveCommand : ICommand
 {
-    public Vector2 Position = position;
-    public Character Character = character;
+    public Vector2 Position { get; set; }
+    public Guid ActorIdentity { get; set; }
+
+    [JsonConstructor]
+    public MoveCommand(Vector2 Position, Guid ActorIdentity) {
+        this.Position = Position;
+        this.ActorIdentity = ActorIdentity;
+    }
 
     public async Task ExecuteOnClient(ClientStateController gameState)
     {
@@ -14,7 +21,7 @@ class MoveCommand(Vector2 position, Character character) : ICommand
     {
         await Task.Run(() =>
         {
-            Character? target = gameState.players.Cast<Character>().Concat(gameState.skeletons).FirstOrDefault((character) => character.Equals(Character));
+            Character? target = gameState.players.Cast<Character>().Concat(gameState.enemies).FirstOrDefault((character) => character.Identity.Equals(ActorIdentity));
             if (target is null)
             {
                 Console.WriteLine("Failed to replicate movement on server. Nil.");
@@ -26,7 +33,7 @@ class MoveCommand(Vector2 position, Character character) : ICommand
             var roomx = room.Shape.X;
             var roomy = room.Shape.Y;
 
-            Console.WriteLine($"MoveCommand exec: pos={pos},char={Character.Identity},rs={room.Shape}");
+            Console.WriteLine($"MoveCommand exec: pos={pos},char={ActorIdentity},rs={room.Shape}");
 
             bool inBoundsX = pos.X >= 1 && pos.X <= roomx - 2;
             bool inBoundsY = pos.Y >= 1 && pos.Y <= roomy - 2;
@@ -42,7 +49,7 @@ class MoveCommand(Vector2 position, Character character) : ICommand
                 bool clear = true;
                 foreach (Character occupant in occupants)
                 {
-                    if (occupant.Equals(Character))
+                    if (occupant.Identity.Equals(ActorIdentity))
                     {
                         continue;
                     }

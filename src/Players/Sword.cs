@@ -1,12 +1,7 @@
-class Sword : Weapon
+class Sword(int maxRange, int damage, Guid identity) : Weapon(identity)
 {
-    public int MaxRange { get; set; }
-    public int Damage { get; set; }
-
-    public Sword(int maxRange, int damage) : base() {
-        MaxRange = maxRange;
-        Damage = damage;
-    }
+    public int MaxRange { get; set; } = maxRange;
+    public int Damage { get; set; } = damage;
 
     public override IReadOnlyList<IActionCommand> Act(Character actor, Character target)
     {
@@ -21,6 +16,10 @@ class Sword : Weapon
     {
         if (actor.GetDistanceTo(target) > MaxRange)
         {
+            return false;
+        }
+
+        if (target.Dead) {
             return false;
         }
 

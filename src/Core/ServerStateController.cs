@@ -1,11 +1,8 @@
-using System.Diagnostics;
-using System.Drawing;
+using System.Collections.Concurrent;
 using System.Net;
 using System.Net.Sockets;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.Json;
-using System.Xml.Schema;
 using Serilog;
 
 class ServerStateController(int port) : IStateController
@@ -16,13 +13,15 @@ class ServerStateController(int port) : IStateController
     private readonly Dictionary<Guid, NetworkStream> _clients = [];
     private readonly Random rng = new(); // should be a singleton for consistency.
 
+
     public override async Task Run()
     {
         try
         {
             Room _ = worldGrid.GenRoom(_initialRoomPosition);
-            Skeleton testSkeleton = new(Guid.NewGuid(), _, new(2, 2), new(1, 1));
-            skeletons.Add(testSkeleton);
+            Sword skeletonSword = new(1, 10, Guid.NewGuid());
+            Skeleton testSkeleton = new(System.Guid.NewGuid(), _, new(2, 2), skeletonSword);
+            enemies.Add(testSkeleton);
             _.Enter(testSkeleton);
 
             var clientTask = ListenForClients();
@@ -76,55 +75,56 @@ class ServerStateController(int port) : IStateController
 
     private void RunAI()
     {
-        Log.Debug("Ticking AI with {count} entities", skeletons.Count);
-        foreach (Skeleton skeleton in skeletons)
+        Log.Debug("Ticking AI with {count} entities", enemies.Count);
+        foreach (Enemy enemy in enemies)
         {
-            ICommand? command = skeleton.TickAI();
+            ICommand? command = enemy.TickAI();
 
             if (command is not null)
             {
-                Log.Debug("Entity {skeleton} decided to {command}", skeleton, command.GetType());
+                Log.Debug("Entity {enemy} decided to {command}", enemy, command.GetType());
             }
             command?.ExecuteOnServer(this);
         }
     }
 
-    public async Task SendCommand(ICommand command, NetworkStream clientStream)
+    private async Task SendCommand(ICommand command, NetworkStream clientStream)
     {
-        Log.Debug($"Sending of type {command.GetType()}");
-        var duplicateGroups = worldGrid.GetAllRooms()
-            .GroupBy(room => room.WorldGridPosition)
-            .Where(group => group.Count() > 1);
+            Log.Debug($"Sending of type {command.GetType()}");
 
-        if (duplicateGroups.Any())
-        {
-            foreach (var group in duplicateGroups)
+            var duplicateGroups = worldGrid.GetAllRooms()
+                .GroupBy(room => room.WorldGridPosition)
+                .Where(group => group.Count() > 1);
+
+            if (duplicateGroups.Any())
             {
-                Log.Warning($"Duplicate room found at position {group.Key}. Count: {group.Count()}");
+                foreach (var group in duplicateGroups)
+                {
+                    Log.Warning($"Duplicate room found at position {group.Key}. Count: {group.Count()}");
+                }
             }
-        }
 
-        byte[] jsonBytes = JsonSerializer.SerializeToUtf8Bytes(command, NetworkSerializer.Options);
+            byte[] jsonBytes = JsonSerializer.SerializeToUtf8Bytes(command, NetworkSerializer.Options);
 
-        int messageLength = jsonBytes.Length; // required for length-prefixing. TCP can be annoying.
-        byte[] lengthPrefix = BitConverter.GetBytes(messageLength);
+            int messageLength = jsonBytes.Length; // required for length-prefixing. TCP can be annoying.
+            byte[] lengthPrefix = BitConverter.GetBytes(messageLength);
 
-        var b = Encoding.UTF8.GetString(jsonBytes, 0, messageLength);
-        Log.Debug("sending {b}", b);
+            var b = Encoding.UTF8.GetString(jsonBytes, 0, messageLength);
+            Log.Debug("sending {b}", b);
 
-        try
-        {
-            await clientStream.WriteAsync(lengthPrefix);
-            await clientStream.WriteAsync(jsonBytes);
-            await clientStream.FlushAsync();
-        }
-        catch
-        {
-            Log.Debug($"Failed to repliate to client. Is it still alive?");
-            throw;
-        }
+            try
+            {
+                await clientStream.WriteAsync(lengthPrefix);
+                await clientStream.WriteAsync(jsonBytes);
+                await clientStream.FlushAsync();
+            }
+            catch
+            {
+                Log.Debug($"Failed to repliate to client. Is it still alive?");
+                throw;
+            }
 
-        Log.Debug($"Sent of type {command.GetType()} with length {messageLength}");
+            Log.Debug($"Sent of type {command.GetType()} with length {messageLength}");
     }
 
     private async Task ListenForClients()
@@ -150,16 +150,16 @@ class ServerStateController(int port) : IStateController
         {
             return;
         }
-        Guid clientIdentity = Guid.NewGuid();
+
+        Player player = AddPlayer(Guid.NewGuid(), username);
+        Guid clientIdentity = player.Identity;
 
         // Register for replication
         _clients.Add(clientIdentity, client.GetStream());
         Log.Information($"Received client connection ... {clientIdentity}");
 
-        Player _ = AddPlayer(clientIdentity, username);
         try
         {
-            await SendCommand(GetSnapshotCommand(clientIdentity), client.GetStream());
             await ListenForClient(client);
         }
         catch (Exception e)
@@ -188,7 +188,7 @@ class ServerStateController(int port) : IStateController
         }
     }
 
-    private void Disconnect(Guid identity)
+    private void Disconnect(System.Guid identity)
     {
         Player? player = players.Where(player => player.Identity == identity).FirstOrDefault();
 
@@ -206,7 +206,7 @@ class ServerStateController(int port) : IStateController
         _clients.Remove(identity);
     }
 
-    private Player AddPlayer(Guid identity, string username)
+    private Player AddPlayer(System.Guid identity, string username)
     {
         Room? initialRoom = worldGrid.GetRoom(_initialRoomPosition);
         if (initialRoom is null)
@@ -217,10 +217,10 @@ class ServerStateController(int port) : IStateController
 
         Vector2 initialRoomShape = initialRoom.Shape;
         Vector2 middlePosition = new(initialRoomShape.X / 2, initialRoomShape.Y / 2);
-        Sword weapon = new(1, 25);
+        Sword starterWeapon = new(1, 25, Guid.NewGuid());
         Array colorValues = typeof(Color).GetEnumValues();
         Color randomColor = (Color?)colorValues.GetValue(rng.Next(colorValues.Length)) ?? throw new InvalidOperationException();
-        Player player = new(username, identity, randomColor, initialRoom, middlePosition, weapon);
+        Player player = new(username, identity, randomColor, initialRoom, middlePosition, starterWeapon);
         initialRoom.Enter(player);
 
         players.Add(player);
@@ -231,18 +231,18 @@ class ServerStateController(int port) : IStateController
         return player;
     }
 
-    private SyncCommand GetSnapshotCommand(Guid clientIdentity)
+    private SyncCommand GetSnapshotCommand(System.Guid clientIdentity)
     {
         IReadOnlyList<LogEntry> serverLogEntries = MessageLog.Instance.GetAllMessages();
         List<LogEntryDto> logDtos = serverLogEntries.Select(entry => new LogEntryDto
         {
             Text = entry.Text,
             Scope = entry.Scope,
-            PlayerIdentity = entry.PlayerIdentity,
+            PlayerIdentity = entry.PlayerIdentity?.Identity,
             RoomPosition = entry.RoomPosition
         }).ToList();
 
-        GameStateSnapshot snapshot = new(players, skeletons, worldGrid, logDtos);
+        GameStateSnapshot snapshot = new(players, enemies, worldGrid, logDtos);
         return new SyncCommand(snapshot, clientIdentity);
     }
 

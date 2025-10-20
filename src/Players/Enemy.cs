@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 [JsonDerivedType(typeof(Skeleton), typeDiscriminator: "Skeleton")]
 abstract class Enemy : Character {
-    
+    [JsonConstructor]
     public Enemy() : base() {}
     protected Enemy(Guid identity, Room room, Vector2 positionInRoom, Weapon weapon)
         : base(room, positionInRoom, weapon, identity)

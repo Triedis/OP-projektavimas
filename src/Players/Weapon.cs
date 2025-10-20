@@ -2,8 +2,9 @@
 using System.Text.Json.Serialization;
 
 [JsonDerivedType(typeof(Sword), typeDiscriminator: "Sword")]
-abstract class Weapon()
+abstract class Weapon(Guid identity)
 {
+    public Guid Identity { get; set; } = identity;
     /// <summary>
     /// Determines whether the game state situation allows for the weapon to be used.
     /// This is left up for implementation because for example while a sword is short-range, magic may not be.
