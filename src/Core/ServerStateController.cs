@@ -20,10 +20,26 @@ class ServerStateController(int port) : IStateController
     {
         try
         {
+            IDifficultyFactory factory1 = new EasyFactory();
+            IDifficultyFactory factory2 = new NormalFactory();
+            IDifficultyFactory factory3 = new HardFactory();
             Room _ = worldGrid.GenRoom(_initialRoomPosition);
-            Skeleton testSkeleton = new(Guid.NewGuid(), _, new(2, 2), new(1, 1));
-            skeletons.Add(testSkeleton);
-            _.Enter(testSkeleton);
+            Enemy testSkeleton = factory1.CreateEnemy(_, new(2, 2));
+            //Enemy testZombie = factory2.CreateEnemy(_, new(4, 4));
+            //Enemy testZombie2 = factory2.CreateEnemy(_, new(2, 2));
+            Enemy testOrc = factory3.CreateEnemy(_, new(6, 6));
+
+            // enemies.Add(testSkeleton);
+            // _.Enter(testSkeleton);
+
+            // enemies.Add(testZombie);
+            // _.Enter(testZombie);
+
+            // enemies.Add(testZombie2);
+            // _.Enter(testZombie2);
+            
+            enemies.Add(testOrc);
+            _.Enter(testOrc);
 
             var clientTask = ListenForClients();
             var serverTask = GameLoop();
@@ -76,14 +92,14 @@ class ServerStateController(int port) : IStateController
 
     private void RunAI()
     {
-        Log.Debug("Ticking AI with {count} entities", skeletons.Count);
-        foreach (Skeleton skeleton in skeletons)
+        Log.Debug("Ticking AI with {count} entities", enemies.Count);
+        foreach (Enemy enemy in enemies)
         {
-            ICommand? command = skeleton.TickAI();
+            ICommand? command = enemy.TickAI();
 
             if (command is not null)
             {
-                Log.Debug("Entity {skeleton} decided to {command}", skeleton, command.GetType());
+                Log.Debug("Entity {skeleton} decided to {command}", enemy, command.GetType());
             }
             command?.ExecuteOnServer(this);
         }
@@ -242,7 +258,7 @@ class ServerStateController(int port) : IStateController
             RoomPosition = entry.RoomPosition
         }).ToList();
 
-        GameStateSnapshot snapshot = new(players, skeletons, worldGrid, logDtos);
+        GameStateSnapshot snapshot = new(players, enemies, worldGrid, logDtos);
         return new SyncCommand(snapshot, clientIdentity);
     }
 

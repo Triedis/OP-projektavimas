@@ -14,7 +14,7 @@ class MoveCommand(Vector2 position, Character character) : ICommand
     {
         await Task.Run(() =>
         {
-            Character? target = gameState.players.Cast<Character>().Concat(gameState.skeletons).FirstOrDefault((character) => character.Equals(Character));
+            Character? target = gameState.players.Cast<Character>().Concat(gameState.enemies).FirstOrDefault((character) => character.Equals(Character));
             if (target is null)
             {
                 Console.WriteLine("Failed to replicate movement on server. Nil.");

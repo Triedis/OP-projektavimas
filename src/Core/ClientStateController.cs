@@ -224,7 +224,7 @@ class ClientStateController : IStateController
     public void ApplySnapshot(GameStateSnapshot snapshot)
     {
         players = snapshot.Players;
-        skeletons = snapshot.Skeletons;
+        enemies = snapshot.Enemies;
         worldGrid = snapshot.WorldGrid;
 
         foreach (var room in worldGrid.GetAllRooms())
@@ -232,7 +232,7 @@ class ClientStateController : IStateController
             room.Occupants.Clear();
         }
 
-        var allCharacters = players.Cast<Character>().Concat(skeletons);
+        var allCharacters = players.Cast<Character>().Concat(enemies);
         // fix references... todo: use Dtos and proper guid referencing
         foreach (var character in allCharacters)
         {

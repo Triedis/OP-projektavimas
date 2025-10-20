@@ -1,9 +1,8 @@
-using System.Diagnostics;
-using Serilog;
 
-class Sword : Weapon
+
+class Axe : Weapon
 {
-    public Sword(int maxRange, int damage) : base(maxRange, damage) {}
+    public Axe(int maxRange, int damage) : base(maxRange, damage){}
 
     public override IReadOnlyList<IActionCommand> Act(Character actor, Character target)
     {
@@ -23,19 +22,8 @@ class Sword : Weapon
 
         return true;
     }
-
-    public override bool Equals(object? obj)
+    public override string ToString()
     {
-        return base.Equals(obj);
-    }
-
-    public override int GetHashCode()
-    {
-        return base.GetHashCode(); // TODO
-    }
-
-    public override string? ToString()
-    {
-        return "Sword"; // TODO
+        return "Axe";
     }
 }

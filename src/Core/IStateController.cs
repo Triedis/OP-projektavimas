@@ -1,7 +1,7 @@
 abstract class IStateController
 {
     public List<Player> players = [];
-    public List<Skeleton> skeletons = [];
+    public List<Enemy> enemies = [];
     public WorldGrid worldGrid = new(1337);
     public abstract Task Run();
 

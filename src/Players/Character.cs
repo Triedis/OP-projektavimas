@@ -2,6 +2,8 @@ using System.Text.Json.Serialization;
 
 [JsonDerivedType(typeof(Player), typeDiscriminator: "Player")]
 [JsonDerivedType(typeof(Skeleton), typeDiscriminator: "Skeleton")]
+[JsonDerivedType(typeof(Zombie), typeDiscriminator: "Zombie")]
+[JsonDerivedType(typeof(Orc), typeDiscriminator: "Orc")]
 abstract class Character
 {
     public Guid Identity { get; set; }
@@ -10,6 +12,7 @@ abstract class Character
     public Weapon Weapon { get; set; }
     public bool Dead { get; set; } = false;
     public Room Room { get; set; }
+
     public Character() { }
 
     protected Character(Room room, Vector2 positionInRoom, Weapon weapon, Guid identity)

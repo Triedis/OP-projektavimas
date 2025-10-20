@@ -13,11 +13,16 @@ class UseWeaponCommand(Guid actorIdentity) : ICommand
     public Task ExecuteOnServer(ServerStateController gameState)
     {
         Log.Information("UseWeaponCommand::ExecuteOnServer from {actorIdentity}", ActorIdentity);
-
-        Character? actor = gameState.players.Where(player => player.Identity == ActorIdentity).FirstOrDefault();
+        Character? actor = null;
+        actor = gameState.players.Where(player => player.Identity == ActorIdentity).FirstOrDefault();
         if (actor is null) {
-            Log.Warning("UseWeaponCommand's ActorIdentity is not bound to any character object");
-            return Task.CompletedTask;
+            actor = gameState.enemies.Where(enemy => enemy.Identity == ActorIdentity).FirstOrDefault();
+            if(actor is null)
+            {
+                Log.Warning("UseWeaponCommand's ActorIdentity is not bound to any character object");
+                return Task.CompletedTask;
+            }
+
         }
         Weapon weapon = actor.Weapon;
 
