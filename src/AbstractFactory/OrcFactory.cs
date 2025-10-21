@@ -1,5 +1,5 @@
 
-class HardFactory : IDifficultyFactory
+class OrcFactory : IEnemyFactory
 {
     private const int MinRange = 1;
     private const int MaxRange = 2;
@@ -13,6 +13,6 @@ class HardFactory : IDifficultyFactory
 
     public Weapon CreateWeapon()
     {
-        return new Axe(random.Next(MinRange, MaxRange), random.Next(MinDamage, MaxDamage));
+        return new Axe(random.Next(MinRange, MaxRange), random.Next(MinDamage, MaxDamage), Guid.NewGuid());
     }
 }

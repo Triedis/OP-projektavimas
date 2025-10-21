@@ -1,0 +1,1384 @@
+2025-10-22 00:26:44.636 +03:00 [DBG] Hello, run
+2025-10-22 00:26:44.670 +03:00 [DBG] Hello, listen ...
+2025-10-22 00:26:44.673 +03:00 [DBG] Created listen task
+2025-10-22 00:26:44.673 +03:00 [DBG] GameLoop is waiting for synchronization ...
+2025-10-22 00:26:44.674 +03:00 [DBG] Created gameloop task.
+2025-10-22 00:26:44.675 +03:00 [DBG] Enter render loop ...
+2025-10-22 00:26:44.675 +03:00 [DBG] render event
+2025-10-22 00:26:44.676 +03:00 [DBG] Hello, render
+2025-10-22 00:26:44.677 +03:00 [WRN] Player not found in a room. Waiting for state update ...
+2025-10-22 00:26:44.677 +03:00 [DBG] Created render loop task. All tasks created
+2025-10-22 00:26:44.712 +03:00 [DBG] render event
+2025-10-22 00:26:44.712 +03:00 [DBG] Hello, render
+2025-10-22 00:26:44.712 +03:00 [WRN] Player not found in a room. Waiting for state update ...
+2025-10-22 00:26:44.742 +03:00 [DBG] render event
+2025-10-22 00:26:44.743 +03:00 [DBG] Hello, render
+2025-10-22 00:26:44.743 +03:00 [WRN] Player not found in a room. Waiting for state update ...
+2025-10-22 00:26:44.773 +03:00 [DBG] render event
+2025-10-22 00:26:44.773 +03:00 [DBG] GameLoop is waiting for synchronization ...
+2025-10-22 00:26:44.773 +03:00 [DBG] Hello, render
+2025-10-22 00:26:44.774 +03:00 [WRN] Player not found in a room. Waiting for state update ...
+2025-10-22 00:26:44.804 +03:00 [DBG] render event
+2025-10-22 00:26:44.805 +03:00 [DBG] Hello, render
+2025-10-22 00:26:44.805 +03:00 [WRN] Player not found in a room. Waiting for state update ...
+2025-10-22 00:26:44.835 +03:00 [DBG] render event
+2025-10-22 00:26:44.835 +03:00 [DBG] Hello, render
+2025-10-22 00:26:44.836 +03:00 [WRN] Player not found in a room. Waiting for state update ...
+2025-10-22 00:26:44.867 +03:00 [DBG] render event
+2025-10-22 00:26:44.867 +03:00 [DBG] Hello, render
+2025-10-22 00:26:44.868 +03:00 [WRN] Player not found in a room. Waiting for state update ...
+2025-10-22 00:26:44.882 +03:00 [DBG] GameLoop is waiting for synchronization ...
+2025-10-22 00:26:44.897 +03:00 [DBG] render event
+2025-10-22 00:26:44.897 +03:00 [DBG] Hello, render
+2025-10-22 00:26:44.898 +03:00 [WRN] Player not found in a room. Waiting for state update ...
+2025-10-22 00:26:44.929 +03:00 [DBG] render event
+2025-10-22 00:26:44.929 +03:00 [DBG] Hello, render
+2025-10-22 00:26:44.930 +03:00 [WRN] Player not found in a room. Waiting for state update ...
+2025-10-22 00:26:44.961 +03:00 [DBG] render event
+2025-10-22 00:26:44.961 +03:00 [DBG] Hello, render
+2025-10-22 00:26:44.962 +03:00 [WRN] Player not found in a room. Waiting for state update ...
+2025-10-22 00:26:44.992 +03:00 [DBG] render event
+2025-10-22 00:26:44.992 +03:00 [DBG] Hello, render
+2025-10-22 00:26:44.992 +03:00 [DBG] GameLoop is waiting for synchronization ...
+2025-10-22 00:26:44.993 +03:00 [WRN] Player not found in a room. Waiting for state update ...
+2025-10-22 00:26:45.024 +03:00 [DBG] render event
+2025-10-22 00:26:45.024 +03:00 [DBG] Hello, render
+2025-10-22 00:26:45.025 +03:00 [WRN] Player not found in a room. Waiting for state update ...
+2025-10-22 00:26:45.055 +03:00 [DBG] render event
+2025-10-22 00:26:45.055 +03:00 [DBG] Hello, render
+2025-10-22 00:26:45.055 +03:00 [WRN] Player not found in a room. Waiting for state update ...
+2025-10-22 00:26:45.087 +03:00 [DBG] render event
+2025-10-22 00:26:45.087 +03:00 [DBG] Hello, render
+2025-10-22 00:26:45.088 +03:00 [WRN] Player not found in a room. Waiting for state update ...
+2025-10-22 00:26:45.103 +03:00 [DBG] GameLoop is waiting for synchronization ...
+2025-10-22 00:26:45.117 +03:00 [DBG] render event
+2025-10-22 00:26:45.118 +03:00 [DBG] Hello, render
+2025-10-22 00:26:45.118 +03:00 [WRN] Player not found in a room. Waiting for state update ...
+2025-10-22 00:26:45.148 +03:00 [DBG] render event
+2025-10-22 00:26:45.148 +03:00 [DBG] Hello, render
+2025-10-22 00:26:45.149 +03:00 [WRN] Player not found in a room. Waiting for state update ...
+2025-10-22 00:26:45.165 +03:00 [DBG] Incoming message length 2392
+2025-10-22 00:26:45.167 +03:00 [DBG] first 4 bytes: 7B222474
+2025-10-22 00:26:45.169 +03:00 [DBG] Received server payload {"$type":"Sync","Snapshot":{"Players":[{"Username":"127.0.0.1:51658","Color":1,"Identity":"0bb6b9da-8962-4b18-a3c9-e73f89d159de","PositionInRoom":{"X":7,"Y":8},"Health":100,"Weapon":{"$type":"Sword","Identity":"0a11b762-29fa-461c-9241-43010ec7918f"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}}],"Enemies":[{"$type":"Zombie","Identity":"b1eaafb6-7fcf-49b2-9430-c8d963af3938","PositionInRoom":{"X":1,"Y":1},"Health":100,"Weapon":{"$type":"Sword","Identity":"37ac9d4e-fc02-447d-879c-1c11950e3708"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Zombie","Identity":"1594fd0c-5f49-443a-afed-089711a52e49","PositionInRoom":{"X":1,"Y":1},"Health":100,"Weapon":{"$type":"Sword","Identity":"71e43dcf-c921-4606-bc24-fbf69a205274"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Skeleton","Identity":"6e15f5bd-e356-44d5-84d5-43775253e3aa","PositionInRoom":{"X":2,"Y":2},"Health":100,"Weapon":{"$type":"Dagger","Identity":"f42875c7-3dca-4741-afd6-9ec4c989949d"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Orc","Identity":"312f0792-35c4-4558-8451-7e3e7c6f7579","PositionInRoom":{"X":3,"Y":3},"Health":100,"Weapon":{"$type":"Axe","Identity":"4743d881-7c27-436f-90a3-811d54e399d5"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}}],"WorldGrid":{"Rooms":{"0,0":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},"Seed":1337,"random":{}},"LogEntries":[{"Text":"Player 127.0.0.1:51658 has appeared.","Scope":2,"PlayerIdentity":null,"RoomPosition":null}]},"Identity":"0bb6b9da-8962-4b18-a3c9-e73f89d159de"}
+2025-10-22 00:26:45.180 +03:00 [DBG] render event
+2025-10-22 00:26:45.180 +03:00 [DBG] Hello, render
+2025-10-22 00:26:45.181 +03:00 [WRN] Player not found in a room. Waiting for state update ...
+2025-10-22 00:26:45.211 +03:00 [DBG] render event
+2025-10-22 00:26:45.211 +03:00 [DBG] GameLoop is waiting for synchronization ...
+2025-10-22 00:26:45.211 +03:00 [DBG] Hello, render
+2025-10-22 00:26:45.212 +03:00 [WRN] Player not found in a room. Waiting for state update ...
+2025-10-22 00:26:45.243 +03:00 [INF] Executing command from server of type SyncCommand
+2025-10-22 00:26:45.243 +03:00 [DBG] Received new game snapshot as "0bb6b9da-8962-4b18-a3c9-e73f89d159de"
+2025-10-22 00:26:45.245 +03:00 [DBG] Received snapshot with n=1 players...
+2025-10-22 00:26:45.248 +03:00 [INF] got relevant messages ...
+2025-10-22 00:26:45.248 +03:00 [DBG] Identity updated to 0bb6b9da-8962-4b18-a3c9-e73f89d159de
+2025-10-22 00:26:45.257 +03:00 [DBG] render event
+2025-10-22 00:26:45.257 +03:00 [DBG] Hello, render
+2025-10-22 00:26:45.265 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":8,"$type":"Vector2"}
+2025-10-22 00:26:45.304 +03:00 [DBG] render event
+2025-10-22 00:26:45.304 +03:00 [DBG] Hello, render
+2025-10-22 00:26:45.308 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":8,"$type":"Vector2"}
+2025-10-22 00:26:45.350 +03:00 [DBG] render event
+2025-10-22 00:26:45.350 +03:00 [DBG] Hello, render
+2025-10-22 00:26:45.354 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":8,"$type":"Vector2"}
+2025-10-22 00:26:45.396 +03:00 [DBG] render event
+2025-10-22 00:26:45.396 +03:00 [DBG] Hello, render
+2025-10-22 00:26:45.400 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":8,"$type":"Vector2"}
+2025-10-22 00:26:45.443 +03:00 [DBG] render event
+2025-10-22 00:26:45.443 +03:00 [DBG] Hello, render
+2025-10-22 00:26:45.447 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":8,"$type":"Vector2"}
+2025-10-22 00:26:45.489 +03:00 [DBG] render event
+2025-10-22 00:26:45.489 +03:00 [DBG] Hello, render
+2025-10-22 00:26:45.493 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":8,"$type":"Vector2"}
+2025-10-22 00:26:45.536 +03:00 [DBG] render event
+2025-10-22 00:26:45.536 +03:00 [DBG] Hello, render
+2025-10-22 00:26:45.540 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":8,"$type":"Vector2"}
+2025-10-22 00:26:45.581 +03:00 [DBG] render event
+2025-10-22 00:26:45.582 +03:00 [DBG] Hello, render
+2025-10-22 00:26:45.585 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":8,"$type":"Vector2"}
+2025-10-22 00:26:45.628 +03:00 [DBG] render event
+2025-10-22 00:26:45.628 +03:00 [DBG] Hello, render
+2025-10-22 00:26:45.631 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":8,"$type":"Vector2"}
+2025-10-22 00:26:45.674 +03:00 [DBG] render event
+2025-10-22 00:26:45.675 +03:00 [DBG] Hello, render
+2025-10-22 00:26:45.680 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":8,"$type":"Vector2"}
+2025-10-22 00:26:45.686 +03:00 [DBG] Incoming message length 2392
+2025-10-22 00:26:45.686 +03:00 [DBG] first 4 bytes: 7B222474
+2025-10-22 00:26:45.686 +03:00 [DBG] Received server payload {"$type":"Sync","Snapshot":{"Players":[{"Username":"127.0.0.1:51658","Color":1,"Identity":"0bb6b9da-8962-4b18-a3c9-e73f89d159de","PositionInRoom":{"X":7,"Y":8},"Health":100,"Weapon":{"$type":"Sword","Identity":"0a11b762-29fa-461c-9241-43010ec7918f"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}}],"Enemies":[{"$type":"Zombie","Identity":"b1eaafb6-7fcf-49b2-9430-c8d963af3938","PositionInRoom":{"X":1,"Y":1},"Health":100,"Weapon":{"$type":"Sword","Identity":"37ac9d4e-fc02-447d-879c-1c11950e3708"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Zombie","Identity":"1594fd0c-5f49-443a-afed-089711a52e49","PositionInRoom":{"X":1,"Y":1},"Health":100,"Weapon":{"$type":"Sword","Identity":"71e43dcf-c921-4606-bc24-fbf69a205274"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Skeleton","Identity":"6e15f5bd-e356-44d5-84d5-43775253e3aa","PositionInRoom":{"X":2,"Y":2},"Health":100,"Weapon":{"$type":"Dagger","Identity":"f42875c7-3dca-4741-afd6-9ec4c989949d"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Orc","Identity":"312f0792-35c4-4558-8451-7e3e7c6f7579","PositionInRoom":{"X":3,"Y":3},"Health":100,"Weapon":{"$type":"Axe","Identity":"4743d881-7c27-436f-90a3-811d54e399d5"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}}],"WorldGrid":{"Rooms":{"0,0":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},"Seed":1337,"random":{}},"LogEntries":[{"Text":"Player 127.0.0.1:51658 has appeared.","Scope":2,"PlayerIdentity":null,"RoomPosition":null}]},"Identity":"0bb6b9da-8962-4b18-a3c9-e73f89d159de"}
+2025-10-22 00:26:45.686 +03:00 [INF] Executing command from server of type SyncCommand
+2025-10-22 00:26:45.686 +03:00 [DBG] Received new game snapshot as "0bb6b9da-8962-4b18-a3c9-e73f89d159de"
+2025-10-22 00:26:45.686 +03:00 [DBG] Received snapshot with n=1 players...
+2025-10-22 00:26:45.686 +03:00 [INF] got relevant messages ...
+2025-10-22 00:26:45.686 +03:00 [DBG] Identity updated to 0bb6b9da-8962-4b18-a3c9-e73f89d159de
+2025-10-22 00:26:45.721 +03:00 [DBG] render event
+2025-10-22 00:26:45.722 +03:00 [DBG] Hello, render
+2025-10-22 00:26:45.726 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":8,"$type":"Vector2"}
+2025-10-22 00:26:45.768 +03:00 [DBG] render event
+2025-10-22 00:26:45.768 +03:00 [DBG] Hello, render
+2025-10-22 00:26:45.773 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":8,"$type":"Vector2"}
+2025-10-22 00:26:45.815 +03:00 [DBG] render event
+2025-10-22 00:26:45.815 +03:00 [DBG] Hello, render
+2025-10-22 00:26:45.819 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":8,"$type":"Vector2"}
+2025-10-22 00:26:45.861 +03:00 [DBG] render event
+2025-10-22 00:26:45.861 +03:00 [DBG] Hello, render
+2025-10-22 00:26:45.866 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":8,"$type":"Vector2"}
+2025-10-22 00:26:45.908 +03:00 [DBG] render event
+2025-10-22 00:26:45.909 +03:00 [DBG] Hello, render
+2025-10-22 00:26:45.913 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":8,"$type":"Vector2"}
+2025-10-22 00:26:45.955 +03:00 [DBG] render event
+2025-10-22 00:26:45.955 +03:00 [DBG] Hello, render
+2025-10-22 00:26:45.959 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":8,"$type":"Vector2"}
+2025-10-22 00:26:46.001 +03:00 [DBG] render event
+2025-10-22 00:26:46.002 +03:00 [DBG] Hello, render
+2025-10-22 00:26:46.006 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":8,"$type":"Vector2"}
+2025-10-22 00:26:46.048 +03:00 [DBG] render event
+2025-10-22 00:26:46.048 +03:00 [DBG] Hello, render
+2025-10-22 00:26:46.053 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":8,"$type":"Vector2"}
+2025-10-22 00:26:46.095 +03:00 [DBG] render event
+2025-10-22 00:26:46.095 +03:00 [DBG] Hello, render
+2025-10-22 00:26:46.099 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":8,"$type":"Vector2"}
+2025-10-22 00:26:46.141 +03:00 [DBG] render event
+2025-10-22 00:26:46.142 +03:00 [DBG] Hello, render
+2025-10-22 00:26:46.146 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":8,"$type":"Vector2"}
+2025-10-22 00:26:46.189 +03:00 [DBG] render event
+2025-10-22 00:26:46.189 +03:00 [DBG] Hello, render
+2025-10-22 00:26:46.193 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":8,"$type":"Vector2"}
+2025-10-22 00:26:46.198 +03:00 [DBG] Incoming message length 2392
+2025-10-22 00:26:46.198 +03:00 [DBG] first 4 bytes: 7B222474
+2025-10-22 00:26:46.198 +03:00 [DBG] Received server payload {"$type":"Sync","Snapshot":{"Players":[{"Username":"127.0.0.1:51658","Color":1,"Identity":"0bb6b9da-8962-4b18-a3c9-e73f89d159de","PositionInRoom":{"X":7,"Y":8},"Health":100,"Weapon":{"$type":"Sword","Identity":"0a11b762-29fa-461c-9241-43010ec7918f"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}}],"Enemies":[{"$type":"Zombie","Identity":"b1eaafb6-7fcf-49b2-9430-c8d963af3938","PositionInRoom":{"X":1,"Y":1},"Health":100,"Weapon":{"$type":"Sword","Identity":"37ac9d4e-fc02-447d-879c-1c11950e3708"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Zombie","Identity":"1594fd0c-5f49-443a-afed-089711a52e49","PositionInRoom":{"X":1,"Y":1},"Health":100,"Weapon":{"$type":"Sword","Identity":"71e43dcf-c921-4606-bc24-fbf69a205274"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Skeleton","Identity":"6e15f5bd-e356-44d5-84d5-43775253e3aa","PositionInRoom":{"X":2,"Y":2},"Health":100,"Weapon":{"$type":"Dagger","Identity":"f42875c7-3dca-4741-afd6-9ec4c989949d"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Orc","Identity":"312f0792-35c4-4558-8451-7e3e7c6f7579","PositionInRoom":{"X":3,"Y":3},"Health":100,"Weapon":{"$type":"Axe","Identity":"4743d881-7c27-436f-90a3-811d54e399d5"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}}],"WorldGrid":{"Rooms":{"0,0":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},"Seed":1337,"random":{}},"LogEntries":[{"Text":"Player 127.0.0.1:51658 has appeared.","Scope":2,"PlayerIdentity":null,"RoomPosition":null}]},"Identity":"0bb6b9da-8962-4b18-a3c9-e73f89d159de"}
+2025-10-22 00:26:46.198 +03:00 [INF] Executing command from server of type SyncCommand
+2025-10-22 00:26:46.198 +03:00 [DBG] Received new game snapshot as "0bb6b9da-8962-4b18-a3c9-e73f89d159de"
+2025-10-22 00:26:46.198 +03:00 [DBG] Received snapshot with n=1 players...
+2025-10-22 00:26:46.198 +03:00 [INF] got relevant messages ...
+2025-10-22 00:26:46.198 +03:00 [DBG] Identity updated to 0bb6b9da-8962-4b18-a3c9-e73f89d159de
+2025-10-22 00:26:46.235 +03:00 [DBG] render event
+2025-10-22 00:26:46.235 +03:00 [DBG] Hello, render
+2025-10-22 00:26:46.240 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":8,"$type":"Vector2"}
+2025-10-22 00:26:46.271 +03:00 [DBG] render event
+2025-10-22 00:26:46.271 +03:00 [DBG] Hello, render
+2025-10-22 00:26:46.275 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":8,"$type":"Vector2"}
+2025-10-22 00:26:46.304 +03:00 [DBG] render event
+2025-10-22 00:26:46.305 +03:00 [DBG] Hello, render
+2025-10-22 00:26:46.308 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":8,"$type":"Vector2"}
+2025-10-22 00:26:46.353 +03:00 [DBG] render event
+2025-10-22 00:26:46.354 +03:00 [DBG] Hello, render
+2025-10-22 00:26:46.358 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":8,"$type":"Vector2"}
+2025-10-22 00:26:46.387 +03:00 [DBG] render event
+2025-10-22 00:26:46.387 +03:00 [DBG] Hello, render
+2025-10-22 00:26:46.392 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":8,"$type":"Vector2"}
+2025-10-22 00:26:46.436 +03:00 [DBG] render event
+2025-10-22 00:26:46.436 +03:00 [DBG] Hello, render
+2025-10-22 00:26:46.441 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":8,"$type":"Vector2"}
+2025-10-22 00:26:46.470 +03:00 [DBG] render event
+2025-10-22 00:26:46.470 +03:00 [DBG] Hello, render
+2025-10-22 00:26:46.475 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":8,"$type":"Vector2"}
+2025-10-22 00:26:46.505 +03:00 [DBG] render event
+2025-10-22 00:26:46.505 +03:00 [DBG] Hello, render
+2025-10-22 00:26:46.510 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":8,"$type":"Vector2"}
+2025-10-22 00:26:46.554 +03:00 [DBG] render event
+2025-10-22 00:26:46.554 +03:00 [DBG] Hello, render
+2025-10-22 00:26:46.559 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":8,"$type":"Vector2"}
+2025-10-22 00:26:46.589 +03:00 [DBG] render event
+2025-10-22 00:26:46.589 +03:00 [DBG] Hello, render
+2025-10-22 00:26:46.593 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":8,"$type":"Vector2"}
+2025-10-22 00:26:46.636 +03:00 [DBG] render event
+2025-10-22 00:26:46.637 +03:00 [DBG] Hello, render
+2025-10-22 00:26:46.641 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":8,"$type":"Vector2"}
+2025-10-22 00:26:46.668 +03:00 [DBG] render event
+2025-10-22 00:26:46.669 +03:00 [DBG] Hello, render
+2025-10-22 00:26:46.673 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":8,"$type":"Vector2"}
+2025-10-22 00:26:46.700 +03:00 [DBG] render event
+2025-10-22 00:26:46.701 +03:00 [DBG] Hello, render
+2025-10-22 00:26:46.706 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":8,"$type":"Vector2"}
+2025-10-22 00:26:46.711 +03:00 [DBG] Incoming message length 2392
+2025-10-22 00:26:46.711 +03:00 [DBG] first 4 bytes: 7B222474
+2025-10-22 00:26:46.711 +03:00 [DBG] Received server payload {"$type":"Sync","Snapshot":{"Players":[{"Username":"127.0.0.1:51658","Color":1,"Identity":"0bb6b9da-8962-4b18-a3c9-e73f89d159de","PositionInRoom":{"X":7,"Y":8},"Health":100,"Weapon":{"$type":"Sword","Identity":"0a11b762-29fa-461c-9241-43010ec7918f"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}}],"Enemies":[{"$type":"Zombie","Identity":"b1eaafb6-7fcf-49b2-9430-c8d963af3938","PositionInRoom":{"X":1,"Y":1},"Health":100,"Weapon":{"$type":"Sword","Identity":"37ac9d4e-fc02-447d-879c-1c11950e3708"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Zombie","Identity":"1594fd0c-5f49-443a-afed-089711a52e49","PositionInRoom":{"X":1,"Y":1},"Health":100,"Weapon":{"$type":"Sword","Identity":"71e43dcf-c921-4606-bc24-fbf69a205274"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Skeleton","Identity":"6e15f5bd-e356-44d5-84d5-43775253e3aa","PositionInRoom":{"X":2,"Y":2},"Health":100,"Weapon":{"$type":"Dagger","Identity":"f42875c7-3dca-4741-afd6-9ec4c989949d"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Orc","Identity":"312f0792-35c4-4558-8451-7e3e7c6f7579","PositionInRoom":{"X":3,"Y":3},"Health":100,"Weapon":{"$type":"Axe","Identity":"4743d881-7c27-436f-90a3-811d54e399d5"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}}],"WorldGrid":{"Rooms":{"0,0":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},"Seed":1337,"random":{}},"LogEntries":[{"Text":"Player 127.0.0.1:51658 has appeared.","Scope":2,"PlayerIdentity":null,"RoomPosition":null}]},"Identity":"0bb6b9da-8962-4b18-a3c9-e73f89d159de"}
+2025-10-22 00:26:46.712 +03:00 [INF] Executing command from server of type SyncCommand
+2025-10-22 00:26:46.712 +03:00 [DBG] Received new game snapshot as "0bb6b9da-8962-4b18-a3c9-e73f89d159de"
+2025-10-22 00:26:46.712 +03:00 [DBG] Received snapshot with n=1 players...
+2025-10-22 00:26:46.712 +03:00 [INF] got relevant messages ...
+2025-10-22 00:26:46.712 +03:00 [DBG] Identity updated to 0bb6b9da-8962-4b18-a3c9-e73f89d159de
+2025-10-22 00:26:46.741 +03:00 [DBG] render event
+2025-10-22 00:26:46.741 +03:00 [DBG] Hello, render
+2025-10-22 00:26:46.744 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":8,"$type":"Vector2"}
+2025-10-22 00:26:46.771 +03:00 [DBG] render event
+2025-10-22 00:26:46.772 +03:00 [DBG] Hello, render
+2025-10-22 00:26:46.776 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":8,"$type":"Vector2"}
+2025-10-22 00:26:46.818 +03:00 [DBG] render event
+2025-10-22 00:26:46.819 +03:00 [DBG] Hello, render
+2025-10-22 00:26:46.822 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":8,"$type":"Vector2"}
+2025-10-22 00:26:46.853 +03:00 [DBG] render event
+2025-10-22 00:26:46.854 +03:00 [DBG] Hello, render
+2025-10-22 00:26:46.858 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":8,"$type":"Vector2"}
+2025-10-22 00:26:46.871 +03:00 [DBG] Key pressed: W
+2025-10-22 00:26:46.871 +03:00 [INF] Moving
+2025-10-22 00:26:46.877 +03:00 [DBG] Sent of type MoveCommand
+2025-10-22 00:26:46.885 +03:00 [DBG] render event
+2025-10-22 00:26:46.885 +03:00 [DBG] Hello, render
+2025-10-22 00:26:46.889 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":8,"$type":"Vector2"}
+2025-10-22 00:26:46.920 +03:00 [DBG] render event
+2025-10-22 00:26:46.920 +03:00 [DBG] Hello, render
+2025-10-22 00:26:46.924 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":8,"$type":"Vector2"}
+2025-10-22 00:26:46.968 +03:00 [DBG] render event
+2025-10-22 00:26:46.968 +03:00 [DBG] Hello, render
+2025-10-22 00:26:46.972 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":8,"$type":"Vector2"}
+2025-10-22 00:26:47.003 +03:00 [DBG] render event
+2025-10-22 00:26:47.003 +03:00 [DBG] Hello, render
+2025-10-22 00:26:47.007 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":8,"$type":"Vector2"}
+2025-10-22 00:26:47.051 +03:00 [DBG] render event
+2025-10-22 00:26:47.051 +03:00 [DBG] Hello, render
+2025-10-22 00:26:47.054 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":8,"$type":"Vector2"}
+2025-10-22 00:26:47.083 +03:00 [DBG] render event
+2025-10-22 00:26:47.083 +03:00 [DBG] Hello, render
+2025-10-22 00:26:47.086 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":8,"$type":"Vector2"}
+2025-10-22 00:26:47.130 +03:00 [DBG] render event
+2025-10-22 00:26:47.130 +03:00 [DBG] Hello, render
+2025-10-22 00:26:47.134 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":8,"$type":"Vector2"}
+2025-10-22 00:26:47.162 +03:00 [DBG] render event
+2025-10-22 00:26:47.162 +03:00 [DBG] Hello, render
+2025-10-22 00:26:47.166 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":8,"$type":"Vector2"}
+2025-10-22 00:26:47.193 +03:00 [DBG] render event
+2025-10-22 00:26:47.193 +03:00 [DBG] Hello, render
+2025-10-22 00:26:47.197 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":8,"$type":"Vector2"}
+2025-10-22 00:26:47.225 +03:00 [DBG] render event
+2025-10-22 00:26:47.225 +03:00 [DBG] Hello, render
+2025-10-22 00:26:47.229 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":8,"$type":"Vector2"}
+2025-10-22 00:26:47.237 +03:00 [DBG] Incoming message length 2392
+2025-10-22 00:26:47.237 +03:00 [DBG] first 4 bytes: 7B222474
+2025-10-22 00:26:47.237 +03:00 [DBG] Received server payload {"$type":"Sync","Snapshot":{"Players":[{"Username":"127.0.0.1:51658","Color":1,"Identity":"0bb6b9da-8962-4b18-a3c9-e73f89d159de","PositionInRoom":{"X":7,"Y":7},"Health":100,"Weapon":{"$type":"Sword","Identity":"0a11b762-29fa-461c-9241-43010ec7918f"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}}],"Enemies":[{"$type":"Zombie","Identity":"b1eaafb6-7fcf-49b2-9430-c8d963af3938","PositionInRoom":{"X":1,"Y":1},"Health":100,"Weapon":{"$type":"Sword","Identity":"37ac9d4e-fc02-447d-879c-1c11950e3708"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Zombie","Identity":"1594fd0c-5f49-443a-afed-089711a52e49","PositionInRoom":{"X":1,"Y":1},"Health":100,"Weapon":{"$type":"Sword","Identity":"71e43dcf-c921-4606-bc24-fbf69a205274"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Skeleton","Identity":"6e15f5bd-e356-44d5-84d5-43775253e3aa","PositionInRoom":{"X":2,"Y":2},"Health":100,"Weapon":{"$type":"Dagger","Identity":"f42875c7-3dca-4741-afd6-9ec4c989949d"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Orc","Identity":"312f0792-35c4-4558-8451-7e3e7c6f7579","PositionInRoom":{"X":3,"Y":3},"Health":100,"Weapon":{"$type":"Axe","Identity":"4743d881-7c27-436f-90a3-811d54e399d5"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}}],"WorldGrid":{"Rooms":{"0,0":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},"Seed":1337,"random":{}},"LogEntries":[{"Text":"Player 127.0.0.1:51658 has appeared.","Scope":2,"PlayerIdentity":null,"RoomPosition":null}]},"Identity":"0bb6b9da-8962-4b18-a3c9-e73f89d159de"}
+2025-10-22 00:26:47.238 +03:00 [INF] Executing command from server of type SyncCommand
+2025-10-22 00:26:47.238 +03:00 [DBG] Received new game snapshot as "0bb6b9da-8962-4b18-a3c9-e73f89d159de"
+2025-10-22 00:26:47.238 +03:00 [DBG] Received snapshot with n=1 players...
+2025-10-22 00:26:47.238 +03:00 [INF] got relevant messages ...
+2025-10-22 00:26:47.238 +03:00 [DBG] Identity updated to 0bb6b9da-8962-4b18-a3c9-e73f89d159de
+2025-10-22 00:26:47.273 +03:00 [DBG] render event
+2025-10-22 00:26:47.273 +03:00 [DBG] Hello, render
+2025-10-22 00:26:47.277 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":7,"$type":"Vector2"}
+2025-10-22 00:26:47.307 +03:00 [DBG] render event
+2025-10-22 00:26:47.307 +03:00 [DBG] Hello, render
+2025-10-22 00:26:47.310 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":7,"$type":"Vector2"}
+2025-10-22 00:26:47.354 +03:00 [DBG] render event
+2025-10-22 00:26:47.354 +03:00 [DBG] Hello, render
+2025-10-22 00:26:47.358 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":7,"$type":"Vector2"}
+2025-10-22 00:26:47.386 +03:00 [DBG] render event
+2025-10-22 00:26:47.387 +03:00 [DBG] Hello, render
+2025-10-22 00:26:47.391 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":7,"$type":"Vector2"}
+2025-10-22 00:26:47.402 +03:00 [DBG] Key pressed: W
+2025-10-22 00:26:47.402 +03:00 [INF] Moving
+2025-10-22 00:26:47.403 +03:00 [DBG] Sent of type MoveCommand
+2025-10-22 00:26:47.418 +03:00 [DBG] render event
+2025-10-22 00:26:47.418 +03:00 [DBG] Hello, render
+2025-10-22 00:26:47.423 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":7,"$type":"Vector2"}
+2025-10-22 00:26:47.455 +03:00 [DBG] render event
+2025-10-22 00:26:47.455 +03:00 [DBG] Hello, render
+2025-10-22 00:26:47.459 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":7,"$type":"Vector2"}
+2025-10-22 00:26:47.487 +03:00 [DBG] render event
+2025-10-22 00:26:47.487 +03:00 [DBG] Hello, render
+2025-10-22 00:26:47.492 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":7,"$type":"Vector2"}
+2025-10-22 00:26:47.536 +03:00 [DBG] render event
+2025-10-22 00:26:47.537 +03:00 [DBG] Hello, render
+2025-10-22 00:26:47.540 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":7,"$type":"Vector2"}
+2025-10-22 00:26:47.568 +03:00 [DBG] render event
+2025-10-22 00:26:47.568 +03:00 [DBG] Hello, render
+2025-10-22 00:26:47.572 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":7,"$type":"Vector2"}
+2025-10-22 00:26:47.616 +03:00 [DBG] render event
+2025-10-22 00:26:47.616 +03:00 [DBG] Hello, render
+2025-10-22 00:26:47.620 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":7,"$type":"Vector2"}
+2025-10-22 00:26:47.664 +03:00 [DBG] render event
+2025-10-22 00:26:47.664 +03:00 [DBG] Hello, render
+2025-10-22 00:26:47.669 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":7,"$type":"Vector2"}
+2025-10-22 00:26:47.712 +03:00 [DBG] render event
+2025-10-22 00:26:47.712 +03:00 [DBG] Hello, render
+2025-10-22 00:26:47.717 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":7,"$type":"Vector2"}
+2025-10-22 00:26:47.751 +03:00 [DBG] render event
+2025-10-22 00:26:47.751 +03:00 [DBG] Hello, render
+2025-10-22 00:26:47.757 +03:00 [DBG] Incoming message length 2392
+2025-10-22 00:26:47.757 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":7,"$type":"Vector2"}
+2025-10-22 00:26:47.757 +03:00 [DBG] first 4 bytes: 7B222474
+2025-10-22 00:26:47.757 +03:00 [DBG] Received server payload {"$type":"Sync","Snapshot":{"Players":[{"Username":"127.0.0.1:51658","Color":1,"Identity":"0bb6b9da-8962-4b18-a3c9-e73f89d159de","PositionInRoom":{"X":7,"Y":6},"Health":100,"Weapon":{"$type":"Sword","Identity":"0a11b762-29fa-461c-9241-43010ec7918f"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}}],"Enemies":[{"$type":"Zombie","Identity":"b1eaafb6-7fcf-49b2-9430-c8d963af3938","PositionInRoom":{"X":1,"Y":1},"Health":100,"Weapon":{"$type":"Sword","Identity":"37ac9d4e-fc02-447d-879c-1c11950e3708"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Zombie","Identity":"1594fd0c-5f49-443a-afed-089711a52e49","PositionInRoom":{"X":1,"Y":1},"Health":100,"Weapon":{"$type":"Sword","Identity":"71e43dcf-c921-4606-bc24-fbf69a205274"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Skeleton","Identity":"6e15f5bd-e356-44d5-84d5-43775253e3aa","PositionInRoom":{"X":2,"Y":2},"Health":100,"Weapon":{"$type":"Dagger","Identity":"f42875c7-3dca-4741-afd6-9ec4c989949d"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Orc","Identity":"312f0792-35c4-4558-8451-7e3e7c6f7579","PositionInRoom":{"X":3,"Y":3},"Health":100,"Weapon":{"$type":"Axe","Identity":"4743d881-7c27-436f-90a3-811d54e399d5"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}}],"WorldGrid":{"Rooms":{"0,0":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},"Seed":1337,"random":{}},"LogEntries":[{"Text":"Player 127.0.0.1:51658 has appeared.","Scope":2,"PlayerIdentity":null,"RoomPosition":null}]},"Identity":"0bb6b9da-8962-4b18-a3c9-e73f89d159de"}
+2025-10-22 00:26:47.757 +03:00 [INF] Executing command from server of type SyncCommand
+2025-10-22 00:26:47.757 +03:00 [DBG] Received new game snapshot as "0bb6b9da-8962-4b18-a3c9-e73f89d159de"
+2025-10-22 00:26:47.757 +03:00 [DBG] Received snapshot with n=1 players...
+2025-10-22 00:26:47.757 +03:00 [INF] got relevant messages ...
+2025-10-22 00:26:47.757 +03:00 [DBG] Identity updated to 0bb6b9da-8962-4b18-a3c9-e73f89d159de
+2025-10-22 00:26:47.787 +03:00 [DBG] render event
+2025-10-22 00:26:47.788 +03:00 [DBG] Hello, render
+2025-10-22 00:26:47.792 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":6,"$type":"Vector2"}
+2025-10-22 00:26:47.821 +03:00 [DBG] render event
+2025-10-22 00:26:47.822 +03:00 [DBG] Hello, render
+2025-10-22 00:26:47.825 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":6,"$type":"Vector2"}
+2025-10-22 00:26:47.854 +03:00 [DBG] render event
+2025-10-22 00:26:47.854 +03:00 [DBG] Hello, render
+2025-10-22 00:26:47.857 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":6,"$type":"Vector2"}
+2025-10-22 00:26:47.887 +03:00 [DBG] render event
+2025-10-22 00:26:47.887 +03:00 [DBG] Hello, render
+2025-10-22 00:26:47.891 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":6,"$type":"Vector2"}
+2025-10-22 00:26:47.903 +03:00 [DBG] Key pressed: W
+2025-10-22 00:26:47.903 +03:00 [INF] Moving
+2025-10-22 00:26:47.903 +03:00 [DBG] Sent of type MoveCommand
+2025-10-22 00:26:47.919 +03:00 [DBG] render event
+2025-10-22 00:26:47.919 +03:00 [DBG] Hello, render
+2025-10-22 00:26:47.923 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":6,"$type":"Vector2"}
+2025-10-22 00:26:47.954 +03:00 [DBG] render event
+2025-10-22 00:26:47.954 +03:00 [DBG] Hello, render
+2025-10-22 00:26:47.959 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":6,"$type":"Vector2"}
+2025-10-22 00:26:47.986 +03:00 [DBG] render event
+2025-10-22 00:26:47.986 +03:00 [DBG] Hello, render
+2025-10-22 00:26:47.990 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":6,"$type":"Vector2"}
+2025-10-22 00:26:48.020 +03:00 [DBG] render event
+2025-10-22 00:26:48.020 +03:00 [DBG] Hello, render
+2025-10-22 00:26:48.024 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":6,"$type":"Vector2"}
+2025-10-22 00:26:48.053 +03:00 [DBG] render event
+2025-10-22 00:26:48.054 +03:00 [DBG] Hello, render
+2025-10-22 00:26:48.057 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":6,"$type":"Vector2"}
+2025-10-22 00:26:48.102 +03:00 [DBG] render event
+2025-10-22 00:26:48.102 +03:00 [DBG] Hello, render
+2025-10-22 00:26:48.106 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":6,"$type":"Vector2"}
+2025-10-22 00:26:48.149 +03:00 [DBG] render event
+2025-10-22 00:26:48.149 +03:00 [DBG] Hello, render
+2025-10-22 00:26:48.155 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":6,"$type":"Vector2"}
+2025-10-22 00:26:48.197 +03:00 [DBG] render event
+2025-10-22 00:26:48.197 +03:00 [DBG] Hello, render
+2025-10-22 00:26:48.202 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":6,"$type":"Vector2"}
+2025-10-22 00:26:48.228 +03:00 [DBG] render event
+2025-10-22 00:26:48.228 +03:00 [DBG] Hello, render
+2025-10-22 00:26:48.232 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":6,"$type":"Vector2"}
+2025-10-22 00:26:48.271 +03:00 [DBG] Incoming message length 2392
+2025-10-22 00:26:48.272 +03:00 [DBG] first 4 bytes: 7B222474
+2025-10-22 00:26:48.272 +03:00 [DBG] Received server payload {"$type":"Sync","Snapshot":{"Players":[{"Username":"127.0.0.1:51658","Color":1,"Identity":"0bb6b9da-8962-4b18-a3c9-e73f89d159de","PositionInRoom":{"X":7,"Y":5},"Health":100,"Weapon":{"$type":"Sword","Identity":"0a11b762-29fa-461c-9241-43010ec7918f"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}}],"Enemies":[{"$type":"Zombie","Identity":"b1eaafb6-7fcf-49b2-9430-c8d963af3938","PositionInRoom":{"X":1,"Y":1},"Health":100,"Weapon":{"$type":"Sword","Identity":"37ac9d4e-fc02-447d-879c-1c11950e3708"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Zombie","Identity":"1594fd0c-5f49-443a-afed-089711a52e49","PositionInRoom":{"X":1,"Y":1},"Health":100,"Weapon":{"$type":"Sword","Identity":"71e43dcf-c921-4606-bc24-fbf69a205274"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Skeleton","Identity":"6e15f5bd-e356-44d5-84d5-43775253e3aa","PositionInRoom":{"X":2,"Y":2},"Health":100,"Weapon":{"$type":"Dagger","Identity":"f42875c7-3dca-4741-afd6-9ec4c989949d"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Orc","Identity":"312f0792-35c4-4558-8451-7e3e7c6f7579","PositionInRoom":{"X":3,"Y":3},"Health":100,"Weapon":{"$type":"Axe","Identity":"4743d881-7c27-436f-90a3-811d54e399d5"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}}],"WorldGrid":{"Rooms":{"0,0":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},"Seed":1337,"random":{}},"LogEntries":[{"Text":"Player 127.0.0.1:51658 has appeared.","Scope":2,"PlayerIdentity":null,"RoomPosition":null}]},"Identity":"0bb6b9da-8962-4b18-a3c9-e73f89d159de"}
+2025-10-22 00:26:48.272 +03:00 [INF] Executing command from server of type SyncCommand
+2025-10-22 00:26:48.272 +03:00 [DBG] Received new game snapshot as "0bb6b9da-8962-4b18-a3c9-e73f89d159de"
+2025-10-22 00:26:48.272 +03:00 [DBG] Received snapshot with n=1 players...
+2025-10-22 00:26:48.272 +03:00 [INF] got relevant messages ...
+2025-10-22 00:26:48.272 +03:00 [DBG] Identity updated to 0bb6b9da-8962-4b18-a3c9-e73f89d159de
+2025-10-22 00:26:48.274 +03:00 [DBG] render event
+2025-10-22 00:26:48.274 +03:00 [DBG] Hello, render
+2025-10-22 00:26:48.278 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":5,"$type":"Vector2"}
+2025-10-22 00:26:48.321 +03:00 [DBG] render event
+2025-10-22 00:26:48.321 +03:00 [DBG] Hello, render
+2025-10-22 00:26:48.325 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":5,"$type":"Vector2"}
+2025-10-22 00:26:48.367 +03:00 [DBG] render event
+2025-10-22 00:26:48.367 +03:00 [DBG] Hello, render
+2025-10-22 00:26:48.370 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":5,"$type":"Vector2"}
+2025-10-22 00:26:48.383 +03:00 [DBG] Key pressed: W
+2025-10-22 00:26:48.383 +03:00 [INF] Moving
+2025-10-22 00:26:48.383 +03:00 [DBG] Sent of type MoveCommand
+2025-10-22 00:26:48.414 +03:00 [DBG] render event
+2025-10-22 00:26:48.414 +03:00 [DBG] Hello, render
+2025-10-22 00:26:48.418 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":5,"$type":"Vector2"}
+2025-10-22 00:26:48.461 +03:00 [DBG] render event
+2025-10-22 00:26:48.461 +03:00 [DBG] Hello, render
+2025-10-22 00:26:48.465 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":5,"$type":"Vector2"}
+2025-10-22 00:26:48.507 +03:00 [DBG] render event
+2025-10-22 00:26:48.507 +03:00 [DBG] Hello, render
+2025-10-22 00:26:48.511 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":5,"$type":"Vector2"}
+2025-10-22 00:26:48.554 +03:00 [DBG] render event
+2025-10-22 00:26:48.554 +03:00 [DBG] Hello, render
+2025-10-22 00:26:48.558 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":5,"$type":"Vector2"}
+2025-10-22 00:26:48.600 +03:00 [DBG] render event
+2025-10-22 00:26:48.601 +03:00 [DBG] Hello, render
+2025-10-22 00:26:48.604 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":5,"$type":"Vector2"}
+2025-10-22 00:26:48.647 +03:00 [DBG] render event
+2025-10-22 00:26:48.647 +03:00 [DBG] Hello, render
+2025-10-22 00:26:48.651 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":5,"$type":"Vector2"}
+2025-10-22 00:26:48.693 +03:00 [DBG] render event
+2025-10-22 00:26:48.693 +03:00 [DBG] Hello, render
+2025-10-22 00:26:48.696 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":5,"$type":"Vector2"}
+2025-10-22 00:26:48.739 +03:00 [DBG] render event
+2025-10-22 00:26:48.739 +03:00 [DBG] Hello, render
+2025-10-22 00:26:48.743 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":5,"$type":"Vector2"}
+2025-10-22 00:26:48.785 +03:00 [DBG] render event
+2025-10-22 00:26:48.785 +03:00 [DBG] Hello, render
+2025-10-22 00:26:48.790 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":5,"$type":"Vector2"}
+2025-10-22 00:26:48.797 +03:00 [DBG] Incoming message length 2392
+2025-10-22 00:26:48.797 +03:00 [DBG] first 4 bytes: 7B222474
+2025-10-22 00:26:48.797 +03:00 [DBG] Received server payload {"$type":"Sync","Snapshot":{"Players":[{"Username":"127.0.0.1:51658","Color":1,"Identity":"0bb6b9da-8962-4b18-a3c9-e73f89d159de","PositionInRoom":{"X":7,"Y":4},"Health":100,"Weapon":{"$type":"Sword","Identity":"0a11b762-29fa-461c-9241-43010ec7918f"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}}],"Enemies":[{"$type":"Zombie","Identity":"b1eaafb6-7fcf-49b2-9430-c8d963af3938","PositionInRoom":{"X":1,"Y":1},"Health":100,"Weapon":{"$type":"Sword","Identity":"37ac9d4e-fc02-447d-879c-1c11950e3708"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Zombie","Identity":"1594fd0c-5f49-443a-afed-089711a52e49","PositionInRoom":{"X":1,"Y":1},"Health":100,"Weapon":{"$type":"Sword","Identity":"71e43dcf-c921-4606-bc24-fbf69a205274"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Skeleton","Identity":"6e15f5bd-e356-44d5-84d5-43775253e3aa","PositionInRoom":{"X":2,"Y":2},"Health":100,"Weapon":{"$type":"Dagger","Identity":"f42875c7-3dca-4741-afd6-9ec4c989949d"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Orc","Identity":"312f0792-35c4-4558-8451-7e3e7c6f7579","PositionInRoom":{"X":3,"Y":3},"Health":100,"Weapon":{"$type":"Axe","Identity":"4743d881-7c27-436f-90a3-811d54e399d5"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}}],"WorldGrid":{"Rooms":{"0,0":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},"Seed":1337,"random":{}},"LogEntries":[{"Text":"Player 127.0.0.1:51658 has appeared.","Scope":2,"PlayerIdentity":null,"RoomPosition":null}]},"Identity":"0bb6b9da-8962-4b18-a3c9-e73f89d159de"}
+2025-10-22 00:26:48.798 +03:00 [INF] Executing command from server of type SyncCommand
+2025-10-22 00:26:48.798 +03:00 [DBG] Received new game snapshot as "0bb6b9da-8962-4b18-a3c9-e73f89d159de"
+2025-10-22 00:26:48.798 +03:00 [DBG] Received snapshot with n=1 players...
+2025-10-22 00:26:48.798 +03:00 [INF] got relevant messages ...
+2025-10-22 00:26:48.798 +03:00 [DBG] Identity updated to 0bb6b9da-8962-4b18-a3c9-e73f89d159de
+2025-10-22 00:26:48.832 +03:00 [DBG] render event
+2025-10-22 00:26:48.832 +03:00 [DBG] Hello, render
+2025-10-22 00:26:48.836 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":4,"$type":"Vector2"}
+2025-10-22 00:26:48.848 +03:00 [DBG] Key pressed: W
+2025-10-22 00:26:48.848 +03:00 [INF] Moving
+2025-10-22 00:26:48.848 +03:00 [DBG] Sent of type MoveCommand
+2025-10-22 00:26:48.879 +03:00 [DBG] render event
+2025-10-22 00:26:48.879 +03:00 [DBG] Hello, render
+2025-10-22 00:26:48.884 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":4,"$type":"Vector2"}
+2025-10-22 00:26:48.926 +03:00 [DBG] render event
+2025-10-22 00:26:48.927 +03:00 [DBG] Hello, render
+2025-10-22 00:26:48.930 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":4,"$type":"Vector2"}
+2025-10-22 00:26:48.972 +03:00 [DBG] render event
+2025-10-22 00:26:48.972 +03:00 [DBG] Hello, render
+2025-10-22 00:26:48.977 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":4,"$type":"Vector2"}
+2025-10-22 00:26:49.019 +03:00 [DBG] render event
+2025-10-22 00:26:49.020 +03:00 [DBG] Hello, render
+2025-10-22 00:26:49.025 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":4,"$type":"Vector2"}
+2025-10-22 00:26:49.066 +03:00 [DBG] render event
+2025-10-22 00:26:49.067 +03:00 [DBG] Hello, render
+2025-10-22 00:26:49.071 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":4,"$type":"Vector2"}
+2025-10-22 00:26:49.114 +03:00 [DBG] render event
+2025-10-22 00:26:49.114 +03:00 [DBG] Hello, render
+2025-10-22 00:26:49.118 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":4,"$type":"Vector2"}
+2025-10-22 00:26:49.161 +03:00 [DBG] render event
+2025-10-22 00:26:49.161 +03:00 [DBG] Hello, render
+2025-10-22 00:26:49.165 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":4,"$type":"Vector2"}
+2025-10-22 00:26:49.209 +03:00 [DBG] render event
+2025-10-22 00:26:49.209 +03:00 [DBG] Hello, render
+2025-10-22 00:26:49.212 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":4,"$type":"Vector2"}
+2025-10-22 00:26:49.255 +03:00 [DBG] render event
+2025-10-22 00:26:49.256 +03:00 [DBG] Hello, render
+2025-10-22 00:26:49.260 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":4,"$type":"Vector2"}
+2025-10-22 00:26:49.302 +03:00 [DBG] render event
+2025-10-22 00:26:49.302 +03:00 [DBG] Hello, render
+2025-10-22 00:26:49.307 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":4,"$type":"Vector2"}
+2025-10-22 00:26:49.314 +03:00 [DBG] Incoming message length 2392
+2025-10-22 00:26:49.314 +03:00 [DBG] first 4 bytes: 7B222474
+2025-10-22 00:26:49.314 +03:00 [DBG] Received server payload {"$type":"Sync","Snapshot":{"Players":[{"Username":"127.0.0.1:51658","Color":1,"Identity":"0bb6b9da-8962-4b18-a3c9-e73f89d159de","PositionInRoom":{"X":7,"Y":3},"Health":100,"Weapon":{"$type":"Sword","Identity":"0a11b762-29fa-461c-9241-43010ec7918f"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}}],"Enemies":[{"$type":"Zombie","Identity":"b1eaafb6-7fcf-49b2-9430-c8d963af3938","PositionInRoom":{"X":1,"Y":1},"Health":100,"Weapon":{"$type":"Sword","Identity":"37ac9d4e-fc02-447d-879c-1c11950e3708"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Zombie","Identity":"1594fd0c-5f49-443a-afed-089711a52e49","PositionInRoom":{"X":1,"Y":1},"Health":100,"Weapon":{"$type":"Sword","Identity":"71e43dcf-c921-4606-bc24-fbf69a205274"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Skeleton","Identity":"6e15f5bd-e356-44d5-84d5-43775253e3aa","PositionInRoom":{"X":2,"Y":2},"Health":100,"Weapon":{"$type":"Dagger","Identity":"f42875c7-3dca-4741-afd6-9ec4c989949d"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Orc","Identity":"312f0792-35c4-4558-8451-7e3e7c6f7579","PositionInRoom":{"X":3,"Y":3},"Health":100,"Weapon":{"$type":"Axe","Identity":"4743d881-7c27-436f-90a3-811d54e399d5"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}}],"WorldGrid":{"Rooms":{"0,0":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},"Seed":1337,"random":{}},"LogEntries":[{"Text":"Player 127.0.0.1:51658 has appeared.","Scope":2,"PlayerIdentity":null,"RoomPosition":null}]},"Identity":"0bb6b9da-8962-4b18-a3c9-e73f89d159de"}
+2025-10-22 00:26:49.314 +03:00 [INF] Executing command from server of type SyncCommand
+2025-10-22 00:26:49.314 +03:00 [DBG] Received new game snapshot as "0bb6b9da-8962-4b18-a3c9-e73f89d159de"
+2025-10-22 00:26:49.314 +03:00 [DBG] Received snapshot with n=1 players...
+2025-10-22 00:26:49.314 +03:00 [INF] got relevant messages ...
+2025-10-22 00:26:49.314 +03:00 [DBG] Identity updated to 0bb6b9da-8962-4b18-a3c9-e73f89d159de
+2025-10-22 00:26:49.317 +03:00 [DBG] Key pressed: W
+2025-10-22 00:26:49.317 +03:00 [INF] Moving
+2025-10-22 00:26:49.318 +03:00 [DBG] Sent of type MoveCommand
+2025-10-22 00:26:49.348 +03:00 [DBG] render event
+2025-10-22 00:26:49.348 +03:00 [DBG] Hello, render
+2025-10-22 00:26:49.352 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:49.395 +03:00 [DBG] render event
+2025-10-22 00:26:49.395 +03:00 [DBG] Hello, render
+2025-10-22 00:26:49.400 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:49.441 +03:00 [DBG] render event
+2025-10-22 00:26:49.441 +03:00 [DBG] Hello, render
+2025-10-22 00:26:49.445 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:49.488 +03:00 [DBG] render event
+2025-10-22 00:26:49.489 +03:00 [DBG] Hello, render
+2025-10-22 00:26:49.493 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:49.535 +03:00 [DBG] render event
+2025-10-22 00:26:49.535 +03:00 [DBG] Hello, render
+2025-10-22 00:26:49.539 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:49.582 +03:00 [DBG] render event
+2025-10-22 00:26:49.582 +03:00 [DBG] Hello, render
+2025-10-22 00:26:49.586 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:49.627 +03:00 [DBG] render event
+2025-10-22 00:26:49.628 +03:00 [DBG] Hello, render
+2025-10-22 00:26:49.632 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:49.674 +03:00 [DBG] render event
+2025-10-22 00:26:49.674 +03:00 [DBG] Hello, render
+2025-10-22 00:26:49.678 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:49.721 +03:00 [DBG] render event
+2025-10-22 00:26:49.721 +03:00 [DBG] Hello, render
+2025-10-22 00:26:49.725 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:49.769 +03:00 [DBG] render event
+2025-10-22 00:26:49.769 +03:00 [DBG] Hello, render
+2025-10-22 00:26:49.774 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:49.816 +03:00 [DBG] render event
+2025-10-22 00:26:49.817 +03:00 [DBG] Hello, render
+2025-10-22 00:26:49.822 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:49.831 +03:00 [DBG] Incoming message length 2392
+2025-10-22 00:26:49.831 +03:00 [DBG] first 4 bytes: 7B222474
+2025-10-22 00:26:49.831 +03:00 [DBG] Received server payload {"$type":"Sync","Snapshot":{"Players":[{"Username":"127.0.0.1:51658","Color":1,"Identity":"0bb6b9da-8962-4b18-a3c9-e73f89d159de","PositionInRoom":{"X":7,"Y":2},"Health":100,"Weapon":{"$type":"Sword","Identity":"0a11b762-29fa-461c-9241-43010ec7918f"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}}],"Enemies":[{"$type":"Zombie","Identity":"b1eaafb6-7fcf-49b2-9430-c8d963af3938","PositionInRoom":{"X":1,"Y":1},"Health":100,"Weapon":{"$type":"Sword","Identity":"37ac9d4e-fc02-447d-879c-1c11950e3708"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Zombie","Identity":"1594fd0c-5f49-443a-afed-089711a52e49","PositionInRoom":{"X":1,"Y":1},"Health":100,"Weapon":{"$type":"Sword","Identity":"71e43dcf-c921-4606-bc24-fbf69a205274"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Skeleton","Identity":"6e15f5bd-e356-44d5-84d5-43775253e3aa","PositionInRoom":{"X":2,"Y":2},"Health":100,"Weapon":{"$type":"Dagger","Identity":"f42875c7-3dca-4741-afd6-9ec4c989949d"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Orc","Identity":"312f0792-35c4-4558-8451-7e3e7c6f7579","PositionInRoom":{"X":3,"Y":3},"Health":100,"Weapon":{"$type":"Axe","Identity":"4743d881-7c27-436f-90a3-811d54e399d5"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}}],"WorldGrid":{"Rooms":{"0,0":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},"Seed":1337,"random":{}},"LogEntries":[{"Text":"Player 127.0.0.1:51658 has appeared.","Scope":2,"PlayerIdentity":null,"RoomPosition":null}]},"Identity":"0bb6b9da-8962-4b18-a3c9-e73f89d159de"}
+2025-10-22 00:26:49.831 +03:00 [INF] Executing command from server of type SyncCommand
+2025-10-22 00:26:49.831 +03:00 [DBG] Received new game snapshot as "0bb6b9da-8962-4b18-a3c9-e73f89d159de"
+2025-10-22 00:26:49.831 +03:00 [DBG] Received snapshot with n=1 players...
+2025-10-22 00:26:49.831 +03:00 [INF] got relevant messages ...
+2025-10-22 00:26:49.831 +03:00 [DBG] Identity updated to 0bb6b9da-8962-4b18-a3c9-e73f89d159de
+2025-10-22 00:26:49.832 +03:00 [DBG] Key pressed: A
+2025-10-22 00:26:49.832 +03:00 [INF] Moving
+2025-10-22 00:26:49.832 +03:00 [DBG] Sent of type MoveCommand
+2025-10-22 00:26:49.864 +03:00 [DBG] render event
+2025-10-22 00:26:49.864 +03:00 [DBG] Hello, render
+2025-10-22 00:26:49.867 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":2,"$type":"Vector2"}
+2025-10-22 00:26:49.910 +03:00 [DBG] render event
+2025-10-22 00:26:49.910 +03:00 [DBG] Hello, render
+2025-10-22 00:26:49.913 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":2,"$type":"Vector2"}
+2025-10-22 00:26:49.957 +03:00 [DBG] render event
+2025-10-22 00:26:49.957 +03:00 [DBG] Hello, render
+2025-10-22 00:26:49.961 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":2,"$type":"Vector2"}
+2025-10-22 00:26:50.003 +03:00 [DBG] render event
+2025-10-22 00:26:50.003 +03:00 [DBG] Hello, render
+2025-10-22 00:26:50.007 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":2,"$type":"Vector2"}
+2025-10-22 00:26:50.050 +03:00 [DBG] render event
+2025-10-22 00:26:50.050 +03:00 [DBG] Hello, render
+2025-10-22 00:26:50.054 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":2,"$type":"Vector2"}
+2025-10-22 00:26:50.096 +03:00 [DBG] render event
+2025-10-22 00:26:50.097 +03:00 [DBG] Hello, render
+2025-10-22 00:26:50.101 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":2,"$type":"Vector2"}
+2025-10-22 00:26:50.143 +03:00 [DBG] render event
+2025-10-22 00:26:50.143 +03:00 [DBG] Hello, render
+2025-10-22 00:26:50.148 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":2,"$type":"Vector2"}
+2025-10-22 00:26:50.189 +03:00 [DBG] render event
+2025-10-22 00:26:50.189 +03:00 [DBG] Hello, render
+2025-10-22 00:26:50.194 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":2,"$type":"Vector2"}
+2025-10-22 00:26:50.235 +03:00 [DBG] render event
+2025-10-22 00:26:50.236 +03:00 [DBG] Hello, render
+2025-10-22 00:26:50.240 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":2,"$type":"Vector2"}
+2025-10-22 00:26:50.282 +03:00 [DBG] render event
+2025-10-22 00:26:50.283 +03:00 [DBG] Hello, render
+2025-10-22 00:26:50.287 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":2,"$type":"Vector2"}
+2025-10-22 00:26:50.329 +03:00 [DBG] render event
+2025-10-22 00:26:50.329 +03:00 [DBG] Hello, render
+2025-10-22 00:26:50.333 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":7,"Y":2,"$type":"Vector2"}
+2025-10-22 00:26:50.357 +03:00 [DBG] Incoming message length 2392
+2025-10-22 00:26:50.357 +03:00 [DBG] first 4 bytes: 7B222474
+2025-10-22 00:26:50.357 +03:00 [DBG] Received server payload {"$type":"Sync","Snapshot":{"Players":[{"Username":"127.0.0.1:51658","Color":1,"Identity":"0bb6b9da-8962-4b18-a3c9-e73f89d159de","PositionInRoom":{"X":6,"Y":2},"Health":100,"Weapon":{"$type":"Sword","Identity":"0a11b762-29fa-461c-9241-43010ec7918f"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}}],"Enemies":[{"$type":"Zombie","Identity":"b1eaafb6-7fcf-49b2-9430-c8d963af3938","PositionInRoom":{"X":1,"Y":1},"Health":100,"Weapon":{"$type":"Sword","Identity":"37ac9d4e-fc02-447d-879c-1c11950e3708"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Zombie","Identity":"1594fd0c-5f49-443a-afed-089711a52e49","PositionInRoom":{"X":1,"Y":1},"Health":100,"Weapon":{"$type":"Sword","Identity":"71e43dcf-c921-4606-bc24-fbf69a205274"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Skeleton","Identity":"6e15f5bd-e356-44d5-84d5-43775253e3aa","PositionInRoom":{"X":3,"Y":2},"Health":100,"Weapon":{"$type":"Dagger","Identity":"f42875c7-3dca-4741-afd6-9ec4c989949d"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Orc","Identity":"312f0792-35c4-4558-8451-7e3e7c6f7579","PositionInRoom":{"X":3,"Y":3},"Health":100,"Weapon":{"$type":"Axe","Identity":"4743d881-7c27-436f-90a3-811d54e399d5"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}}],"WorldGrid":{"Rooms":{"0,0":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},"Seed":1337,"random":{}},"LogEntries":[{"Text":"Player 127.0.0.1:51658 has appeared.","Scope":2,"PlayerIdentity":null,"RoomPosition":null}]},"Identity":"0bb6b9da-8962-4b18-a3c9-e73f89d159de"}
+2025-10-22 00:26:50.357 +03:00 [INF] Executing command from server of type SyncCommand
+2025-10-22 00:26:50.357 +03:00 [DBG] Received new game snapshot as "0bb6b9da-8962-4b18-a3c9-e73f89d159de"
+2025-10-22 00:26:50.357 +03:00 [DBG] Received snapshot with n=1 players...
+2025-10-22 00:26:50.357 +03:00 [INF] got relevant messages ...
+2025-10-22 00:26:50.357 +03:00 [DBG] Identity updated to 0bb6b9da-8962-4b18-a3c9-e73f89d159de
+2025-10-22 00:26:50.376 +03:00 [DBG] render event
+2025-10-22 00:26:50.376 +03:00 [DBG] Hello, render
+2025-10-22 00:26:50.379 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":6,"Y":2,"$type":"Vector2"}
+2025-10-22 00:26:50.423 +03:00 [DBG] render event
+2025-10-22 00:26:50.423 +03:00 [DBG] Hello, render
+2025-10-22 00:26:50.426 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":6,"Y":2,"$type":"Vector2"}
+2025-10-22 00:26:50.470 +03:00 [DBG] render event
+2025-10-22 00:26:50.471 +03:00 [DBG] Hello, render
+2025-10-22 00:26:50.474 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":6,"Y":2,"$type":"Vector2"}
+2025-10-22 00:26:50.517 +03:00 [DBG] render event
+2025-10-22 00:26:50.517 +03:00 [DBG] Hello, render
+2025-10-22 00:26:50.521 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":6,"Y":2,"$type":"Vector2"}
+2025-10-22 00:26:50.532 +03:00 [DBG] Key pressed: A
+2025-10-22 00:26:50.532 +03:00 [INF] Moving
+2025-10-22 00:26:50.532 +03:00 [DBG] Sent of type MoveCommand
+2025-10-22 00:26:50.564 +03:00 [DBG] render event
+2025-10-22 00:26:50.564 +03:00 [DBG] Hello, render
+2025-10-22 00:26:50.568 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":6,"Y":2,"$type":"Vector2"}
+2025-10-22 00:26:50.611 +03:00 [DBG] render event
+2025-10-22 00:26:50.611 +03:00 [DBG] Hello, render
+2025-10-22 00:26:50.615 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":6,"Y":2,"$type":"Vector2"}
+2025-10-22 00:26:50.657 +03:00 [DBG] render event
+2025-10-22 00:26:50.658 +03:00 [DBG] Hello, render
+2025-10-22 00:26:50.662 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":6,"Y":2,"$type":"Vector2"}
+2025-10-22 00:26:50.704 +03:00 [DBG] render event
+2025-10-22 00:26:50.704 +03:00 [DBG] Hello, render
+2025-10-22 00:26:50.708 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":6,"Y":2,"$type":"Vector2"}
+2025-10-22 00:26:50.750 +03:00 [DBG] render event
+2025-10-22 00:26:50.750 +03:00 [DBG] Hello, render
+2025-10-22 00:26:50.755 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":6,"Y":2,"$type":"Vector2"}
+2025-10-22 00:26:50.798 +03:00 [DBG] render event
+2025-10-22 00:26:50.798 +03:00 [DBG] Hello, render
+2025-10-22 00:26:50.801 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":6,"Y":2,"$type":"Vector2"}
+2025-10-22 00:26:50.845 +03:00 [DBG] render event
+2025-10-22 00:26:50.845 +03:00 [DBG] Hello, render
+2025-10-22 00:26:50.849 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":6,"Y":2,"$type":"Vector2"}
+2025-10-22 00:26:50.878 +03:00 [DBG] Incoming message length 2392
+2025-10-22 00:26:50.878 +03:00 [DBG] first 4 bytes: 7B222474
+2025-10-22 00:26:50.878 +03:00 [DBG] Received server payload {"$type":"Sync","Snapshot":{"Players":[{"Username":"127.0.0.1:51658","Color":1,"Identity":"0bb6b9da-8962-4b18-a3c9-e73f89d159de","PositionInRoom":{"X":5,"Y":2},"Health":100,"Weapon":{"$type":"Sword","Identity":"0a11b762-29fa-461c-9241-43010ec7918f"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}}],"Enemies":[{"$type":"Zombie","Identity":"b1eaafb6-7fcf-49b2-9430-c8d963af3938","PositionInRoom":{"X":1,"Y":1},"Health":100,"Weapon":{"$type":"Sword","Identity":"37ac9d4e-fc02-447d-879c-1c11950e3708"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Zombie","Identity":"1594fd0c-5f49-443a-afed-089711a52e49","PositionInRoom":{"X":1,"Y":1},"Health":100,"Weapon":{"$type":"Sword","Identity":"71e43dcf-c921-4606-bc24-fbf69a205274"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Skeleton","Identity":"6e15f5bd-e356-44d5-84d5-43775253e3aa","PositionInRoom":{"X":4,"Y":2},"Health":100,"Weapon":{"$type":"Dagger","Identity":"f42875c7-3dca-4741-afd6-9ec4c989949d"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Orc","Identity":"312f0792-35c4-4558-8451-7e3e7c6f7579","PositionInRoom":{"X":4,"Y":2},"Health":100,"Weapon":{"$type":"Axe","Identity":"4743d881-7c27-436f-90a3-811d54e399d5"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}}],"WorldGrid":{"Rooms":{"0,0":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},"Seed":1337,"random":{}},"LogEntries":[{"Text":"Player 127.0.0.1:51658 has appeared.","Scope":2,"PlayerIdentity":null,"RoomPosition":null}]},"Identity":"0bb6b9da-8962-4b18-a3c9-e73f89d159de"}
+2025-10-22 00:26:50.878 +03:00 [INF] Executing command from server of type SyncCommand
+2025-10-22 00:26:50.878 +03:00 [DBG] Received new game snapshot as "0bb6b9da-8962-4b18-a3c9-e73f89d159de"
+2025-10-22 00:26:50.878 +03:00 [DBG] Received snapshot with n=1 players...
+2025-10-22 00:26:50.878 +03:00 [INF] got relevant messages ...
+2025-10-22 00:26:50.878 +03:00 [DBG] Identity updated to 0bb6b9da-8962-4b18-a3c9-e73f89d159de
+2025-10-22 00:26:50.892 +03:00 [DBG] render event
+2025-10-22 00:26:50.892 +03:00 [DBG] Hello, render
+2025-10-22 00:26:50.896 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":5,"Y":2,"$type":"Vector2"}
+2025-10-22 00:26:50.939 +03:00 [DBG] render event
+2025-10-22 00:26:50.939 +03:00 [DBG] Hello, render
+2025-10-22 00:26:50.943 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":5,"Y":2,"$type":"Vector2"}
+2025-10-22 00:26:50.986 +03:00 [DBG] render event
+2025-10-22 00:26:50.986 +03:00 [DBG] Hello, render
+2025-10-22 00:26:50.990 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":5,"Y":2,"$type":"Vector2"}
+2025-10-22 00:26:51.033 +03:00 [DBG] render event
+2025-10-22 00:26:51.033 +03:00 [DBG] Hello, render
+2025-10-22 00:26:51.038 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":5,"Y":2,"$type":"Vector2"}
+2025-10-22 00:26:51.081 +03:00 [DBG] render event
+2025-10-22 00:26:51.081 +03:00 [DBG] Hello, render
+2025-10-22 00:26:51.086 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":5,"Y":2,"$type":"Vector2"}
+2025-10-22 00:26:51.128 +03:00 [DBG] render event
+2025-10-22 00:26:51.128 +03:00 [DBG] Hello, render
+2025-10-22 00:26:51.133 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":5,"Y":2,"$type":"Vector2"}
+2025-10-22 00:26:51.174 +03:00 [DBG] render event
+2025-10-22 00:26:51.174 +03:00 [DBG] Hello, render
+2025-10-22 00:26:51.179 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":5,"Y":2,"$type":"Vector2"}
+2025-10-22 00:26:51.221 +03:00 [DBG] render event
+2025-10-22 00:26:51.221 +03:00 [DBG] Hello, render
+2025-10-22 00:26:51.225 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":5,"Y":2,"$type":"Vector2"}
+2025-10-22 00:26:51.268 +03:00 [DBG] render event
+2025-10-22 00:26:51.269 +03:00 [DBG] Hello, render
+2025-10-22 00:26:51.272 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":5,"Y":2,"$type":"Vector2"}
+2025-10-22 00:26:51.314 +03:00 [DBG] render event
+2025-10-22 00:26:51.314 +03:00 [DBG] Hello, render
+2025-10-22 00:26:51.319 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":5,"Y":2,"$type":"Vector2"}
+2025-10-22 00:26:51.360 +03:00 [DBG] render event
+2025-10-22 00:26:51.360 +03:00 [DBG] Hello, render
+2025-10-22 00:26:51.364 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":5,"Y":2,"$type":"Vector2"}
+2025-10-22 00:26:51.405 +03:00 [DBG] Incoming message length 2638
+2025-10-22 00:26:51.405 +03:00 [DBG] first 4 bytes: 7B222474
+2025-10-22 00:26:51.405 +03:00 [DBG] Received server payload {"$type":"Sync","Snapshot":{"Players":[{"Username":"127.0.0.1:51658","Color":1,"Identity":"0bb6b9da-8962-4b18-a3c9-e73f89d159de","PositionInRoom":{"X":5,"Y":2},"Health":89,"Weapon":{"$type":"Sword","Identity":"0a11b762-29fa-461c-9241-43010ec7918f"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}}],"Enemies":[{"$type":"Zombie","Identity":"b1eaafb6-7fcf-49b2-9430-c8d963af3938","PositionInRoom":{"X":1,"Y":1},"Health":100,"Weapon":{"$type":"Sword","Identity":"37ac9d4e-fc02-447d-879c-1c11950e3708"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Zombie","Identity":"1594fd0c-5f49-443a-afed-089711a52e49","PositionInRoom":{"X":1,"Y":1},"Health":100,"Weapon":{"$type":"Sword","Identity":"71e43dcf-c921-4606-bc24-fbf69a205274"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Skeleton","Identity":"6e15f5bd-e356-44d5-84d5-43775253e3aa","PositionInRoom":{"X":4,"Y":2},"Health":100,"Weapon":{"$type":"Dagger","Identity":"f42875c7-3dca-4741-afd6-9ec4c989949d"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Orc","Identity":"312f0792-35c4-4558-8451-7e3e7c6f7579","PositionInRoom":{"X":4,"Y":2},"Health":100,"Weapon":{"$type":"Axe","Identity":"4743d881-7c27-436f-90a3-811d54e399d5"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}}],"WorldGrid":{"Rooms":{"0,0":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},"Seed":1337,"random":{}},"LogEntries":[{"Text":"Player 127.0.0.1:51658 has appeared.","Scope":2,"PlayerIdentity":null,"RoomPosition":null},{"Text":"Skeleton swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 11 damage. Is at 89 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}}]},"Identity":"0bb6b9da-8962-4b18-a3c9-e73f89d159de"}
+2025-10-22 00:26:51.405 +03:00 [INF] Executing command from server of type SyncCommand
+2025-10-22 00:26:51.405 +03:00 [DBG] Received new game snapshot as "0bb6b9da-8962-4b18-a3c9-e73f89d159de"
+2025-10-22 00:26:51.405 +03:00 [DBG] Received snapshot with n=1 players...
+2025-10-22 00:26:51.405 +03:00 [INF] got relevant messages ...
+2025-10-22 00:26:51.405 +03:00 [DBG] Identity updated to 0bb6b9da-8962-4b18-a3c9-e73f89d159de
+2025-10-22 00:26:51.406 +03:00 [DBG] render event
+2025-10-22 00:26:51.406 +03:00 [DBG] Hello, render
+2025-10-22 00:26:51.410 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":5,"Y":2,"$type":"Vector2"}
+2025-10-22 00:26:51.454 +03:00 [DBG] render event
+2025-10-22 00:26:51.454 +03:00 [DBG] Hello, render
+2025-10-22 00:26:51.458 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":5,"Y":2,"$type":"Vector2"}
+2025-10-22 00:26:51.500 +03:00 [DBG] render event
+2025-10-22 00:26:51.500 +03:00 [DBG] Hello, render
+2025-10-22 00:26:51.504 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":5,"Y":2,"$type":"Vector2"}
+2025-10-22 00:26:51.547 +03:00 [DBG] render event
+2025-10-22 00:26:51.547 +03:00 [DBG] Hello, render
+2025-10-22 00:26:51.551 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":5,"Y":2,"$type":"Vector2"}
+2025-10-22 00:26:51.592 +03:00 [DBG] render event
+2025-10-22 00:26:51.593 +03:00 [DBG] Hello, render
+2025-10-22 00:26:51.597 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":5,"Y":2,"$type":"Vector2"}
+2025-10-22 00:26:51.639 +03:00 [DBG] render event
+2025-10-22 00:26:51.639 +03:00 [DBG] Hello, render
+2025-10-22 00:26:51.643 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":5,"Y":2,"$type":"Vector2"}
+2025-10-22 00:26:51.685 +03:00 [DBG] render event
+2025-10-22 00:26:51.685 +03:00 [DBG] Hello, render
+2025-10-22 00:26:51.689 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":5,"Y":2,"$type":"Vector2"}
+2025-10-22 00:26:51.733 +03:00 [DBG] render event
+2025-10-22 00:26:51.733 +03:00 [DBG] Hello, render
+2025-10-22 00:26:51.737 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":5,"Y":2,"$type":"Vector2"}
+2025-10-22 00:26:51.779 +03:00 [DBG] render event
+2025-10-22 00:26:51.779 +03:00 [DBG] Hello, render
+2025-10-22 00:26:51.784 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":5,"Y":2,"$type":"Vector2"}
+2025-10-22 00:26:51.826 +03:00 [DBG] render event
+2025-10-22 00:26:51.826 +03:00 [DBG] Hello, render
+2025-10-22 00:26:51.830 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":5,"Y":2,"$type":"Vector2"}
+2025-10-22 00:26:51.872 +03:00 [DBG] render event
+2025-10-22 00:26:51.872 +03:00 [DBG] Hello, render
+2025-10-22 00:26:51.876 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":5,"Y":2,"$type":"Vector2"}
+2025-10-22 00:26:51.887 +03:00 [DBG] Key pressed: S
+2025-10-22 00:26:51.887 +03:00 [INF] Moving
+2025-10-22 00:26:51.887 +03:00 [DBG] Sent of type MoveCommand
+2025-10-22 00:26:51.919 +03:00 [DBG] render event
+2025-10-22 00:26:51.919 +03:00 [DBG] Hello, render
+2025-10-22 00:26:51.924 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":5,"Y":2,"$type":"Vector2"}
+2025-10-22 00:26:51.934 +03:00 [DBG] Incoming message length 2638
+2025-10-22 00:26:51.934 +03:00 [DBG] first 4 bytes: 7B222474
+2025-10-22 00:26:51.934 +03:00 [DBG] Received server payload {"$type":"Sync","Snapshot":{"Players":[{"Username":"127.0.0.1:51658","Color":1,"Identity":"0bb6b9da-8962-4b18-a3c9-e73f89d159de","PositionInRoom":{"X":5,"Y":3},"Health":89,"Weapon":{"$type":"Sword","Identity":"0a11b762-29fa-461c-9241-43010ec7918f"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}}],"Enemies":[{"$type":"Zombie","Identity":"b1eaafb6-7fcf-49b2-9430-c8d963af3938","PositionInRoom":{"X":1,"Y":1},"Health":100,"Weapon":{"$type":"Sword","Identity":"37ac9d4e-fc02-447d-879c-1c11950e3708"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Zombie","Identity":"1594fd0c-5f49-443a-afed-089711a52e49","PositionInRoom":{"X":1,"Y":1},"Health":100,"Weapon":{"$type":"Sword","Identity":"71e43dcf-c921-4606-bc24-fbf69a205274"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Skeleton","Identity":"6e15f5bd-e356-44d5-84d5-43775253e3aa","PositionInRoom":{"X":4,"Y":2},"Health":100,"Weapon":{"$type":"Dagger","Identity":"f42875c7-3dca-4741-afd6-9ec4c989949d"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Orc","Identity":"312f0792-35c4-4558-8451-7e3e7c6f7579","PositionInRoom":{"X":4,"Y":2},"Health":100,"Weapon":{"$type":"Axe","Identity":"4743d881-7c27-436f-90a3-811d54e399d5"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}}],"WorldGrid":{"Rooms":{"0,0":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},"Seed":1337,"random":{}},"LogEntries":[{"Text":"Player 127.0.0.1:51658 has appeared.","Scope":2,"PlayerIdentity":null,"RoomPosition":null},{"Text":"Skeleton swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 11 damage. Is at 89 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}}]},"Identity":"0bb6b9da-8962-4b18-a3c9-e73f89d159de"}
+2025-10-22 00:26:51.935 +03:00 [INF] Executing command from server of type SyncCommand
+2025-10-22 00:26:51.935 +03:00 [DBG] Received new game snapshot as "0bb6b9da-8962-4b18-a3c9-e73f89d159de"
+2025-10-22 00:26:51.935 +03:00 [DBG] Received snapshot with n=1 players...
+2025-10-22 00:26:51.935 +03:00 [INF] got relevant messages ...
+2025-10-22 00:26:51.935 +03:00 [DBG] Identity updated to 0bb6b9da-8962-4b18-a3c9-e73f89d159de
+2025-10-22 00:26:51.965 +03:00 [DBG] render event
+2025-10-22 00:26:51.965 +03:00 [DBG] Hello, render
+2025-10-22 00:26:51.969 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":5,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:52.012 +03:00 [DBG] render event
+2025-10-22 00:26:52.012 +03:00 [DBG] Hello, render
+2025-10-22 00:26:52.015 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":5,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:52.059 +03:00 [DBG] render event
+2025-10-22 00:26:52.060 +03:00 [DBG] Hello, render
+2025-10-22 00:26:52.063 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":5,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:52.106 +03:00 [DBG] render event
+2025-10-22 00:26:52.106 +03:00 [DBG] Hello, render
+2025-10-22 00:26:52.111 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":5,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:52.153 +03:00 [DBG] render event
+2025-10-22 00:26:52.153 +03:00 [DBG] Hello, render
+2025-10-22 00:26:52.157 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":5,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:52.200 +03:00 [DBG] render event
+2025-10-22 00:26:52.200 +03:00 [DBG] Hello, render
+2025-10-22 00:26:52.204 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":5,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:52.251 +03:00 [DBG] render event
+2025-10-22 00:26:52.251 +03:00 [DBG] Hello, render
+2025-10-22 00:26:52.256 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":5,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:52.283 +03:00 [DBG] render event
+2025-10-22 00:26:52.283 +03:00 [DBG] Hello, render
+2025-10-22 00:26:52.287 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":5,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:52.315 +03:00 [DBG] render event
+2025-10-22 00:26:52.315 +03:00 [DBG] Hello, render
+2025-10-22 00:26:52.319 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":5,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:52.346 +03:00 [DBG] render event
+2025-10-22 00:26:52.346 +03:00 [DBG] Hello, render
+2025-10-22 00:26:52.351 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":5,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:52.378 +03:00 [DBG] render event
+2025-10-22 00:26:52.378 +03:00 [DBG] Hello, render
+2025-10-22 00:26:52.382 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":5,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:52.409 +03:00 [DBG] render event
+2025-10-22 00:26:52.409 +03:00 [DBG] Hello, render
+2025-10-22 00:26:52.414 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":5,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:52.448 +03:00 [DBG] render event
+2025-10-22 00:26:52.448 +03:00 [DBG] Hello, render
+2025-10-22 00:26:52.453 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":5,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:52.454 +03:00 [DBG] Incoming message length 2638
+2025-10-22 00:26:52.455 +03:00 [DBG] first 4 bytes: 7B222474
+2025-10-22 00:26:52.455 +03:00 [DBG] Received server payload {"$type":"Sync","Snapshot":{"Players":[{"Username":"127.0.0.1:51658","Color":1,"Identity":"0bb6b9da-8962-4b18-a3c9-e73f89d159de","PositionInRoom":{"X":5,"Y":3},"Health":89,"Weapon":{"$type":"Sword","Identity":"0a11b762-29fa-461c-9241-43010ec7918f"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}}],"Enemies":[{"$type":"Zombie","Identity":"b1eaafb6-7fcf-49b2-9430-c8d963af3938","PositionInRoom":{"X":1,"Y":1},"Health":100,"Weapon":{"$type":"Sword","Identity":"37ac9d4e-fc02-447d-879c-1c11950e3708"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Zombie","Identity":"1594fd0c-5f49-443a-afed-089711a52e49","PositionInRoom":{"X":1,"Y":1},"Health":100,"Weapon":{"$type":"Sword","Identity":"71e43dcf-c921-4606-bc24-fbf69a205274"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Skeleton","Identity":"6e15f5bd-e356-44d5-84d5-43775253e3aa","PositionInRoom":{"X":4,"Y":2},"Health":100,"Weapon":{"$type":"Dagger","Identity":"f42875c7-3dca-4741-afd6-9ec4c989949d"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Orc","Identity":"312f0792-35c4-4558-8451-7e3e7c6f7579","PositionInRoom":{"X":4,"Y":2},"Health":100,"Weapon":{"$type":"Axe","Identity":"4743d881-7c27-436f-90a3-811d54e399d5"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}}],"WorldGrid":{"Rooms":{"0,0":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},"Seed":1337,"random":{}},"LogEntries":[{"Text":"Player 127.0.0.1:51658 has appeared.","Scope":2,"PlayerIdentity":null,"RoomPosition":null},{"Text":"Skeleton swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 11 damage. Is at 89 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}}]},"Identity":"0bb6b9da-8962-4b18-a3c9-e73f89d159de"}
+2025-10-22 00:26:52.455 +03:00 [INF] Executing command from server of type SyncCommand
+2025-10-22 00:26:52.455 +03:00 [DBG] Received new game snapshot as "0bb6b9da-8962-4b18-a3c9-e73f89d159de"
+2025-10-22 00:26:52.455 +03:00 [DBG] Received snapshot with n=1 players...
+2025-10-22 00:26:52.455 +03:00 [INF] got relevant messages ...
+2025-10-22 00:26:52.455 +03:00 [DBG] Identity updated to 0bb6b9da-8962-4b18-a3c9-e73f89d159de
+2025-10-22 00:26:52.487 +03:00 [DBG] render event
+2025-10-22 00:26:52.488 +03:00 [DBG] Hello, render
+2025-10-22 00:26:52.492 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":5,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:52.520 +03:00 [DBG] render event
+2025-10-22 00:26:52.520 +03:00 [DBG] Hello, render
+2025-10-22 00:26:52.524 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":5,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:52.551 +03:00 [DBG] render event
+2025-10-22 00:26:52.551 +03:00 [DBG] Hello, render
+2025-10-22 00:26:52.555 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":5,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:52.570 +03:00 [DBG] Key pressed: A
+2025-10-22 00:26:52.570 +03:00 [INF] Moving
+2025-10-22 00:26:52.570 +03:00 [DBG] Sent of type MoveCommand
+2025-10-22 00:26:52.587 +03:00 [DBG] render event
+2025-10-22 00:26:52.587 +03:00 [DBG] Hello, render
+2025-10-22 00:26:52.591 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":5,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:52.620 +03:00 [DBG] render event
+2025-10-22 00:26:52.621 +03:00 [DBG] Hello, render
+2025-10-22 00:26:52.625 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":5,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:52.654 +03:00 [DBG] render event
+2025-10-22 00:26:52.654 +03:00 [DBG] Hello, render
+2025-10-22 00:26:52.658 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":5,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:52.703 +03:00 [DBG] render event
+2025-10-22 00:26:52.704 +03:00 [DBG] Hello, render
+2025-10-22 00:26:52.708 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":5,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:52.736 +03:00 [DBG] render event
+2025-10-22 00:26:52.736 +03:00 [DBG] Hello, render
+2025-10-22 00:26:52.740 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":5,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:52.768 +03:00 [DBG] render event
+2025-10-22 00:26:52.768 +03:00 [DBG] Hello, render
+2025-10-22 00:26:52.773 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":5,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:52.800 +03:00 [DBG] render event
+2025-10-22 00:26:52.800 +03:00 [DBG] Hello, render
+2025-10-22 00:26:52.804 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":5,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:52.832 +03:00 [DBG] render event
+2025-10-22 00:26:52.832 +03:00 [DBG] Hello, render
+2025-10-22 00:26:52.838 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":5,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:52.864 +03:00 [DBG] render event
+2025-10-22 00:26:52.864 +03:00 [DBG] Hello, render
+2025-10-22 00:26:52.868 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":5,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:52.896 +03:00 [DBG] render event
+2025-10-22 00:26:52.896 +03:00 [DBG] Hello, render
+2025-10-22 00:26:52.900 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":5,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:52.928 +03:00 [DBG] render event
+2025-10-22 00:26:52.928 +03:00 [DBG] Hello, render
+2025-10-22 00:26:52.932 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":5,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:52.960 +03:00 [DBG] render event
+2025-10-22 00:26:52.960 +03:00 [DBG] Hello, render
+2025-10-22 00:26:52.965 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":5,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:52.979 +03:00 [DBG] Incoming message length 2880
+2025-10-22 00:26:52.979 +03:00 [DBG] first 4 bytes: 7B222474
+2025-10-22 00:26:52.979 +03:00 [DBG] Received server payload {"$type":"Sync","Snapshot":{"Players":[{"Username":"127.0.0.1:51658","Color":1,"Identity":"0bb6b9da-8962-4b18-a3c9-e73f89d159de","PositionInRoom":{"X":4,"Y":3},"Health":56,"Weapon":{"$type":"Sword","Identity":"0a11b762-29fa-461c-9241-43010ec7918f"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}}],"Enemies":[{"$type":"Zombie","Identity":"b1eaafb6-7fcf-49b2-9430-c8d963af3938","PositionInRoom":{"X":1,"Y":1},"Health":100,"Weapon":{"$type":"Sword","Identity":"37ac9d4e-fc02-447d-879c-1c11950e3708"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Zombie","Identity":"1594fd0c-5f49-443a-afed-089711a52e49","PositionInRoom":{"X":1,"Y":1},"Health":100,"Weapon":{"$type":"Sword","Identity":"71e43dcf-c921-4606-bc24-fbf69a205274"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Skeleton","Identity":"6e15f5bd-e356-44d5-84d5-43775253e3aa","PositionInRoom":{"X":4,"Y":2},"Health":100,"Weapon":{"$type":"Dagger","Identity":"f42875c7-3dca-4741-afd6-9ec4c989949d"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Orc","Identity":"312f0792-35c4-4558-8451-7e3e7c6f7579","PositionInRoom":{"X":4,"Y":2},"Health":100,"Weapon":{"$type":"Axe","Identity":"4743d881-7c27-436f-90a3-811d54e399d5"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}}],"WorldGrid":{"Rooms":{"0,0":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},"Seed":1337,"random":{}},"LogEntries":[{"Text":"Player 127.0.0.1:51658 has appeared.","Scope":2,"PlayerIdentity":null,"RoomPosition":null},{"Text":"Skeleton swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 11 damage. Is at 89 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Orc swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 33 damage. Is at 56 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}}]},"Identity":"0bb6b9da-8962-4b18-a3c9-e73f89d159de"}
+2025-10-22 00:26:52.979 +03:00 [INF] Executing command from server of type SyncCommand
+2025-10-22 00:26:52.979 +03:00 [DBG] Received new game snapshot as "0bb6b9da-8962-4b18-a3c9-e73f89d159de"
+2025-10-22 00:26:52.979 +03:00 [DBG] Received snapshot with n=1 players...
+2025-10-22 00:26:52.979 +03:00 [INF] got relevant messages ...
+2025-10-22 00:26:52.979 +03:00 [DBG] Identity updated to 0bb6b9da-8962-4b18-a3c9-e73f89d159de
+2025-10-22 00:26:53.006 +03:00 [DBG] render event
+2025-10-22 00:26:53.006 +03:00 [DBG] Hello, render
+2025-10-22 00:26:53.012 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":4,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:53.055 +03:00 [DBG] render event
+2025-10-22 00:26:53.055 +03:00 [DBG] Hello, render
+2025-10-22 00:26:53.058 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":4,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:53.103 +03:00 [DBG] render event
+2025-10-22 00:26:53.103 +03:00 [DBG] Hello, render
+2025-10-22 00:26:53.108 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":4,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:53.119 +03:00 [DBG] Key pressed: A
+2025-10-22 00:26:53.119 +03:00 [INF] Moving
+2025-10-22 00:26:53.120 +03:00 [DBG] Sent of type MoveCommand
+2025-10-22 00:26:53.135 +03:00 [DBG] render event
+2025-10-22 00:26:53.136 +03:00 [DBG] Hello, render
+2025-10-22 00:26:53.140 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":4,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:53.170 +03:00 [DBG] render event
+2025-10-22 00:26:53.170 +03:00 [DBG] Hello, render
+2025-10-22 00:26:53.175 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":4,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:53.203 +03:00 [DBG] render event
+2025-10-22 00:26:53.203 +03:00 [DBG] Hello, render
+2025-10-22 00:26:53.207 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":4,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:53.237 +03:00 [DBG] render event
+2025-10-22 00:26:53.237 +03:00 [DBG] Hello, render
+2025-10-22 00:26:53.241 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":4,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:53.269 +03:00 [DBG] render event
+2025-10-22 00:26:53.269 +03:00 [DBG] Hello, render
+2025-10-22 00:26:53.273 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":4,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:53.317 +03:00 [DBG] render event
+2025-10-22 00:26:53.317 +03:00 [DBG] Hello, render
+2025-10-22 00:26:53.321 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":4,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:53.348 +03:00 [DBG] render event
+2025-10-22 00:26:53.349 +03:00 [DBG] Hello, render
+2025-10-22 00:26:53.353 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":4,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:53.381 +03:00 [DBG] render event
+2025-10-22 00:26:53.381 +03:00 [DBG] Hello, render
+2025-10-22 00:26:53.385 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":4,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:53.412 +03:00 [DBG] render event
+2025-10-22 00:26:53.413 +03:00 [DBG] Hello, render
+2025-10-22 00:26:53.417 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":4,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:53.444 +03:00 [DBG] render event
+2025-10-22 00:26:53.444 +03:00 [DBG] Hello, render
+2025-10-22 00:26:53.448 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":4,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:53.476 +03:00 [DBG] render event
+2025-10-22 00:26:53.476 +03:00 [DBG] Hello, render
+2025-10-22 00:26:53.481 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":4,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:53.492 +03:00 [DBG] Incoming message length 2880
+2025-10-22 00:26:53.492 +03:00 [DBG] first 4 bytes: 7B222474
+2025-10-22 00:26:53.492 +03:00 [DBG] Received server payload {"$type":"Sync","Snapshot":{"Players":[{"Username":"127.0.0.1:51658","Color":1,"Identity":"0bb6b9da-8962-4b18-a3c9-e73f89d159de","PositionInRoom":{"X":3,"Y":3},"Health":56,"Weapon":{"$type":"Sword","Identity":"0a11b762-29fa-461c-9241-43010ec7918f"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}}],"Enemies":[{"$type":"Zombie","Identity":"b1eaafb6-7fcf-49b2-9430-c8d963af3938","PositionInRoom":{"X":1,"Y":1},"Health":100,"Weapon":{"$type":"Sword","Identity":"37ac9d4e-fc02-447d-879c-1c11950e3708"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Zombie","Identity":"1594fd0c-5f49-443a-afed-089711a52e49","PositionInRoom":{"X":1,"Y":1},"Health":100,"Weapon":{"$type":"Sword","Identity":"71e43dcf-c921-4606-bc24-fbf69a205274"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Skeleton","Identity":"6e15f5bd-e356-44d5-84d5-43775253e3aa","PositionInRoom":{"X":4,"Y":2},"Health":100,"Weapon":{"$type":"Dagger","Identity":"f42875c7-3dca-4741-afd6-9ec4c989949d"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Orc","Identity":"312f0792-35c4-4558-8451-7e3e7c6f7579","PositionInRoom":{"X":4,"Y":2},"Health":100,"Weapon":{"$type":"Axe","Identity":"4743d881-7c27-436f-90a3-811d54e399d5"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}}],"WorldGrid":{"Rooms":{"0,0":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},"Seed":1337,"random":{}},"LogEntries":[{"Text":"Player 127.0.0.1:51658 has appeared.","Scope":2,"PlayerIdentity":null,"RoomPosition":null},{"Text":"Skeleton swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 11 damage. Is at 89 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Orc swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 33 damage. Is at 56 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}}]},"Identity":"0bb6b9da-8962-4b18-a3c9-e73f89d159de"}
+2025-10-22 00:26:53.493 +03:00 [INF] Executing command from server of type SyncCommand
+2025-10-22 00:26:53.493 +03:00 [DBG] Received new game snapshot as "0bb6b9da-8962-4b18-a3c9-e73f89d159de"
+2025-10-22 00:26:53.493 +03:00 [DBG] Received snapshot with n=1 players...
+2025-10-22 00:26:53.493 +03:00 [INF] got relevant messages ...
+2025-10-22 00:26:53.493 +03:00 [DBG] Identity updated to 0bb6b9da-8962-4b18-a3c9-e73f89d159de
+2025-10-22 00:26:53.523 +03:00 [DBG] render event
+2025-10-22 00:26:53.524 +03:00 [DBG] Hello, render
+2025-10-22 00:26:53.528 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":3,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:53.555 +03:00 [DBG] render event
+2025-10-22 00:26:53.555 +03:00 [DBG] Hello, render
+2025-10-22 00:26:53.559 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":3,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:53.585 +03:00 [DBG] render event
+2025-10-22 00:26:53.585 +03:00 [DBG] Hello, render
+2025-10-22 00:26:53.590 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":3,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:53.620 +03:00 [DBG] render event
+2025-10-22 00:26:53.620 +03:00 [DBG] Hello, render
+2025-10-22 00:26:53.625 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":3,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:53.652 +03:00 [DBG] render event
+2025-10-22 00:26:53.652 +03:00 [DBG] Hello, render
+2025-10-22 00:26:53.656 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":3,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:53.667 +03:00 [DBG] Key pressed: A
+2025-10-22 00:26:53.667 +03:00 [INF] Moving
+2025-10-22 00:26:53.668 +03:00 [DBG] Sent of type MoveCommand
+2025-10-22 00:26:53.684 +03:00 [DBG] render event
+2025-10-22 00:26:53.684 +03:00 [DBG] Hello, render
+2025-10-22 00:26:53.689 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":3,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:53.719 +03:00 [DBG] render event
+2025-10-22 00:26:53.720 +03:00 [DBG] Hello, render
+2025-10-22 00:26:53.724 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":3,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:53.770 +03:00 [DBG] render event
+2025-10-22 00:26:53.771 +03:00 [DBG] Hello, render
+2025-10-22 00:26:53.775 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":3,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:53.819 +03:00 [DBG] render event
+2025-10-22 00:26:53.819 +03:00 [DBG] Hello, render
+2025-10-22 00:26:53.823 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":3,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:53.866 +03:00 [DBG] render event
+2025-10-22 00:26:53.866 +03:00 [DBG] Hello, render
+2025-10-22 00:26:53.871 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":3,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:53.914 +03:00 [DBG] render event
+2025-10-22 00:26:53.915 +03:00 [DBG] Hello, render
+2025-10-22 00:26:53.919 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":3,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:53.961 +03:00 [DBG] render event
+2025-10-22 00:26:53.961 +03:00 [DBG] Hello, render
+2025-10-22 00:26:53.966 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":3,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:53.993 +03:00 [DBG] render event
+2025-10-22 00:26:53.993 +03:00 [DBG] Hello, render
+2025-10-22 00:26:53.998 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":3,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:54.016 +03:00 [DBG] Incoming message length 3127
+2025-10-22 00:26:54.016 +03:00 [DBG] first 4 bytes: 7B222474
+2025-10-22 00:26:54.016 +03:00 [DBG] Received server payload {"$type":"Sync","Snapshot":{"Players":[{"Username":"127.0.0.1:51658","Color":1,"Identity":"0bb6b9da-8962-4b18-a3c9-e73f89d159de","PositionInRoom":{"X":2,"Y":3},"Health":45,"Weapon":{"$type":"Sword","Identity":"0a11b762-29fa-461c-9241-43010ec7918f"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}}],"Enemies":[{"$type":"Zombie","Identity":"b1eaafb6-7fcf-49b2-9430-c8d963af3938","PositionInRoom":{"X":2,"Y":2},"Health":100,"Weapon":{"$type":"Sword","Identity":"37ac9d4e-fc02-447d-879c-1c11950e3708"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Zombie","Identity":"1594fd0c-5f49-443a-afed-089711a52e49","PositionInRoom":{"X":1,"Y":1},"Health":100,"Weapon":{"$type":"Sword","Identity":"71e43dcf-c921-4606-bc24-fbf69a205274"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Skeleton","Identity":"6e15f5bd-e356-44d5-84d5-43775253e3aa","PositionInRoom":{"X":4,"Y":2},"Health":100,"Weapon":{"$type":"Dagger","Identity":"f42875c7-3dca-4741-afd6-9ec4c989949d"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Orc","Identity":"312f0792-35c4-4558-8451-7e3e7c6f7579","PositionInRoom":{"X":4,"Y":2},"Health":100,"Weapon":{"$type":"Axe","Identity":"4743d881-7c27-436f-90a3-811d54e399d5"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}}],"WorldGrid":{"Rooms":{"0,0":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},"Seed":1337,"random":{}},"LogEntries":[{"Text":"Player 127.0.0.1:51658 has appeared.","Scope":2,"PlayerIdentity":null,"RoomPosition":null},{"Text":"Skeleton swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 11 damage. Is at 89 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Orc swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 33 damage. Is at 56 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Skeleton swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 11 damage. Is at 45 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}}]},"Identity":"0bb6b9da-8962-4b18-a3c9-e73f89d159de"}
+2025-10-22 00:26:54.017 +03:00 [INF] Executing command from server of type SyncCommand
+2025-10-22 00:26:54.017 +03:00 [DBG] Received new game snapshot as "0bb6b9da-8962-4b18-a3c9-e73f89d159de"
+2025-10-22 00:26:54.017 +03:00 [DBG] Received snapshot with n=1 players...
+2025-10-22 00:26:54.017 +03:00 [INF] got relevant messages ...
+2025-10-22 00:26:54.017 +03:00 [DBG] Identity updated to 0bb6b9da-8962-4b18-a3c9-e73f89d159de
+2025-10-22 00:26:54.024 +03:00 [DBG] render event
+2025-10-22 00:26:54.024 +03:00 [DBG] Hello, render
+2025-10-22 00:26:54.027 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:54.055 +03:00 [DBG] render event
+2025-10-22 00:26:54.055 +03:00 [DBG] Hello, render
+2025-10-22 00:26:54.059 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:54.087 +03:00 [DBG] render event
+2025-10-22 00:26:54.087 +03:00 [DBG] Hello, render
+2025-10-22 00:26:54.091 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:54.121 +03:00 [DBG] render event
+2025-10-22 00:26:54.121 +03:00 [DBG] Hello, render
+2025-10-22 00:26:54.126 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:54.169 +03:00 [DBG] render event
+2025-10-22 00:26:54.170 +03:00 [DBG] Hello, render
+2025-10-22 00:26:54.174 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:54.201 +03:00 [DBG] render event
+2025-10-22 00:26:54.202 +03:00 [DBG] Hello, render
+2025-10-22 00:26:54.206 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:54.251 +03:00 [DBG] render event
+2025-10-22 00:26:54.251 +03:00 [DBG] Hello, render
+2025-10-22 00:26:54.255 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:54.299 +03:00 [DBG] render event
+2025-10-22 00:26:54.299 +03:00 [DBG] Hello, render
+2025-10-22 00:26:54.304 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:54.347 +03:00 [DBG] render event
+2025-10-22 00:26:54.347 +03:00 [DBG] Hello, render
+2025-10-22 00:26:54.351 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:54.399 +03:00 [DBG] render event
+2025-10-22 00:26:54.399 +03:00 [DBG] Hello, render
+2025-10-22 00:26:54.402 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:54.430 +03:00 [DBG] render event
+2025-10-22 00:26:54.430 +03:00 [DBG] Hello, render
+2025-10-22 00:26:54.434 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:54.478 +03:00 [DBG] render event
+2025-10-22 00:26:54.478 +03:00 [DBG] Hello, render
+2025-10-22 00:26:54.482 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:54.516 +03:00 [DBG] render event
+2025-10-22 00:26:54.516 +03:00 [DBG] Hello, render
+2025-10-22 00:26:54.521 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:54.529 +03:00 [DBG] Incoming message length 3127
+2025-10-22 00:26:54.529 +03:00 [DBG] first 4 bytes: 7B222474
+2025-10-22 00:26:54.529 +03:00 [DBG] Received server payload {"$type":"Sync","Snapshot":{"Players":[{"Username":"127.0.0.1:51658","Color":1,"Identity":"0bb6b9da-8962-4b18-a3c9-e73f89d159de","PositionInRoom":{"X":2,"Y":3},"Health":45,"Weapon":{"$type":"Sword","Identity":"0a11b762-29fa-461c-9241-43010ec7918f"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}}],"Enemies":[{"$type":"Zombie","Identity":"b1eaafb6-7fcf-49b2-9430-c8d963af3938","PositionInRoom":{"X":2,"Y":2},"Health":100,"Weapon":{"$type":"Sword","Identity":"37ac9d4e-fc02-447d-879c-1c11950e3708"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Zombie","Identity":"1594fd0c-5f49-443a-afed-089711a52e49","PositionInRoom":{"X":1,"Y":1},"Health":100,"Weapon":{"$type":"Sword","Identity":"71e43dcf-c921-4606-bc24-fbf69a205274"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Skeleton","Identity":"6e15f5bd-e356-44d5-84d5-43775253e3aa","PositionInRoom":{"X":3,"Y":3},"Health":100,"Weapon":{"$type":"Dagger","Identity":"f42875c7-3dca-4741-afd6-9ec4c989949d"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Orc","Identity":"312f0792-35c4-4558-8451-7e3e7c6f7579","PositionInRoom":{"X":4,"Y":2},"Health":100,"Weapon":{"$type":"Axe","Identity":"4743d881-7c27-436f-90a3-811d54e399d5"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}}],"WorldGrid":{"Rooms":{"0,0":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},"Seed":1337,"random":{}},"LogEntries":[{"Text":"Player 127.0.0.1:51658 has appeared.","Scope":2,"PlayerIdentity":null,"RoomPosition":null},{"Text":"Skeleton swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 11 damage. Is at 89 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Orc swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 33 damage. Is at 56 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Skeleton swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 11 damage. Is at 45 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}}]},"Identity":"0bb6b9da-8962-4b18-a3c9-e73f89d159de"}
+2025-10-22 00:26:54.529 +03:00 [INF] Executing command from server of type SyncCommand
+2025-10-22 00:26:54.529 +03:00 [DBG] Received new game snapshot as "0bb6b9da-8962-4b18-a3c9-e73f89d159de"
+2025-10-22 00:26:54.529 +03:00 [DBG] Received snapshot with n=1 players...
+2025-10-22 00:26:54.529 +03:00 [INF] got relevant messages ...
+2025-10-22 00:26:54.529 +03:00 [DBG] Identity updated to 0bb6b9da-8962-4b18-a3c9-e73f89d159de
+2025-10-22 00:26:54.553 +03:00 [DBG] render event
+2025-10-22 00:26:54.554 +03:00 [DBG] Hello, render
+2025-10-22 00:26:54.558 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:54.588 +03:00 [DBG] render event
+2025-10-22 00:26:54.588 +03:00 [DBG] Hello, render
+2025-10-22 00:26:54.591 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:54.619 +03:00 [DBG] render event
+2025-10-22 00:26:54.619 +03:00 [DBG] Hello, render
+2025-10-22 00:26:54.623 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:54.653 +03:00 [DBG] render event
+2025-10-22 00:26:54.653 +03:00 [DBG] Hello, render
+2025-10-22 00:26:54.657 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:54.701 +03:00 [DBG] render event
+2025-10-22 00:26:54.701 +03:00 [DBG] Hello, render
+2025-10-22 00:26:54.705 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:54.749 +03:00 [DBG] render event
+2025-10-22 00:26:54.749 +03:00 [DBG] Hello, render
+2025-10-22 00:26:54.753 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:54.796 +03:00 [DBG] render event
+2025-10-22 00:26:54.796 +03:00 [DBG] Hello, render
+2025-10-22 00:26:54.800 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:54.843 +03:00 [DBG] render event
+2025-10-22 00:26:54.844 +03:00 [DBG] Hello, render
+2025-10-22 00:26:54.848 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:54.891 +03:00 [DBG] render event
+2025-10-22 00:26:54.891 +03:00 [DBG] Hello, render
+2025-10-22 00:26:54.895 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:54.939 +03:00 [DBG] render event
+2025-10-22 00:26:54.939 +03:00 [DBG] Hello, render
+2025-10-22 00:26:54.943 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:54.987 +03:00 [DBG] render event
+2025-10-22 00:26:54.987 +03:00 [DBG] Hello, render
+2025-10-22 00:26:54.991 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:55.019 +03:00 [DBG] render event
+2025-10-22 00:26:55.019 +03:00 [DBG] Hello, render
+2025-10-22 00:26:55.023 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:55.053 +03:00 [DBG] Incoming message length 3127
+2025-10-22 00:26:55.053 +03:00 [DBG] first 4 bytes: 7B222474
+2025-10-22 00:26:55.053 +03:00 [DBG] Received server payload {"$type":"Sync","Snapshot":{"Players":[{"Username":"127.0.0.1:51658","Color":1,"Identity":"0bb6b9da-8962-4b18-a3c9-e73f89d159de","PositionInRoom":{"X":2,"Y":3},"Health":45,"Weapon":{"$type":"Sword","Identity":"0a11b762-29fa-461c-9241-43010ec7918f"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}}],"Enemies":[{"$type":"Zombie","Identity":"b1eaafb6-7fcf-49b2-9430-c8d963af3938","PositionInRoom":{"X":2,"Y":2},"Health":100,"Weapon":{"$type":"Sword","Identity":"37ac9d4e-fc02-447d-879c-1c11950e3708"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Zombie","Identity":"1594fd0c-5f49-443a-afed-089711a52e49","PositionInRoom":{"X":1,"Y":1},"Health":100,"Weapon":{"$type":"Sword","Identity":"71e43dcf-c921-4606-bc24-fbf69a205274"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Skeleton","Identity":"6e15f5bd-e356-44d5-84d5-43775253e3aa","PositionInRoom":{"X":3,"Y":3},"Health":100,"Weapon":{"$type":"Dagger","Identity":"f42875c7-3dca-4741-afd6-9ec4c989949d"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Orc","Identity":"312f0792-35c4-4558-8451-7e3e7c6f7579","PositionInRoom":{"X":4,"Y":2},"Health":100,"Weapon":{"$type":"Axe","Identity":"4743d881-7c27-436f-90a3-811d54e399d5"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}}],"WorldGrid":{"Rooms":{"0,0":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},"Seed":1337,"random":{}},"LogEntries":[{"Text":"Player 127.0.0.1:51658 has appeared.","Scope":2,"PlayerIdentity":null,"RoomPosition":null},{"Text":"Skeleton swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 11 damage. Is at 89 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Orc swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 33 damage. Is at 56 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Skeleton swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 11 damage. Is at 45 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}}]},"Identity":"0bb6b9da-8962-4b18-a3c9-e73f89d159de"}
+2025-10-22 00:26:55.053 +03:00 [INF] Executing command from server of type SyncCommand
+2025-10-22 00:26:55.053 +03:00 [DBG] Received new game snapshot as "0bb6b9da-8962-4b18-a3c9-e73f89d159de"
+2025-10-22 00:26:55.053 +03:00 [DBG] Received snapshot with n=1 players...
+2025-10-22 00:26:55.054 +03:00 [INF] got relevant messages ...
+2025-10-22 00:26:55.054 +03:00 [DBG] Identity updated to 0bb6b9da-8962-4b18-a3c9-e73f89d159de
+2025-10-22 00:26:55.055 +03:00 [DBG] render event
+2025-10-22 00:26:55.055 +03:00 [DBG] Hello, render
+2025-10-22 00:26:55.058 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:55.089 +03:00 [DBG] render event
+2025-10-22 00:26:55.089 +03:00 [DBG] Hello, render
+2025-10-22 00:26:55.093 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:55.135 +03:00 [DBG] render event
+2025-10-22 00:26:55.135 +03:00 [DBG] Hello, render
+2025-10-22 00:26:55.140 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:55.186 +03:00 [DBG] render event
+2025-10-22 00:26:55.186 +03:00 [DBG] Hello, render
+2025-10-22 00:26:55.190 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:55.234 +03:00 [DBG] render event
+2025-10-22 00:26:55.234 +03:00 [DBG] Hello, render
+2025-10-22 00:26:55.238 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:55.282 +03:00 [DBG] render event
+2025-10-22 00:26:55.282 +03:00 [DBG] Hello, render
+2025-10-22 00:26:55.285 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:55.314 +03:00 [DBG] render event
+2025-10-22 00:26:55.314 +03:00 [DBG] Hello, render
+2025-10-22 00:26:55.317 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:55.346 +03:00 [DBG] render event
+2025-10-22 00:26:55.346 +03:00 [DBG] Hello, render
+2025-10-22 00:26:55.349 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:55.393 +03:00 [DBG] render event
+2025-10-22 00:26:55.393 +03:00 [DBG] Hello, render
+2025-10-22 00:26:55.397 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:55.425 +03:00 [DBG] render event
+2025-10-22 00:26:55.425 +03:00 [DBG] Hello, render
+2025-10-22 00:26:55.430 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:55.457 +03:00 [DBG] render event
+2025-10-22 00:26:55.457 +03:00 [DBG] Hello, render
+2025-10-22 00:26:55.462 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:55.489 +03:00 [DBG] render event
+2025-10-22 00:26:55.489 +03:00 [DBG] Hello, render
+2025-10-22 00:26:55.493 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:55.537 +03:00 [DBG] render event
+2025-10-22 00:26:55.537 +03:00 [DBG] Hello, render
+2025-10-22 00:26:55.541 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:55.577 +03:00 [DBG] render event
+2025-10-22 00:26:55.577 +03:00 [DBG] Hello, render
+2025-10-22 00:26:55.582 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:55.587 +03:00 [DBG] Incoming message length 3127
+2025-10-22 00:26:55.587 +03:00 [DBG] first 4 bytes: 7B222474
+2025-10-22 00:26:55.587 +03:00 [DBG] Received server payload {"$type":"Sync","Snapshot":{"Players":[{"Username":"127.0.0.1:51658","Color":1,"Identity":"0bb6b9da-8962-4b18-a3c9-e73f89d159de","PositionInRoom":{"X":2,"Y":3},"Health":45,"Weapon":{"$type":"Sword","Identity":"0a11b762-29fa-461c-9241-43010ec7918f"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}}],"Enemies":[{"$type":"Zombie","Identity":"b1eaafb6-7fcf-49b2-9430-c8d963af3938","PositionInRoom":{"X":2,"Y":2},"Health":100,"Weapon":{"$type":"Sword","Identity":"37ac9d4e-fc02-447d-879c-1c11950e3708"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Zombie","Identity":"1594fd0c-5f49-443a-afed-089711a52e49","PositionInRoom":{"X":1,"Y":1},"Health":100,"Weapon":{"$type":"Sword","Identity":"71e43dcf-c921-4606-bc24-fbf69a205274"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Skeleton","Identity":"6e15f5bd-e356-44d5-84d5-43775253e3aa","PositionInRoom":{"X":3,"Y":3},"Health":100,"Weapon":{"$type":"Dagger","Identity":"f42875c7-3dca-4741-afd6-9ec4c989949d"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Orc","Identity":"312f0792-35c4-4558-8451-7e3e7c6f7579","PositionInRoom":{"X":4,"Y":2},"Health":100,"Weapon":{"$type":"Axe","Identity":"4743d881-7c27-436f-90a3-811d54e399d5"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}}],"WorldGrid":{"Rooms":{"0,0":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},"Seed":1337,"random":{}},"LogEntries":[{"Text":"Player 127.0.0.1:51658 has appeared.","Scope":2,"PlayerIdentity":null,"RoomPosition":null},{"Text":"Skeleton swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 11 damage. Is at 89 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Orc swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 33 damage. Is at 56 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Skeleton swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 11 damage. Is at 45 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}}]},"Identity":"0bb6b9da-8962-4b18-a3c9-e73f89d159de"}
+2025-10-22 00:26:55.587 +03:00 [INF] Executing command from server of type SyncCommand
+2025-10-22 00:26:55.587 +03:00 [DBG] Received new game snapshot as "0bb6b9da-8962-4b18-a3c9-e73f89d159de"
+2025-10-22 00:26:55.587 +03:00 [DBG] Received snapshot with n=1 players...
+2025-10-22 00:26:55.587 +03:00 [INF] got relevant messages ...
+2025-10-22 00:26:55.587 +03:00 [DBG] Identity updated to 0bb6b9da-8962-4b18-a3c9-e73f89d159de
+2025-10-22 00:26:55.620 +03:00 [DBG] render event
+2025-10-22 00:26:55.621 +03:00 [DBG] Hello, render
+2025-10-22 00:26:55.625 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:55.670 +03:00 [DBG] render event
+2025-10-22 00:26:55.670 +03:00 [DBG] Hello, render
+2025-10-22 00:26:55.674 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:55.704 +03:00 [DBG] render event
+2025-10-22 00:26:55.704 +03:00 [DBG] Hello, render
+2025-10-22 00:26:55.707 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:55.752 +03:00 [DBG] render event
+2025-10-22 00:26:55.752 +03:00 [DBG] Hello, render
+2025-10-22 00:26:55.756 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:55.783 +03:00 [DBG] render event
+2025-10-22 00:26:55.783 +03:00 [DBG] Hello, render
+2025-10-22 00:26:55.787 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:55.816 +03:00 [DBG] render event
+2025-10-22 00:26:55.816 +03:00 [DBG] Hello, render
+2025-10-22 00:26:55.819 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:55.847 +03:00 [DBG] render event
+2025-10-22 00:26:55.847 +03:00 [DBG] Hello, render
+2025-10-22 00:26:55.852 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:55.879 +03:00 [DBG] render event
+2025-10-22 00:26:55.879 +03:00 [DBG] Hello, render
+2025-10-22 00:26:55.884 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:55.927 +03:00 [DBG] render event
+2025-10-22 00:26:55.927 +03:00 [DBG] Hello, render
+2025-10-22 00:26:55.932 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:55.959 +03:00 [DBG] render event
+2025-10-22 00:26:55.959 +03:00 [DBG] Hello, render
+2025-10-22 00:26:55.964 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:56.007 +03:00 [DBG] render event
+2025-10-22 00:26:56.007 +03:00 [DBG] Hello, render
+2025-10-22 00:26:56.011 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:56.055 +03:00 [DBG] render event
+2025-10-22 00:26:56.055 +03:00 [DBG] Hello, render
+2025-10-22 00:26:56.059 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:56.087 +03:00 [DBG] render event
+2025-10-22 00:26:56.087 +03:00 [DBG] Hello, render
+2025-10-22 00:26:56.092 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:56.107 +03:00 [DBG] Incoming message length 3372
+2025-10-22 00:26:56.107 +03:00 [DBG] first 4 bytes: 7B222474
+2025-10-22 00:26:56.107 +03:00 [DBG] Received server payload {"$type":"Sync","Snapshot":{"Players":[{"Username":"127.0.0.1:51658","Color":1,"Identity":"0bb6b9da-8962-4b18-a3c9-e73f89d159de","PositionInRoom":{"X":2,"Y":3},"Health":32,"Weapon":{"$type":"Sword","Identity":"0a11b762-29fa-461c-9241-43010ec7918f"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}}],"Enemies":[{"$type":"Zombie","Identity":"b1eaafb6-7fcf-49b2-9430-c8d963af3938","PositionInRoom":{"X":2,"Y":2},"Health":100,"Weapon":{"$type":"Sword","Identity":"37ac9d4e-fc02-447d-879c-1c11950e3708"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Zombie","Identity":"1594fd0c-5f49-443a-afed-089711a52e49","PositionInRoom":{"X":1,"Y":1},"Health":100,"Weapon":{"$type":"Sword","Identity":"71e43dcf-c921-4606-bc24-fbf69a205274"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Skeleton","Identity":"6e15f5bd-e356-44d5-84d5-43775253e3aa","PositionInRoom":{"X":3,"Y":3},"Health":100,"Weapon":{"$type":"Dagger","Identity":"f42875c7-3dca-4741-afd6-9ec4c989949d"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Orc","Identity":"312f0792-35c4-4558-8451-7e3e7c6f7579","PositionInRoom":{"X":4,"Y":2},"Health":100,"Weapon":{"$type":"Axe","Identity":"4743d881-7c27-436f-90a3-811d54e399d5"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}}],"WorldGrid":{"Rooms":{"0,0":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},"Seed":1337,"random":{}},"LogEntries":[{"Text":"Player 127.0.0.1:51658 has appeared.","Scope":2,"PlayerIdentity":null,"RoomPosition":null},{"Text":"Skeleton swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 11 damage. Is at 89 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Orc swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 33 damage. Is at 56 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Skeleton swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 11 damage. Is at 45 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Zombie swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 13 damage. Is at 32 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}}]},"Identity":"0bb6b9da-8962-4b18-a3c9-e73f89d159de"}
+2025-10-22 00:26:56.107 +03:00 [INF] Executing command from server of type SyncCommand
+2025-10-22 00:26:56.107 +03:00 [DBG] Received new game snapshot as "0bb6b9da-8962-4b18-a3c9-e73f89d159de"
+2025-10-22 00:26:56.107 +03:00 [DBG] Received snapshot with n=1 players...
+2025-10-22 00:26:56.108 +03:00 [INF] got relevant messages ...
+2025-10-22 00:26:56.108 +03:00 [DBG] Identity updated to 0bb6b9da-8962-4b18-a3c9-e73f89d159de
+2025-10-22 00:26:56.137 +03:00 [DBG] render event
+2025-10-22 00:26:56.137 +03:00 [DBG] Hello, render
+2025-10-22 00:26:56.142 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:56.187 +03:00 [DBG] render event
+2025-10-22 00:26:56.187 +03:00 [DBG] Hello, render
+2025-10-22 00:26:56.191 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:56.237 +03:00 [DBG] render event
+2025-10-22 00:26:56.237 +03:00 [DBG] Hello, render
+2025-10-22 00:26:56.241 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:56.283 +03:00 [DBG] render event
+2025-10-22 00:26:56.283 +03:00 [DBG] Hello, render
+2025-10-22 00:26:56.287 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:56.329 +03:00 [DBG] render event
+2025-10-22 00:26:56.329 +03:00 [DBG] Hello, render
+2025-10-22 00:26:56.332 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:56.376 +03:00 [DBG] render event
+2025-10-22 00:26:56.376 +03:00 [DBG] Hello, render
+2025-10-22 00:26:56.380 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:56.423 +03:00 [DBG] render event
+2025-10-22 00:26:56.423 +03:00 [DBG] Hello, render
+2025-10-22 00:26:56.427 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:56.468 +03:00 [DBG] render event
+2025-10-22 00:26:56.469 +03:00 [DBG] Hello, render
+2025-10-22 00:26:56.473 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:56.514 +03:00 [DBG] render event
+2025-10-22 00:26:56.514 +03:00 [DBG] Hello, render
+2025-10-22 00:26:56.518 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:56.561 +03:00 [DBG] render event
+2025-10-22 00:26:56.562 +03:00 [DBG] Hello, render
+2025-10-22 00:26:56.566 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:56.608 +03:00 [DBG] render event
+2025-10-22 00:26:56.608 +03:00 [DBG] Hello, render
+2025-10-22 00:26:56.613 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:56.627 +03:00 [DBG] Incoming message length 3619
+2025-10-22 00:26:56.627 +03:00 [DBG] first 4 bytes: 7B222474
+2025-10-22 00:26:56.628 +03:00 [DBG] Received server payload {"$type":"Sync","Snapshot":{"Players":[{"Username":"127.0.0.1:51658","Color":1,"Identity":"0bb6b9da-8962-4b18-a3c9-e73f89d159de","PositionInRoom":{"X":2,"Y":3},"Health":21,"Weapon":{"$type":"Sword","Identity":"0a11b762-29fa-461c-9241-43010ec7918f"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}}],"Enemies":[{"$type":"Zombie","Identity":"b1eaafb6-7fcf-49b2-9430-c8d963af3938","PositionInRoom":{"X":2,"Y":2},"Health":100,"Weapon":{"$type":"Sword","Identity":"37ac9d4e-fc02-447d-879c-1c11950e3708"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Zombie","Identity":"1594fd0c-5f49-443a-afed-089711a52e49","PositionInRoom":{"X":1,"Y":1},"Health":100,"Weapon":{"$type":"Sword","Identity":"71e43dcf-c921-4606-bc24-fbf69a205274"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Skeleton","Identity":"6e15f5bd-e356-44d5-84d5-43775253e3aa","PositionInRoom":{"X":3,"Y":3},"Health":100,"Weapon":{"$type":"Dagger","Identity":"f42875c7-3dca-4741-afd6-9ec4c989949d"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Orc","Identity":"312f0792-35c4-4558-8451-7e3e7c6f7579","PositionInRoom":{"X":4,"Y":2},"Health":100,"Weapon":{"$type":"Axe","Identity":"4743d881-7c27-436f-90a3-811d54e399d5"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}}],"WorldGrid":{"Rooms":{"0,0":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},"Seed":1337,"random":{}},"LogEntries":[{"Text":"Player 127.0.0.1:51658 has appeared.","Scope":2,"PlayerIdentity":null,"RoomPosition":null},{"Text":"Skeleton swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 11 damage. Is at 89 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Orc swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 33 damage. Is at 56 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Skeleton swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 11 damage. Is at 45 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Zombie swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 13 damage. Is at 32 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Skeleton swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 11 damage. Is at 21 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}}]},"Identity":"0bb6b9da-8962-4b18-a3c9-e73f89d159de"}
+2025-10-22 00:26:56.628 +03:00 [INF] Executing command from server of type SyncCommand
+2025-10-22 00:26:56.628 +03:00 [DBG] Received new game snapshot as "0bb6b9da-8962-4b18-a3c9-e73f89d159de"
+2025-10-22 00:26:56.628 +03:00 [DBG] Received snapshot with n=1 players...
+2025-10-22 00:26:56.628 +03:00 [INF] got relevant messages ...
+2025-10-22 00:26:56.628 +03:00 [DBG] Identity updated to 0bb6b9da-8962-4b18-a3c9-e73f89d159de
+2025-10-22 00:26:56.653 +03:00 [DBG] render event
+2025-10-22 00:26:56.654 +03:00 [DBG] Hello, render
+2025-10-22 00:26:56.657 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:56.700 +03:00 [DBG] render event
+2025-10-22 00:26:56.700 +03:00 [DBG] Hello, render
+2025-10-22 00:26:56.703 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:56.747 +03:00 [DBG] render event
+2025-10-22 00:26:56.748 +03:00 [DBG] Hello, render
+2025-10-22 00:26:56.751 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:56.794 +03:00 [DBG] render event
+2025-10-22 00:26:56.795 +03:00 [DBG] Hello, render
+2025-10-22 00:26:56.798 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:56.841 +03:00 [DBG] render event
+2025-10-22 00:26:56.842 +03:00 [DBG] Hello, render
+2025-10-22 00:26:56.845 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:56.888 +03:00 [DBG] render event
+2025-10-22 00:26:56.888 +03:00 [DBG] Hello, render
+2025-10-22 00:26:56.892 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:56.934 +03:00 [DBG] render event
+2025-10-22 00:26:56.934 +03:00 [DBG] Hello, render
+2025-10-22 00:26:56.939 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:56.980 +03:00 [DBG] render event
+2025-10-22 00:26:56.980 +03:00 [DBG] Hello, render
+2025-10-22 00:26:56.984 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:57.026 +03:00 [DBG] render event
+2025-10-22 00:26:57.027 +03:00 [DBG] Hello, render
+2025-10-22 00:26:57.030 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:57.073 +03:00 [DBG] render event
+2025-10-22 00:26:57.073 +03:00 [DBG] Hello, render
+2025-10-22 00:26:57.077 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:57.120 +03:00 [DBG] render event
+2025-10-22 00:26:57.120 +03:00 [DBG] Hello, render
+2025-10-22 00:26:57.125 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:57.155 +03:00 [DBG] Incoming message length 3619
+2025-10-22 00:26:57.155 +03:00 [DBG] first 4 bytes: 7B222474
+2025-10-22 00:26:57.155 +03:00 [DBG] Received server payload {"$type":"Sync","Snapshot":{"Players":[{"Username":"127.0.0.1:51658","Color":1,"Identity":"0bb6b9da-8962-4b18-a3c9-e73f89d159de","PositionInRoom":{"X":2,"Y":3},"Health":21,"Weapon":{"$type":"Sword","Identity":"0a11b762-29fa-461c-9241-43010ec7918f"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}}],"Enemies":[{"$type":"Zombie","Identity":"b1eaafb6-7fcf-49b2-9430-c8d963af3938","PositionInRoom":{"X":2,"Y":2},"Health":100,"Weapon":{"$type":"Sword","Identity":"37ac9d4e-fc02-447d-879c-1c11950e3708"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Zombie","Identity":"1594fd0c-5f49-443a-afed-089711a52e49","PositionInRoom":{"X":1,"Y":1},"Health":100,"Weapon":{"$type":"Sword","Identity":"71e43dcf-c921-4606-bc24-fbf69a205274"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Skeleton","Identity":"6e15f5bd-e356-44d5-84d5-43775253e3aa","PositionInRoom":{"X":3,"Y":3},"Health":100,"Weapon":{"$type":"Dagger","Identity":"f42875c7-3dca-4741-afd6-9ec4c989949d"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Orc","Identity":"312f0792-35c4-4558-8451-7e3e7c6f7579","PositionInRoom":{"X":4,"Y":2},"Health":100,"Weapon":{"$type":"Axe","Identity":"4743d881-7c27-436f-90a3-811d54e399d5"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}}],"WorldGrid":{"Rooms":{"0,0":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},"Seed":1337,"random":{}},"LogEntries":[{"Text":"Player 127.0.0.1:51658 has appeared.","Scope":2,"PlayerIdentity":null,"RoomPosition":null},{"Text":"Skeleton swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 11 damage. Is at 89 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Orc swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 33 damage. Is at 56 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Skeleton swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 11 damage. Is at 45 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Zombie swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 13 damage. Is at 32 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Skeleton swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 11 damage. Is at 21 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}}]},"Identity":"0bb6b9da-8962-4b18-a3c9-e73f89d159de"}
+2025-10-22 00:26:57.155 +03:00 [INF] Executing command from server of type SyncCommand
+2025-10-22 00:26:57.155 +03:00 [DBG] Received new game snapshot as "0bb6b9da-8962-4b18-a3c9-e73f89d159de"
+2025-10-22 00:26:57.155 +03:00 [DBG] Received snapshot with n=1 players...
+2025-10-22 00:26:57.155 +03:00 [INF] got relevant messages ...
+2025-10-22 00:26:57.155 +03:00 [DBG] Identity updated to 0bb6b9da-8962-4b18-a3c9-e73f89d159de
+2025-10-22 00:26:57.167 +03:00 [DBG] render event
+2025-10-22 00:26:57.168 +03:00 [DBG] Hello, render
+2025-10-22 00:26:57.173 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:57.215 +03:00 [DBG] render event
+2025-10-22 00:26:57.215 +03:00 [DBG] Hello, render
+2025-10-22 00:26:57.219 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:57.262 +03:00 [DBG] render event
+2025-10-22 00:26:57.262 +03:00 [DBG] Hello, render
+2025-10-22 00:26:57.266 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:57.308 +03:00 [DBG] render event
+2025-10-22 00:26:57.308 +03:00 [DBG] Hello, render
+2025-10-22 00:26:57.312 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:57.354 +03:00 [DBG] render event
+2025-10-22 00:26:57.354 +03:00 [DBG] Hello, render
+2025-10-22 00:26:57.358 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:57.402 +03:00 [DBG] render event
+2025-10-22 00:26:57.402 +03:00 [DBG] Hello, render
+2025-10-22 00:26:57.407 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:57.448 +03:00 [DBG] render event
+2025-10-22 00:26:57.448 +03:00 [DBG] Hello, render
+2025-10-22 00:26:57.452 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:57.496 +03:00 [DBG] render event
+2025-10-22 00:26:57.496 +03:00 [DBG] Hello, render
+2025-10-22 00:26:57.501 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:57.542 +03:00 [DBG] render event
+2025-10-22 00:26:57.543 +03:00 [DBG] Hello, render
+2025-10-22 00:26:57.547 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:57.589 +03:00 [DBG] render event
+2025-10-22 00:26:57.589 +03:00 [DBG] Hello, render
+2025-10-22 00:26:57.593 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:57.636 +03:00 [DBG] render event
+2025-10-22 00:26:57.636 +03:00 [DBG] Hello, render
+2025-10-22 00:26:57.640 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:57.684 +03:00 [DBG] render event
+2025-10-22 00:26:57.684 +03:00 [DBG] Hello, render
+2025-10-22 00:26:57.687 +03:00 [DBG] Incoming message length 3619
+2025-10-22 00:26:57.687 +03:00 [DBG] first 4 bytes: 7B222474
+2025-10-22 00:26:57.687 +03:00 [DBG] Received server payload {"$type":"Sync","Snapshot":{"Players":[{"Username":"127.0.0.1:51658","Color":1,"Identity":"0bb6b9da-8962-4b18-a3c9-e73f89d159de","PositionInRoom":{"X":2,"Y":3},"Health":21,"Weapon":{"$type":"Sword","Identity":"0a11b762-29fa-461c-9241-43010ec7918f"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}}],"Enemies":[{"$type":"Zombie","Identity":"b1eaafb6-7fcf-49b2-9430-c8d963af3938","PositionInRoom":{"X":2,"Y":2},"Health":100,"Weapon":{"$type":"Sword","Identity":"37ac9d4e-fc02-447d-879c-1c11950e3708"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Zombie","Identity":"1594fd0c-5f49-443a-afed-089711a52e49","PositionInRoom":{"X":1,"Y":1},"Health":100,"Weapon":{"$type":"Sword","Identity":"71e43dcf-c921-4606-bc24-fbf69a205274"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Skeleton","Identity":"6e15f5bd-e356-44d5-84d5-43775253e3aa","PositionInRoom":{"X":3,"Y":3},"Health":100,"Weapon":{"$type":"Dagger","Identity":"f42875c7-3dca-4741-afd6-9ec4c989949d"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Orc","Identity":"312f0792-35c4-4558-8451-7e3e7c6f7579","PositionInRoom":{"X":4,"Y":2},"Health":100,"Weapon":{"$type":"Axe","Identity":"4743d881-7c27-436f-90a3-811d54e399d5"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}}],"WorldGrid":{"Rooms":{"0,0":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},"Seed":1337,"random":{}},"LogEntries":[{"Text":"Player 127.0.0.1:51658 has appeared.","Scope":2,"PlayerIdentity":null,"RoomPosition":null},{"Text":"Skeleton swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 11 damage. Is at 89 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Orc swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 33 damage. Is at 56 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Skeleton swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 11 damage. Is at 45 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Zombie swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 13 damage. Is at 32 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Skeleton swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 11 damage. Is at 21 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}}]},"Identity":"0bb6b9da-8962-4b18-a3c9-e73f89d159de"}
+2025-10-22 00:26:57.687 +03:00 [INF] Executing command from server of type SyncCommand
+2025-10-22 00:26:57.687 +03:00 [DBG] Received new game snapshot as "0bb6b9da-8962-4b18-a3c9-e73f89d159de"
+2025-10-22 00:26:57.687 +03:00 [DBG] Received snapshot with n=1 players...
+2025-10-22 00:26:57.687 +03:00 [INF] got relevant messages ...
+2025-10-22 00:26:57.687 +03:00 [DBG] Identity updated to 0bb6b9da-8962-4b18-a3c9-e73f89d159de
+2025-10-22 00:26:57.689 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:57.730 +03:00 [DBG] render event
+2025-10-22 00:26:57.731 +03:00 [DBG] Hello, render
+2025-10-22 00:26:57.736 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:57.777 +03:00 [DBG] render event
+2025-10-22 00:26:57.777 +03:00 [DBG] Hello, render
+2025-10-22 00:26:57.782 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:57.824 +03:00 [DBG] render event
+2025-10-22 00:26:57.824 +03:00 [DBG] Hello, render
+2025-10-22 00:26:57.828 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:57.869 +03:00 [DBG] render event
+2025-10-22 00:26:57.870 +03:00 [DBG] Hello, render
+2025-10-22 00:26:57.874 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:57.917 +03:00 [DBG] render event
+2025-10-22 00:26:57.917 +03:00 [DBG] Hello, render
+2025-10-22 00:26:57.922 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:57.963 +03:00 [DBG] render event
+2025-10-22 00:26:57.963 +03:00 [DBG] Hello, render
+2025-10-22 00:26:57.968 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:58.011 +03:00 [DBG] render event
+2025-10-22 00:26:58.011 +03:00 [DBG] Hello, render
+2025-10-22 00:26:58.016 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:58.057 +03:00 [DBG] render event
+2025-10-22 00:26:58.057 +03:00 [DBG] Hello, render
+2025-10-22 00:26:58.061 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:58.103 +03:00 [DBG] render event
+2025-10-22 00:26:58.104 +03:00 [DBG] Hello, render
+2025-10-22 00:26:58.108 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:58.150 +03:00 [DBG] render event
+2025-10-22 00:26:58.150 +03:00 [DBG] Hello, render
+2025-10-22 00:26:58.155 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:58.197 +03:00 [DBG] render event
+2025-10-22 00:26:58.197 +03:00 [DBG] Hello, render
+2025-10-22 00:26:58.201 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:58.212 +03:00 [DBG] Incoming message length 3619
+2025-10-22 00:26:58.212 +03:00 [DBG] first 4 bytes: 7B222474
+2025-10-22 00:26:58.212 +03:00 [DBG] Received server payload {"$type":"Sync","Snapshot":{"Players":[{"Username":"127.0.0.1:51658","Color":1,"Identity":"0bb6b9da-8962-4b18-a3c9-e73f89d159de","PositionInRoom":{"X":2,"Y":3},"Health":21,"Weapon":{"$type":"Sword","Identity":"0a11b762-29fa-461c-9241-43010ec7918f"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}}],"Enemies":[{"$type":"Zombie","Identity":"b1eaafb6-7fcf-49b2-9430-c8d963af3938","PositionInRoom":{"X":2,"Y":2},"Health":100,"Weapon":{"$type":"Sword","Identity":"37ac9d4e-fc02-447d-879c-1c11950e3708"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Zombie","Identity":"1594fd0c-5f49-443a-afed-089711a52e49","PositionInRoom":{"X":1,"Y":1},"Health":100,"Weapon":{"$type":"Sword","Identity":"71e43dcf-c921-4606-bc24-fbf69a205274"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Skeleton","Identity":"6e15f5bd-e356-44d5-84d5-43775253e3aa","PositionInRoom":{"X":3,"Y":3},"Health":100,"Weapon":{"$type":"Dagger","Identity":"f42875c7-3dca-4741-afd6-9ec4c989949d"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Orc","Identity":"312f0792-35c4-4558-8451-7e3e7c6f7579","PositionInRoom":{"X":4,"Y":2},"Health":100,"Weapon":{"$type":"Axe","Identity":"4743d881-7c27-436f-90a3-811d54e399d5"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}}],"WorldGrid":{"Rooms":{"0,0":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},"Seed":1337,"random":{}},"LogEntries":[{"Text":"Player 127.0.0.1:51658 has appeared.","Scope":2,"PlayerIdentity":null,"RoomPosition":null},{"Text":"Skeleton swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 11 damage. Is at 89 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Orc swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 33 damage. Is at 56 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Skeleton swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 11 damage. Is at 45 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Zombie swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 13 damage. Is at 32 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Skeleton swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 11 damage. Is at 21 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}}]},"Identity":"0bb6b9da-8962-4b18-a3c9-e73f89d159de"}
+2025-10-22 00:26:58.212 +03:00 [INF] Executing command from server of type SyncCommand
+2025-10-22 00:26:58.212 +03:00 [DBG] Received new game snapshot as "0bb6b9da-8962-4b18-a3c9-e73f89d159de"
+2025-10-22 00:26:58.212 +03:00 [DBG] Received snapshot with n=1 players...
+2025-10-22 00:26:58.212 +03:00 [INF] got relevant messages ...
+2025-10-22 00:26:58.212 +03:00 [DBG] Identity updated to 0bb6b9da-8962-4b18-a3c9-e73f89d159de
+2025-10-22 00:26:58.238 +03:00 [DBG] render event
+2025-10-22 00:26:58.238 +03:00 [DBG] Hello, render
+2025-10-22 00:26:58.242 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:58.272 +03:00 [DBG] render event
+2025-10-22 00:26:58.273 +03:00 [DBG] Hello, render
+2025-10-22 00:26:58.277 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:58.303 +03:00 [DBG] render event
+2025-10-22 00:26:58.304 +03:00 [DBG] Hello, render
+2025-10-22 00:26:58.307 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:58.337 +03:00 [DBG] render event
+2025-10-22 00:26:58.337 +03:00 [DBG] Hello, render
+2025-10-22 00:26:58.341 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:58.384 +03:00 [DBG] render event
+2025-10-22 00:26:58.384 +03:00 [DBG] Hello, render
+2025-10-22 00:26:58.388 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:58.416 +03:00 [DBG] render event
+2025-10-22 00:26:58.416 +03:00 [DBG] Hello, render
+2025-10-22 00:26:58.420 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:58.448 +03:00 [DBG] render event
+2025-10-22 00:26:58.448 +03:00 [DBG] Hello, render
+2025-10-22 00:26:58.452 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:58.480 +03:00 [DBG] render event
+2025-10-22 00:26:58.480 +03:00 [DBG] Hello, render
+2025-10-22 00:26:58.486 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:58.527 +03:00 [DBG] render event
+2025-10-22 00:26:58.528 +03:00 [DBG] Hello, render
+2025-10-22 00:26:58.532 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:58.575 +03:00 [DBG] render event
+2025-10-22 00:26:58.575 +03:00 [DBG] Hello, render
+2025-10-22 00:26:58.580 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:58.607 +03:00 [DBG] render event
+2025-10-22 00:26:58.607 +03:00 [DBG] Hello, render
+2025-10-22 00:26:58.611 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:58.654 +03:00 [DBG] render event
+2025-10-22 00:26:58.654 +03:00 [DBG] Hello, render
+2025-10-22 00:26:58.658 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:58.686 +03:00 [DBG] render event
+2025-10-22 00:26:58.686 +03:00 [DBG] Hello, render
+2025-10-22 00:26:58.690 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:58.724 +03:00 [DBG] render event
+2025-10-22 00:26:58.724 +03:00 [DBG] Hello, render
+2025-10-22 00:26:58.729 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:58.737 +03:00 [DBG] Incoming message length 3862
+2025-10-22 00:26:58.737 +03:00 [DBG] first 4 bytes: 7B222474
+2025-10-22 00:26:58.737 +03:00 [DBG] Received server payload {"$type":"Sync","Snapshot":{"Players":[{"Username":"127.0.0.1:51658","Color":1,"Identity":"0bb6b9da-8962-4b18-a3c9-e73f89d159de","PositionInRoom":{"X":2,"Y":3},"Health":8,"Weapon":{"$type":"Sword","Identity":"0a11b762-29fa-461c-9241-43010ec7918f"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}}],"Enemies":[{"$type":"Zombie","Identity":"b1eaafb6-7fcf-49b2-9430-c8d963af3938","PositionInRoom":{"X":2,"Y":2},"Health":100,"Weapon":{"$type":"Sword","Identity":"37ac9d4e-fc02-447d-879c-1c11950e3708"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Zombie","Identity":"1594fd0c-5f49-443a-afed-089711a52e49","PositionInRoom":{"X":1,"Y":1},"Health":100,"Weapon":{"$type":"Sword","Identity":"71e43dcf-c921-4606-bc24-fbf69a205274"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Skeleton","Identity":"6e15f5bd-e356-44d5-84d5-43775253e3aa","PositionInRoom":{"X":3,"Y":3},"Health":100,"Weapon":{"$type":"Dagger","Identity":"f42875c7-3dca-4741-afd6-9ec4c989949d"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Orc","Identity":"312f0792-35c4-4558-8451-7e3e7c6f7579","PositionInRoom":{"X":4,"Y":2},"Health":100,"Weapon":{"$type":"Axe","Identity":"4743d881-7c27-436f-90a3-811d54e399d5"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}}],"WorldGrid":{"Rooms":{"0,0":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},"Seed":1337,"random":{}},"LogEntries":[{"Text":"Player 127.0.0.1:51658 has appeared.","Scope":2,"PlayerIdentity":null,"RoomPosition":null},{"Text":"Skeleton swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 11 damage. Is at 89 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Orc swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 33 damage. Is at 56 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Skeleton swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 11 damage. Is at 45 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Zombie swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 13 damage. Is at 32 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Skeleton swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 11 damage. Is at 21 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Zombie swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 13 damage. Is at 8 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}}]},"Identity":"0bb6b9da-8962-4b18-a3c9-e73f89d159de"}
+2025-10-22 00:26:58.737 +03:00 [INF] Executing command from server of type SyncCommand
+2025-10-22 00:26:58.737 +03:00 [DBG] Received new game snapshot as "0bb6b9da-8962-4b18-a3c9-e73f89d159de"
+2025-10-22 00:26:58.737 +03:00 [DBG] Received snapshot with n=1 players...
+2025-10-22 00:26:58.737 +03:00 [INF] got relevant messages ...
+2025-10-22 00:26:58.738 +03:00 [DBG] Identity updated to 0bb6b9da-8962-4b18-a3c9-e73f89d159de
+2025-10-22 00:26:58.755 +03:00 [DBG] render event
+2025-10-22 00:26:58.755 +03:00 [DBG] Hello, render
+2025-10-22 00:26:58.759 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:58.788 +03:00 [DBG] render event
+2025-10-22 00:26:58.788 +03:00 [DBG] Hello, render
+2025-10-22 00:26:58.793 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:58.819 +03:00 [DBG] render event
+2025-10-22 00:26:58.819 +03:00 [DBG] Hello, render
+2025-10-22 00:26:58.823 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:58.853 +03:00 [DBG] render event
+2025-10-22 00:26:58.853 +03:00 [DBG] Hello, render
+2025-10-22 00:26:58.857 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:58.886 +03:00 [DBG] render event
+2025-10-22 00:26:58.886 +03:00 [DBG] Hello, render
+2025-10-22 00:26:58.891 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:58.933 +03:00 [DBG] render event
+2025-10-22 00:26:58.934 +03:00 [DBG] Hello, render
+2025-10-22 00:26:58.938 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:58.965 +03:00 [DBG] render event
+2025-10-22 00:26:58.966 +03:00 [DBG] Hello, render
+2025-10-22 00:26:58.969 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:58.997 +03:00 [DBG] render event
+2025-10-22 00:26:58.997 +03:00 [DBG] Hello, render
+2025-10-22 00:26:59.000 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:59.045 +03:00 [DBG] render event
+2025-10-22 00:26:59.045 +03:00 [DBG] Hello, render
+2025-10-22 00:26:59.049 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:59.092 +03:00 [DBG] render event
+2025-10-22 00:26:59.093 +03:00 [DBG] Hello, render
+2025-10-22 00:26:59.097 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:59.124 +03:00 [DBG] render event
+2025-10-22 00:26:59.124 +03:00 [DBG] Hello, render
+2025-10-22 00:26:59.128 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:59.171 +03:00 [DBG] render event
+2025-10-22 00:26:59.172 +03:00 [DBG] Hello, render
+2025-10-22 00:26:59.176 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:59.219 +03:00 [DBG] render event
+2025-10-22 00:26:59.219 +03:00 [DBG] Hello, render
+2025-10-22 00:26:59.224 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:59.258 +03:00 [DBG] render event
+2025-10-22 00:26:59.258 +03:00 [DBG] Hello, render
+2025-10-22 00:26:59.263 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:59.278 +03:00 [DBG] Incoming message length 4212
+2025-10-22 00:26:59.278 +03:00 [DBG] first 4 bytes: 7B222474
+2025-10-22 00:26:59.278 +03:00 [DBG] Received server payload {"$type":"Sync","Snapshot":{"Players":[{"Username":"127.0.0.1:51658","Color":1,"Identity":"0bb6b9da-8962-4b18-a3c9-e73f89d159de","PositionInRoom":{"X":2,"Y":3},"Health":0,"Weapon":{"$type":"Sword","Identity":"0a11b762-29fa-461c-9241-43010ec7918f"},"Dead":true,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}}],"Enemies":[{"$type":"Zombie","Identity":"b1eaafb6-7fcf-49b2-9430-c8d963af3938","PositionInRoom":{"X":2,"Y":2},"Health":100,"Weapon":{"$type":"Sword","Identity":"37ac9d4e-fc02-447d-879c-1c11950e3708"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Zombie","Identity":"1594fd0c-5f49-443a-afed-089711a52e49","PositionInRoom":{"X":1,"Y":1},"Health":100,"Weapon":{"$type":"Sword","Identity":"71e43dcf-c921-4606-bc24-fbf69a205274"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Skeleton","Identity":"6e15f5bd-e356-44d5-84d5-43775253e3aa","PositionInRoom":{"X":3,"Y":3},"Health":100,"Weapon":{"$type":"Dagger","Identity":"f42875c7-3dca-4741-afd6-9ec4c989949d"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Orc","Identity":"312f0792-35c4-4558-8451-7e3e7c6f7579","PositionInRoom":{"X":4,"Y":2},"Health":100,"Weapon":{"$type":"Axe","Identity":"4743d881-7c27-436f-90a3-811d54e399d5"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}}],"WorldGrid":{"Rooms":{"0,0":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},"Seed":1337,"random":{}},"LogEntries":[{"Text":"Player 127.0.0.1:51658 has appeared.","Scope":2,"PlayerIdentity":null,"RoomPosition":null},{"Text":"Skeleton swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 11 damage. Is at 89 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Orc swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 33 damage. Is at 56 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Skeleton swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 11 damage. Is at 45 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Zombie swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 13 damage. Is at 32 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Skeleton swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 11 damage. Is at 21 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Zombie swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 13 damage. Is at 8 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Skeleton swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 11 damage. Is at -3 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 has died","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}}]},"Identity":"0bb6b9da-8962-4b18-a3c9-e73f89d159de"}
+2025-10-22 00:26:59.279 +03:00 [INF] Executing command from server of type SyncCommand
+2025-10-22 00:26:59.279 +03:00 [DBG] Received new game snapshot as "0bb6b9da-8962-4b18-a3c9-e73f89d159de"
+2025-10-22 00:26:59.279 +03:00 [DBG] Received snapshot with n=1 players...
+2025-10-22 00:26:59.279 +03:00 [INF] got relevant messages ...
+2025-10-22 00:26:59.279 +03:00 [DBG] Identity updated to 0bb6b9da-8962-4b18-a3c9-e73f89d159de
+2025-10-22 00:26:59.303 +03:00 [DBG] render event
+2025-10-22 00:26:59.304 +03:00 [DBG] Hello, render
+2025-10-22 00:26:59.309 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:59.353 +03:00 [DBG] render event
+2025-10-22 00:26:59.354 +03:00 [DBG] Hello, render
+2025-10-22 00:26:59.357 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:59.403 +03:00 [DBG] render event
+2025-10-22 00:26:59.403 +03:00 [DBG] Hello, render
+2025-10-22 00:26:59.407 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:59.451 +03:00 [DBG] render event
+2025-10-22 00:26:59.452 +03:00 [DBG] Hello, render
+2025-10-22 00:26:59.456 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:59.498 +03:00 [DBG] render event
+2025-10-22 00:26:59.499 +03:00 [DBG] Hello, render
+2025-10-22 00:26:59.503 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:59.546 +03:00 [DBG] render event
+2025-10-22 00:26:59.546 +03:00 [DBG] Hello, render
+2025-10-22 00:26:59.551 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:59.577 +03:00 [DBG] render event
+2025-10-22 00:26:59.578 +03:00 [DBG] Hello, render
+2025-10-22 00:26:59.581 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:59.625 +03:00 [DBG] render event
+2025-10-22 00:26:59.625 +03:00 [DBG] Hello, render
+2025-10-22 00:26:59.629 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:59.657 +03:00 [DBG] render event
+2025-10-22 00:26:59.657 +03:00 [DBG] Hello, render
+2025-10-22 00:26:59.661 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:59.689 +03:00 [DBG] render event
+2025-10-22 00:26:59.689 +03:00 [DBG] Hello, render
+2025-10-22 00:26:59.692 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:59.737 +03:00 [DBG] render event
+2025-10-22 00:26:59.737 +03:00 [DBG] Hello, render
+2025-10-22 00:26:59.741 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:59.785 +03:00 [DBG] render event
+2025-10-22 00:26:59.785 +03:00 [DBG] Hello, render
+2025-10-22 00:26:59.790 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:59.793 +03:00 [DBG] Incoming message length 4212
+2025-10-22 00:26:59.793 +03:00 [DBG] first 4 bytes: 7B222474
+2025-10-22 00:26:59.793 +03:00 [DBG] Received server payload {"$type":"Sync","Snapshot":{"Players":[{"Username":"127.0.0.1:51658","Color":1,"Identity":"0bb6b9da-8962-4b18-a3c9-e73f89d159de","PositionInRoom":{"X":2,"Y":3},"Health":0,"Weapon":{"$type":"Sword","Identity":"0a11b762-29fa-461c-9241-43010ec7918f"},"Dead":true,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}}],"Enemies":[{"$type":"Zombie","Identity":"b1eaafb6-7fcf-49b2-9430-c8d963af3938","PositionInRoom":{"X":2,"Y":2},"Health":100,"Weapon":{"$type":"Sword","Identity":"37ac9d4e-fc02-447d-879c-1c11950e3708"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Zombie","Identity":"1594fd0c-5f49-443a-afed-089711a52e49","PositionInRoom":{"X":1,"Y":1},"Health":100,"Weapon":{"$type":"Sword","Identity":"71e43dcf-c921-4606-bc24-fbf69a205274"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Skeleton","Identity":"6e15f5bd-e356-44d5-84d5-43775253e3aa","PositionInRoom":{"X":3,"Y":3},"Health":100,"Weapon":{"$type":"Dagger","Identity":"f42875c7-3dca-4741-afd6-9ec4c989949d"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},{"$type":"Orc","Identity":"312f0792-35c4-4558-8451-7e3e7c6f7579","PositionInRoom":{"X":4,"Y":2},"Health":100,"Weapon":{"$type":"Axe","Identity":"4743d881-7c27-436f-90a3-811d54e399d5"},"Dead":false,"Room":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}}],"WorldGrid":{"Rooms":{"0,0":{"WorldGridPosition":{"X":0,"Y":0},"Shape":{"X":15,"Y":16},"LootDrops":[],"BoundaryPoints":{"WEST":{"PositionInRoom":{"X":0,"Y":8}},"NORTH":{"PositionInRoom":{"X":7,"Y":0}}}}},"Seed":1337,"random":{}},"LogEntries":[{"Text":"Player 127.0.0.1:51658 has appeared.","Scope":2,"PlayerIdentity":null,"RoomPosition":null},{"Text":"Skeleton swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 11 damage. Is at 89 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Orc swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 33 damage. Is at 56 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Skeleton swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 11 damage. Is at 45 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Zombie swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 13 damage. Is at 32 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Skeleton swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 11 damage. Is at 21 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Zombie swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 13 damage. Is at 8 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Skeleton swings and hits Player 127.0.0.1:51658","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 receives 11 damage. Is at -3 HP","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}},{"Text":"Player 127.0.0.1:51658 has died","Scope":1,"PlayerIdentity":null,"RoomPosition":{"X":0,"Y":0}}]},"Identity":"0bb6b9da-8962-4b18-a3c9-e73f89d159de"}
+2025-10-22 00:26:59.793 +03:00 [INF] Executing command from server of type SyncCommand
+2025-10-22 00:26:59.793 +03:00 [DBG] Received new game snapshot as "0bb6b9da-8962-4b18-a3c9-e73f89d159de"
+2025-10-22 00:26:59.793 +03:00 [DBG] Received snapshot with n=1 players...
+2025-10-22 00:26:59.793 +03:00 [INF] got relevant messages ...
+2025-10-22 00:26:59.793 +03:00 [DBG] Identity updated to 0bb6b9da-8962-4b18-a3c9-e73f89d159de
+2025-10-22 00:26:59.819 +03:00 [DBG] render event
+2025-10-22 00:26:59.819 +03:00 [DBG] Hello, render
+2025-10-22 00:26:59.824 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:59.854 +03:00 [DBG] render event
+2025-10-22 00:26:59.854 +03:00 [DBG] Hello, render
+2025-10-22 00:26:59.858 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:59.902 +03:00 [DBG] render event
+2025-10-22 00:26:59.902 +03:00 [DBG] Hello, render
+2025-10-22 00:26:59.906 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:59.936 +03:00 [DBG] render event
+2025-10-22 00:26:59.937 +03:00 [DBG] Hello, render
+2025-10-22 00:26:59.940 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}
+2025-10-22 00:26:59.984 +03:00 [DBG] render event
+2025-10-22 00:26:59.984 +03:00 [DBG] Hello, render
+2025-10-22 00:26:59.989 +03:00 [INF] Player 127.0.0.1:51658 is being rendered at {"X":2,"Y":3,"$type":"Vector2"}

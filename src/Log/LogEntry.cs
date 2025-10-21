@@ -10,14 +10,14 @@ struct LogEntry
     public string Text { get; }
     public LogScope Scope { get; }
 
-    public Guid? PlayerIdentity { get; }
+    public Player? PlayerIdentity { get; }
     public Vector2? RoomPosition { get; }
 
-    private LogEntry(string text, LogScope scope, Guid? playerIdentity, Vector2? roomPosition)
+    private LogEntry(string text, LogScope scope, Player? player, Vector2? roomPosition)
     {
         Text = text;
         Scope = scope;
-        PlayerIdentity = playerIdentity;
+        PlayerIdentity = player;
         RoomPosition = roomPosition;
     }
 
@@ -28,7 +28,7 @@ struct LogEntry
 
     public static LogEntry ForPlayer(string text, Player player)
     {
-        return new(text, LogScope.Player, player.Identity, null);
+        return new(text, LogScope.Player, player, null);
     }
 
     public static LogEntry ForRoom(string text, Room room)

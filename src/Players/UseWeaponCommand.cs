@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using Serilog;
 
 class UseWeaponCommand(Guid actorIdentity) : ICommand
@@ -22,7 +21,6 @@ class UseWeaponCommand(Guid actorIdentity) : ICommand
                 Log.Warning("UseWeaponCommand's ActorIdentity is not bound to any character object");
                 return Task.CompletedTask;
             }
-
         }
         Weapon weapon = actor.Weapon;
 

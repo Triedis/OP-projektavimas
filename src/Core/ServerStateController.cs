@@ -1,11 +1,8 @@
-using System.Diagnostics;
-using System.Drawing;
+using System.Collections.Concurrent;
 using System.Net;
 using System.Net.Sockets;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.Json;
-using System.Xml.Schema;
 using Serilog;
 
 class ServerStateController(int port) : IStateController
@@ -16,28 +13,29 @@ class ServerStateController(int port) : IStateController
     private readonly Dictionary<Guid, NetworkStream> _clients = [];
     private readonly Random rng = new(); // should be a singleton for consistency.
 
+
     public override async Task Run()
     {
         try
         {
-            IDifficultyFactory factory1 = new EasyFactory();
-            IDifficultyFactory factory2 = new NormalFactory();
-            IDifficultyFactory factory3 = new HardFactory();
             Room _ = worldGrid.GenRoom(_initialRoomPosition);
-            Enemy testSkeleton = factory1.CreateEnemy(_, new(2, 2));
-            //Enemy testZombie = factory2.CreateEnemy(_, new(4, 4));
-            //Enemy testZombie2 = factory2.CreateEnemy(_, new(2, 2));
-            Enemy testOrc = factory3.CreateEnemy(_, new(6, 6));
+            IEnemyFactory skeletonFactory = new SkeletonFactory();
+            IEnemyFactory zombieFactory = new ZombieFactory();
+            IEnemyFactory orcFactory = new OrcFactory();
 
-            // enemies.Add(testSkeleton);
-            // _.Enter(testSkeleton);
+            Enemy testZombie = zombieFactory.CreateEnemy(_, new(1, 1));
+            enemies.Add(testZombie);
+            _.Enter(testZombie);
 
-            // enemies.Add(testZombie);
-            // _.Enter(testZombie);
+            Enemy testZombie2 = zombieFactory.CreateEnemy(_, new(1, 1));
+            enemies.Add(testZombie2);
+            _.Enter(testZombie2);
 
-            // enemies.Add(testZombie2);
-            // _.Enter(testZombie2);
-            
+            Enemy testSkeleton = skeletonFactory.CreateEnemy(_, new(2, 2));
+            enemies.Add(testSkeleton);
+            _.Enter(testSkeleton);
+
+            Enemy testOrc = orcFactory.CreateEnemy(_, new(3, 3));
             enemies.Add(testOrc);
             _.Enter(testOrc);
 
@@ -99,48 +97,49 @@ class ServerStateController(int port) : IStateController
 
             if (command is not null)
             {
-                Log.Debug("Entity {skeleton} decided to {command}", enemy, command.GetType());
+                Log.Debug("Entity {enemy} decided to {command}", enemy, command.GetType());
             }
             command?.ExecuteOnServer(this);
         }
     }
 
-    public async Task SendCommand(ICommand command, NetworkStream clientStream)
+    private async Task SendCommand(ICommand command, NetworkStream clientStream)
     {
-        Log.Debug($"Sending of type {command.GetType()}");
-        var duplicateGroups = worldGrid.GetAllRooms()
-            .GroupBy(room => room.WorldGridPosition)
-            .Where(group => group.Count() > 1);
+            Log.Debug($"Sending of type {command.GetType()}");
 
-        if (duplicateGroups.Any())
-        {
-            foreach (var group in duplicateGroups)
+            var duplicateGroups = worldGrid.GetAllRooms()
+                .GroupBy(room => room.WorldGridPosition)
+                .Where(group => group.Count() > 1);
+
+            if (duplicateGroups.Any())
             {
-                Log.Warning($"Duplicate room found at position {group.Key}. Count: {group.Count()}");
+                foreach (var group in duplicateGroups)
+                {
+                    Log.Warning($"Duplicate room found at position {group.Key}. Count: {group.Count()}");
+                }
             }
-        }
 
-        byte[] jsonBytes = JsonSerializer.SerializeToUtf8Bytes(command, NetworkSerializer.Options);
+            byte[] jsonBytes = JsonSerializer.SerializeToUtf8Bytes(command, NetworkSerializer.Options);
 
-        int messageLength = jsonBytes.Length; // required for length-prefixing. TCP can be annoying.
-        byte[] lengthPrefix = BitConverter.GetBytes(messageLength);
+            int messageLength = jsonBytes.Length; // required for length-prefixing. TCP can be annoying.
+            byte[] lengthPrefix = BitConverter.GetBytes(messageLength);
 
-        var b = Encoding.UTF8.GetString(jsonBytes, 0, messageLength);
-        Log.Debug("sending {b}", b);
+            var b = Encoding.UTF8.GetString(jsonBytes, 0, messageLength);
+            Log.Debug("sending {b}", b);
 
-        try
-        {
-            await clientStream.WriteAsync(lengthPrefix);
-            await clientStream.WriteAsync(jsonBytes);
-            await clientStream.FlushAsync();
-        }
-        catch
-        {
-            Log.Debug($"Failed to repliate to client. Is it still alive?");
-            throw;
-        }
+            try
+            {
+                await clientStream.WriteAsync(lengthPrefix);
+                await clientStream.WriteAsync(jsonBytes);
+                await clientStream.FlushAsync();
+            }
+            catch
+            {
+                Log.Debug($"Failed to repliate to client. Is it still alive?");
+                throw;
+            }
 
-        Log.Debug($"Sent of type {command.GetType()} with length {messageLength}");
+            Log.Debug($"Sent of type {command.GetType()} with length {messageLength}");
     }
 
     private async Task ListenForClients()
@@ -166,16 +165,16 @@ class ServerStateController(int port) : IStateController
         {
             return;
         }
-        Guid clientIdentity = Guid.NewGuid();
+
+        Player player = AddPlayer(Guid.NewGuid(), username);
+        Guid clientIdentity = player.Identity;
 
         // Register for replication
         _clients.Add(clientIdentity, client.GetStream());
         Log.Information($"Received client connection ... {clientIdentity}");
 
-        Player _ = AddPlayer(clientIdentity, username);
         try
         {
-            await SendCommand(GetSnapshotCommand(clientIdentity), client.GetStream());
             await ListenForClient(client);
         }
         catch (Exception e)
@@ -204,7 +203,7 @@ class ServerStateController(int port) : IStateController
         }
     }
 
-    private void Disconnect(Guid identity)
+    private void Disconnect(System.Guid identity)
     {
         Player? player = players.Where(player => player.Identity == identity).FirstOrDefault();
 
@@ -222,7 +221,7 @@ class ServerStateController(int port) : IStateController
         _clients.Remove(identity);
     }
 
-    private Player AddPlayer(Guid identity, string username)
+    private Player AddPlayer(System.Guid identity, string username)
     {
         Room? initialRoom = worldGrid.GetRoom(_initialRoomPosition);
         if (initialRoom is null)
@@ -233,10 +232,10 @@ class ServerStateController(int port) : IStateController
 
         Vector2 initialRoomShape = initialRoom.Shape;
         Vector2 middlePosition = new(initialRoomShape.X / 2, initialRoomShape.Y / 2);
-        Sword weapon = new(1, 25);
+        Sword starterWeapon = new(1, 25, Guid.NewGuid());
         Array colorValues = typeof(Color).GetEnumValues();
         Color randomColor = (Color?)colorValues.GetValue(rng.Next(colorValues.Length)) ?? throw new InvalidOperationException();
-        Player player = new(username, identity, randomColor, initialRoom, middlePosition, weapon);
+        Player player = new(username, identity, randomColor, initialRoom, middlePosition, starterWeapon);
         initialRoom.Enter(player);
 
         players.Add(player);
@@ -247,14 +246,14 @@ class ServerStateController(int port) : IStateController
         return player;
     }
 
-    private SyncCommand GetSnapshotCommand(Guid clientIdentity)
+    private SyncCommand GetSnapshotCommand(System.Guid clientIdentity)
     {
         IReadOnlyList<LogEntry> serverLogEntries = MessageLog.Instance.GetAllMessages();
         List<LogEntryDto> logDtos = serverLogEntries.Select(entry => new LogEntryDto
         {
             Text = entry.Text,
             Scope = entry.Scope,
-            PlayerIdentity = entry.PlayerIdentity,
+            PlayerIdentity = entry.PlayerIdentity?.Identity,
             RoomPosition = entry.RoomPosition
         }).ToList();
 

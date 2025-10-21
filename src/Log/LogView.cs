@@ -1,10 +1,10 @@
 using System.Numerics;
 
 class LogView {
-    private Guid? SubjectIdentity { get; set; }
+    private System.Guid? SubjectIdentity { get; set; }
     private Vector2? SubjectRoomPosition { get; set; }
 
-    public void SetCharacterSubject(Guid subjectIdentity) {
+    public void SetCharacterSubject(System.Guid subjectIdentity) {
         SubjectIdentity = subjectIdentity;
     }
 

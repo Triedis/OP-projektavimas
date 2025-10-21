@@ -1,9 +1,11 @@
+using System.Text.Json.Serialization;
 using Serilog;
 
 class Skeleton : Enemy
 {
+    [JsonConstructor]
     public Skeleton() : base() {}
-    public Skeleton(Guid identity, Room room, Vector2 positionInRoom, Dagger weapon) : base(identity, room, positionInRoom, weapon){  }
+    public Skeleton(Guid identity, Room room, Vector2 positionInRoom, Dagger sword) : base(identity, room, positionInRoom, sword) { }
 
     public override ICommand? TickAI() {
         if (Dead) {
@@ -13,6 +15,7 @@ class Skeleton : Enemy
         Character? nearestPlayer = GetClosestOpponent();
         Log.Debug("Nearest player for {skeleton} is {nearestPlayer}", this, nearestPlayer);
         if (nearestPlayer is not null) {
+
             if (base.AttackTick > 0) base.AttackTick -= 1;
 
             if (AttackTick <= 0 && base.GetDistanceTo(nearestPlayer) <= base.Weapon.MaxRange)
@@ -23,7 +26,7 @@ class Skeleton : Enemy
             Vector2 direction = new(nearestPlayer.PositionInRoom.X > PositionInRoom.X ? 1 : nearestPlayer.PositionInRoom.X < PositionInRoom.X ? -1 : 0, nearestPlayer.PositionInRoom.Y > PositionInRoom.Y ? 1 : nearestPlayer.PositionInRoom.Y < PositionInRoom.Y ? -1 : 0);
             Vector2 newPosition = PositionInRoom + direction;
 
-            MoveCommand moveCommand = new(newPosition, this);
+            MoveCommand moveCommand = new(newPosition, Identity);
             return moveCommand;
         }
 

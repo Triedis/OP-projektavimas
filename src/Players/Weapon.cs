@@ -6,11 +6,19 @@ using System.Text.Json.Serialization;
 [JsonDerivedType(typeof(Dagger), typeDiscriminator: "Dagger")]
 abstract class Weapon
 {
+    public Guid Identity { get; set; }
+    [JsonIgnore]
     public int MaxRange { get; private set; }
+    [JsonIgnore]
     public int Damage { get; private set; }
-    public Weapon() { }
-    public Weapon(int maxRange, int damage)
+    [JsonConstructor]
+    public Weapon(Guid identity)
     {
+        this.Identity = identity;
+    }
+    public Weapon(Guid identity, int maxRange, int damage)
+    {
+        this.Identity = identity;
         this.MaxRange = maxRange;
         this.Damage = damage;
     }

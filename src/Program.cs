@@ -52,7 +52,7 @@ static class DungeonCrawler
                 {
                     using var log = new LoggerConfiguration()
                         .MinimumLevel.Debug()
-                        .WriteTo.File("client_log.txt", rollingInterval: RollingInterval.Infinite)
+                        .WriteTo.File("client_log.txt", rollingInterval: RollingInterval.Minute)
                         .CreateLogger();
                     Log.Logger = log;
 

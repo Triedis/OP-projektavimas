@@ -34,7 +34,7 @@ class Orc : Enemy
                 Vector2 direction = new(nearestPlayer.PositionInRoom.X > PositionInRoom.X ? 1 : nearestPlayer.PositionInRoom.X < PositionInRoom.X ? -1 : 0, nearestPlayer.PositionInRoom.Y > PositionInRoom.Y ? 1 : nearestPlayer.PositionInRoom.Y < PositionInRoom.Y ? -1 : 0);
                 Vector2 newPosition = PositionInRoom + direction;
 
-                MoveCommand moveCommand = new(newPosition, this);
+                MoveCommand moveCommand = new(newPosition, base.Identity);
                 return moveCommand;
             }
 

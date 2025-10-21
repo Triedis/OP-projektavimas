@@ -1,7 +1,7 @@
 
 
 
-class EasyFactory : IDifficultyFactory
+class SkeletonFactory : IEnemyFactory
 {
     private const int MinRange = 1;
     private const int MaxRange = 1;
@@ -15,6 +15,6 @@ class EasyFactory : IDifficultyFactory
 
     public Weapon CreateWeapon()
     {
-        return new Dagger(random.Next(MinRange, MaxRange), random.Next(MinDamage, MaxDamage));
+        return new Dagger(random.Next(MinRange, MaxRange), random.Next(MinDamage, MaxDamage), Guid.NewGuid());
     }
 }

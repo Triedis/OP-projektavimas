@@ -142,7 +142,7 @@ class ClientStateController : IStateController
                 {
                     Log.Information("Moving");
                     Vector2 movePosition = Identity.PositionInRoom + moveDirection;
-                    MoveCommand command = new(movePosition, Identity);
+                    MoveCommand command = new(movePosition, Identity.Identity);
                     await command.ExecuteOnClient(this);
                 }
 
@@ -209,7 +209,7 @@ class ClientStateController : IStateController
 
     public void SetIdentity(Guid identity)
     {
-        Identity = players.Find((player) => player.Identity == identity);
+        Identity = players.Find((player) => player.Identity.Equals(identity));
         if (Identity is null)
         {
             throw new Exception($"bad server replication. could not find identity {identity}");
@@ -223,6 +223,7 @@ class ClientStateController : IStateController
     /// <param name="snapshot">snapshot</param>
     public void ApplySnapshot(GameStateSnapshot snapshot)
     {
+        Log.Debug("Received snapshot with n={n} players...", snapshot.Players.Count);
         players = snapshot.Players;
         enemies = snapshot.Enemies;
         worldGrid = snapshot.WorldGrid;

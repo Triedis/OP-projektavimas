@@ -1,7 +1,7 @@
 
 
 
-class NormalFactory : IDifficultyFactory
+class ZombieFactory : IEnemyFactory
 {
 
     private const int MinRange = 1;
@@ -16,6 +16,6 @@ class NormalFactory : IDifficultyFactory
 
     public Weapon CreateWeapon()
     {
-        return new Sword(random.Next(MinRange, MaxRange), random.Next(MinDamage, MaxDamage));
+        return new Sword(random.Next(MinRange, MaxRange), random.Next(MinDamage, MaxDamage), Guid.NewGuid());
     }
 }

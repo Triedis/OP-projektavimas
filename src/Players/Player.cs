@@ -1,10 +1,10 @@
 using System.Text.Json.Serialization;
 
-class Player : Character
-    {
+class Player : Character {
     public string Username { get; set; }
     public Color Color { get; set; }
 
+    [JsonConstructor]
     public Player() {}
 
     public Player(string username, Guid identity, Color color, Room room, Vector2 positionInRoom, Sword weapon)

@@ -13,6 +13,7 @@ abstract class Character
     public bool Dead { get; set; } = false;
     public Room Room { get; set; }
 
+    [JsonConstructor]
     public Character() { }
 
     protected Character(Room room, Vector2 positionInRoom, Weapon weapon, Guid identity)
@@ -34,6 +35,8 @@ abstract class Character
 
     public void TakeDamage(int damage)
     {
+        if (Dead) return;
+        
         Health -= damage;
         if (Health <= 0)
         {

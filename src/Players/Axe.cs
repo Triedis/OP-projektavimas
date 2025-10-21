@@ -2,7 +2,7 @@
 
 class Axe : Weapon
 {
-    public Axe(int maxRange, int damage) : base(maxRange, damage){}
+    public Axe(int maxRange, int damage, Guid identity) : base(identity, maxRange, damage){}
 
     public override IReadOnlyList<IActionCommand> Act(Character actor, Character target)
     {

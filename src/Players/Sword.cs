@@ -1,9 +1,5 @@
-using System.Diagnostics;
-using Serilog;
-
-class Sword : Weapon
+class Sword(int maxRange, int damage, Guid identity) : Weapon(identity, maxRange, damage)
 {
-    public Sword(int maxRange, int damage) : base(maxRange, damage) {}
 
     public override IReadOnlyList<IActionCommand> Act(Character actor, Character target)
     {
@@ -18,6 +14,10 @@ class Sword : Weapon
     {
         if (actor.GetDistanceTo(target) > MaxRange)
         {
+            return false;
+        }
+
+        if (target.Dead) {
             return false;
         }
 
@@ -36,6 +36,6 @@ class Sword : Weapon
 
     public override string? ToString()
     {
-        return "Sword"; // TODO
+        return base.ToString(); // TODO
     }
 }

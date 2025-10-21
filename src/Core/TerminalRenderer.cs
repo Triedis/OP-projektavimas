@@ -1,8 +1,10 @@
 using System.Diagnostics;
+using System.Dynamic;
 using Serilog;
 
 class TerminalRenderer
 {
+    private static readonly int RENDER_N_LAST_MESSAGES = 10;
     public static void Render(ClientStateController state)
     {
         Log.Debug("Hello, render");
@@ -16,7 +18,7 @@ class TerminalRenderer
             return;
         }
 
-        Player? player = state.players.FirstOrDefault(p => p.Username == state.Identity?.Username);
+        Player? player = state.players.FirstOrDefault(p => p.Identity == state.Identity?.Identity);
         if (player == null || player.Room == null)
         {
             Log.Warning("Player not found in a room. Waiting for state update ...");
@@ -62,7 +64,7 @@ class TerminalRenderer
             }
             Console.ForegroundColor = color;
             Console.SetCursorPosition(enemy.PositionInRoom.X, enemy.PositionInRoom.Y);
-            char enemySymbol = 'E';
+                        char enemySymbol = 'E';
             if (enemy is Skeleton)
             {
                 enemySymbol = 'S';
@@ -84,6 +86,7 @@ class TerminalRenderer
 
         foreach (var p in state.players.Where(p => p.Room.Equals(state.Identity?.Room)))
         {
+            Log.Information("{p} is being rendered at {@pos}", p, p.PositionInRoom);
             Console.ForegroundColor = (ConsoleColor)p.Color;
             Console.SetCursorPosition(p.PositionInRoom.X, p.PositionInRoom.Y);
             Console.Write('@');
@@ -92,25 +95,18 @@ class TerminalRenderer
         Console.SetCursorPosition(0, currentRoom.Shape.Y + 1);
         Console.ResetColor();
 
-        // Unimportant debug logging.
-        // foreach (var p in state.players)
-        // {
-        //     Console.WriteLine($"plr:{p.Identity}");
-        //     Console.WriteLine($"-sameRoom:{p.Room.Equals(state.Identity?.Room)}");
-        // }
-
-        // foreach (var p in state.skeletons)
-        // {
-        //     Console.WriteLine($"skl:{p.Identity}");
-        //     Console.WriteLine($"-sameRoom:{p.Room.Equals(state.Identity?.Room)}");
-        // }
-
-
-        // Console.WriteLine($"room:{currentRoom.WorldGridPosition}");
-        // Console.WriteLine($"-numBoundaryPoints:{currentRoom.BoundaryPoints.Count}");
-
-        foreach (string message in state.MessagesToDisplay) {
+        IReadOnlyList<string> MessagesToDisplay = [.. state.MessagesToDisplay.Reverse().Take(RENDER_N_LAST_MESSAGES)];
+        int i = 0;
+        foreach (string message in MessagesToDisplay) {
+            if (i == RENDER_N_LAST_MESSAGES - 2) {
+                Console.ForegroundColor = ConsoleColor.Gray;
+            }
+            if (i == RENDER_N_LAST_MESSAGES - 1) {
+                Console.ForegroundColor = ConsoleColor.DarkGray;
+            }
             Console.WriteLine(message);
+            i++;
         }
+        Console.ForegroundColor = ConsoleColor.White;
     }
 }

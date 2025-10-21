@@ -6,8 +6,9 @@ using System.Text.Json.Serialization;
 abstract class Enemy : Character {
     [JsonIgnore]
     public int AttackTick { get; set; } = 5;
+    [JsonConstructor]
     public Enemy() : base() {}
-    public Enemy(Guid identity, Room room, Vector2 positionInRoom, Weapon weapon)
+    protected Enemy(Guid identity, Room room, Vector2 positionInRoom, Weapon weapon)
         : base(room, positionInRoom, weapon, identity)
     { }
     public abstract ICommand? TickAI();
