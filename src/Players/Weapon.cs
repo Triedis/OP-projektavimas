@@ -2,6 +2,7 @@
 using System.Text.Json.Serialization;
 
 [JsonDerivedType(typeof(Sword), typeDiscriminator: "Sword")]
+[JsonDerivedType(typeof(Bow), typeDiscriminator: "Bow")]
 abstract class Weapon(Guid identity)
 {
     public Guid Identity { get; set; } = identity;

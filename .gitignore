@@ -1,3 +1,8 @@
 bin/
 obj/
 client_log.txt
+*.vsidx
+*.sqlite
+*.json
+.vs/OP-projektavimas/v17/.wsuo
+*.txt

@@ -1,29 +1,29 @@
 using System.Text.Json.Serialization;
 using Serilog;
-
+using OP_Projektavimas.Utils;
 class Skeleton : Enemy
 {
     [JsonConstructor]
-    public Skeleton() : base() {}
-    public Skeleton(Guid identity, Room room, Vector2 positionInRoom, Sword sword) : base(identity, room, positionInRoom, sword) { }
+    public Skeleton() : base() { SetStrategy(new SkeletonStrategy()); }
+    public Skeleton(Guid identity, Room room, Vector2 positionInRoom, Bow bow) : base(identity, room, positionInRoom, bow) { SetStrategy(new SkeletonStrategy()); }
 
-    public override ICommand? TickAI() {
-        if (Dead) {
-            return null;
-        }
+    //public override ICommand? TickAI() {
+    //    if (Dead) {
+    //        return null;
+    //    }
         
-        Character? nearestPlayer = GetClosestOpponent();
-        Log.Debug("Nearest player for {skeleton} is {nearestPlayer}", this, nearestPlayer);
-        if (nearestPlayer is not null) {
-            Vector2 direction = new(nearestPlayer.PositionInRoom.X > PositionInRoom.X ? 1 : nearestPlayer.PositionInRoom.X < PositionInRoom.X ? -1 : 0, nearestPlayer.PositionInRoom.Y > PositionInRoom.Y ? 1 : nearestPlayer.PositionInRoom.Y < PositionInRoom.Y ? -1 : 0);
-            Vector2 newPosition = PositionInRoom + direction;
+    //    Character? nearestPlayer = GetClosestOpponent();
+    //    Log.Debug("Nearest player for {skeleton} is {nearestPlayer}", this, nearestPlayer);
+    //    if (nearestPlayer is not null) {
+    //        Vector2 direction = new(nearestPlayer.PositionInRoom.X > PositionInRoom.X ? 1 : nearestPlayer.PositionInRoom.X < PositionInRoom.X ? -1 : 0, nearestPlayer.PositionInRoom.Y > PositionInRoom.Y ? 1 : nearestPlayer.PositionInRoom.Y < PositionInRoom.Y ? -1 : 0);
+    //        Vector2 newPosition = PositionInRoom + direction;
 
-            MoveCommand moveCommand = new(newPosition, Identity);
-            return moveCommand;
-        }
+    //        MoveCommand moveCommand = new(newPosition, Identity);
+    //        return moveCommand;
+    //    }
 
-        return null;
-    }
+    //    return null;
+    //}
 
     public override string ToString()
     {

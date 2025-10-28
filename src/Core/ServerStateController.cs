@@ -19,7 +19,7 @@ class ServerStateController(int port) : IStateController
         try
         {
             Room _ = worldGrid.GenRoom(_initialRoomPosition);
-            Sword skeletonSword = new(1, 10, Guid.NewGuid());
+            Bow skeletonSword = new(3, 10, Guid.NewGuid());
             Skeleton testSkeleton = new(System.Guid.NewGuid(), _, new(2, 2), skeletonSword);
             enemies.Add(testSkeleton);
             _.Enter(testSkeleton);

@@ -27,7 +27,11 @@ class MoveCommand : ICommand
                 Console.WriteLine("Failed to replicate movement on server. Nil.");
                 return;
             }
-
+            if (target.Dead)
+            {
+                Console.WriteLine("Actor is dead and cant move");
+                return;
+            }
             var pos = Position;
             var room = target.Room;
             var roomx = room.Shape.X;

@@ -1,13 +1,22 @@
 using System.Text.Json.Serialization;
-
+using OP_Projektavimas.Utils;
 [JsonDerivedType(typeof(Skeleton), typeDiscriminator: "Skeleton")]
 abstract class Enemy : Character {
+    private IStrategy? strategy;
     [JsonConstructor]
     public Enemy() : base() {}
     protected Enemy(Guid identity, Room room, Vector2 positionInRoom, Weapon weapon)
         : base(room, positionInRoom, weapon, identity)
     { }
-    public abstract ICommand? TickAI();
+    public void SetStrategy(IStrategy newStrategy)
+    {
+        strategy = newStrategy;
+    }
+
+    public ICommand? TickAI()
+    {
+        return strategy?.TickAI(this);
+    }
 
     public override Character? GetClosestOpponent()
     {
@@ -15,7 +24,7 @@ abstract class Enemy : Character {
         double minDistance = double.MaxValue;
 
         foreach (Character character in Room.Occupants) {
-            if (character is Player player) {
+            if (character is Player player && !character.Dead) {
                 double distance = Vector2.Distance(PositionInRoom, player.PositionInRoom);
                 if (distance < minDistance) {
                     minDistance = distance;

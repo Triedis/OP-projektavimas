@@ -1,4 +1,5 @@
 using Serilog;
+using System.Linq;
 
 class UseWeaponCommand(Guid actorIdentity) : ICommand
 {
@@ -13,9 +14,17 @@ class UseWeaponCommand(Guid actorIdentity) : ICommand
     {
         Log.Information("UseWeaponCommand::ExecuteOnServer from {actorIdentity}", ActorIdentity);
 
-        Character? actor = gameState.players.Where(player => player.Identity == ActorIdentity).FirstOrDefault();
+        Character? actor = gameState.players
+    .Concat(gameState.enemies.Cast<Character>())
+    .FirstOrDefault(c => c.Identity == ActorIdentity);
+
         if (actor is null) {
             Log.Warning("UseWeaponCommand's ActorIdentity is not bound to any character object");
+            return Task.CompletedTask;
+        }
+        if (actor.Dead)
+        {
+            Log.Debug("Dead player {id} tried to act. Ignoring.", actor.Identity);
             return Task.CompletedTask;
         }
         Weapon weapon = actor.Weapon;
