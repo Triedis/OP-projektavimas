@@ -1,10 +1,10 @@
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 using Serilog;
 using OP_Projektavimas.Utils;
 class Skeleton : Enemy
 {
     [JsonConstructor]
-    public Skeleton() : base() { SetStrategy(new SkeletonStrategy()); }
+    public Skeleton() : base() { SetStrategy(new SkeletonStrategy()); }//runtime setint ne čia
     public Skeleton(Guid identity, Room room, Vector2 positionInRoom, Bow bow) : base(identity, room, positionInRoom, bow) { SetStrategy(new SkeletonStrategy()); }
 
     //public override ICommand? TickAI() {

@@ -2,11 +2,11 @@ using System.Text.Json.Serialization;
 using Serilog;
 namespace OP_Projektavimas.Utils
 {
-    interface IStrategy
+    interface IStrategy // pervadint
     {
         ICommand? TickAI(Enemy enemy);
     }
-    internal class SkeletonStrategy : IStrategy
+    internal class SkeletonStrategy : IStrategy // pervadint visus
     {
         public ICommand? TickAI(Enemy enemy)
         {
@@ -18,9 +18,61 @@ namespace OP_Projektavimas.Utils
 
             int distance = enemy.GetDistanceTo(nearestPlayer);
             Weapon weapon = enemy.Weapon;
+            Bow bow = (Bow)weapon;
+            // Attack if in range
+            if (weapon is Bow && distance == bow.MaxRange && !nearestPlayer.Dead)
+            {
+                Log.Debug("{enemy} attacks {player} with {weapon}", enemy, nearestPlayer, weapon);
+                return new UseWeaponCommand(enemy.Identity);
+            }
+            else if (weapon is Bow && distance > bow.MaxRange && !nearestPlayer.Dead)
+            {
+                // Otherwise, move toward player
+                Vector2 direction = new(
+                    nearestPlayer.PositionInRoom.X > enemy.PositionInRoom.X ? 1 :
+                    nearestPlayer.PositionInRoom.X < enemy.PositionInRoom.X ? -1 : 0,
+                    nearestPlayer.PositionInRoom.Y > enemy.PositionInRoom.Y ? 1 :
+                    nearestPlayer.PositionInRoom.Y < enemy.PositionInRoom.Y ? -1 : 0
+                );
+
+                Vector2 newPosition = enemy.PositionInRoom + direction;
+                Log.Debug("{enemy} moves toward {player} to {newPos}", enemy, nearestPlayer, newPosition);
+
+                return new MoveCommand(newPosition, enemy.Identity);
+            }
+            else
+            {
+                // Move away from the player
+                Vector2 direction = new(
+                    nearestPlayer.PositionInRoom.X > enemy.PositionInRoom.X ? -1 :
+                    nearestPlayer.PositionInRoom.X < enemy.PositionInRoom.X ? 1 : 0,
+                    nearestPlayer.PositionInRoom.Y > enemy.PositionInRoom.Y ? -1 :
+                    nearestPlayer.PositionInRoom.Y < enemy.PositionInRoom.Y ? 1 : 0
+                );
+
+                Vector2 newPosition = enemy.PositionInRoom + direction;
+                Log.Debug("{enemy} moves away from {player} to {newPos}", enemy, nearestPlayer, newPosition);
+
+                return new MoveCommand(newPosition, enemy.Identity);
+            }
+        }
+
+    }
+    internal class ZombieStrategy : IStrategy
+    {
+        public ICommand? TickAI(Enemy enemy)
+        {
+            if (enemy.Dead) return null;
+
+            Character? nearestPlayer = enemy.GetClosestOpponent();
+            Log.Debug("Nearest player for {zombie} is {nearestPlayer}", this, nearestPlayer);
+            if (nearestPlayer is null) return null;
+
+            int distance = enemy.GetDistanceTo(nearestPlayer);
+            Weapon weapon = enemy.Weapon;
 
             // Attack if in range
-            if (weapon is Bow bow && distance <= bow.MaxRange && !nearestPlayer.Dead)
+            if (weapon is Sword sword && distance <= sword.MaxRange && !nearestPlayer.Dead)
             {
                 Log.Debug("{enemy} attacks {player} with {weapon}", enemy, nearestPlayer, weapon);
                 return new UseWeaponCommand(enemy.Identity);
@@ -58,7 +110,6 @@ namespace OP_Projektavimas.Utils
                     enemy.HasSplit = true;
                     Enemy clone = enemy.Clone();
                     clone.SetPositionInRoom(enemy.PositionInRoom + new Vector2(1, 0));
-                //Log.Debug(clone.Room.ToString());
                 return new SpawnEnemyCommand(clone);
                 }
 

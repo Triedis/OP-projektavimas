@@ -2,12 +2,9 @@ using System.Text.Json.Serialization;
 
 [JsonDerivedType(typeof(Player), typeDiscriminator: "Player")]
 [JsonDerivedType(typeof(Skeleton), typeDiscriminator: "Skeleton")]
-<<<<<<< Updated upstream
 [JsonDerivedType(typeof(Orc), typeDiscriminator: "Orc")]
 [JsonDerivedType(typeof(Zombie), typeDiscriminator: "Zombie")]
-=======
 [JsonDerivedType(typeof(Slime), typeDiscriminator: "Slime")]
->>>>>>> Stashed changes
 abstract class Character
 {
     public Guid Identity { get; set; }

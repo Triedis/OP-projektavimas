@@ -23,19 +23,17 @@ class ServerStateController(int port) : IStateController
             IEnemyFactory factory3 = new ZombieFactory();
             Room _ = worldGrid.GenRoom(_initialRoomPosition);
             //Bow skeletonSword = new(3, 10, Guid.NewGuid());
-<<<<<<< Updated upstream
             // Enemy testSkeleton = factory1.CreateEnemy(_, new(2, 2));
             // enemies.Add(testSkeleton);
             // _.Enter(testSkeleton);
 
-            Enemy testOrc = factory2.CreateEnemy(_, new(3, 3));
-            enemies.Add(testOrc);
-            _.Enter(testOrc);
+            //Enemy testOrc = factory2.CreateEnemy(_, new(3, 3));
+            //enemies.Add(testOrc);
+            //_.Enter(testOrc);
 
-            // Enemy testZombie = factory3.CreateEnemy(_, new(4, 4));
-            // enemies.Add(testZombie);
-            // _.Enter(testZombie);
-=======
+            Enemy testZombie = factory3.CreateEnemy(_, new(4, 4));
+            enemies.Add(testZombie);
+            _.Enter(testZombie);
             //Skeleton testSkeleton = new(System.Guid.NewGuid(), _, new(2, 2), skeletonSword);
             //enemies.Add(testSkeleton);
             //_.Enter(testSkeleton);
@@ -46,7 +44,6 @@ class ServerStateController(int port) : IStateController
             enemies.Add(testSlime);
             _.Enter(testSlime);
 
->>>>>>> Stashed changes
 
             var clientTask = ListenForClients();
             var serverTask = GameLoop();
