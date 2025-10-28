@@ -1,7 +1,12 @@
 using System.Text.Json.Serialization;
 using OP_Projektavimas.Utils;
 [JsonDerivedType(typeof(Skeleton), typeDiscriminator: "Skeleton")]
+[JsonDerivedType(typeof(Orc), typeDiscriminator: "Orc")]
+[JsonDerivedType(typeof(Zombie), typeDiscriminator: "Zombie")]
+
 abstract class Enemy : Character {
+    [JsonIgnore]
+    public int attackTick = 5;
     private IStrategy? strategy;
     [JsonConstructor]
     public Enemy() : base() {}

@@ -3,9 +3,25 @@ using System.Text.Json.Serialization;
 
 [JsonDerivedType(typeof(Sword), typeDiscriminator: "Sword")]
 [JsonDerivedType(typeof(Bow), typeDiscriminator: "Bow")]
-abstract class Weapon(Guid identity)
+[JsonDerivedType(typeof(Axe), typeDiscriminator: "Axe")]
+[JsonDerivedType(typeof(Dagger), typeDiscriminator: "Dagger")]
+abstract class Weapon
 {
-    public Guid Identity { get; set; } = identity;
+    public int MaxRange{ get; set; }
+    public int Damage{ get; set; }
+    public Guid Identity { get; set; }
+    public Weapon(Guid identity)
+    {
+        this.MaxRange = 1;
+        this.Damage = 1;
+        this.Identity = identity;
+    }
+    public Weapon(Guid identity, int maxRange, int damage)
+    {
+        this.Identity = identity;
+        this.MaxRange = maxRange;
+        this.Damage = damage;
+    }
     /// <summary>
     /// Determines whether the game state situation allows for the weapon to be used.
     /// This is left up for implementation because for example while a sword is short-range, magic may not be.

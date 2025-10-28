@@ -64,7 +64,24 @@ class TerminalRenderer
             }
             Console.ForegroundColor = color;
             Console.SetCursorPosition(enemy.PositionInRoom.X, enemy.PositionInRoom.Y);
-            Console.Write('S');
+            char enemySymbol = 'E';
+            if (enemy is Skeleton)
+            {
+                enemySymbol = 'S';
+            }
+            else if (enemy is Zombie)
+            {
+                enemySymbol = 'Z';
+            }
+            else if (enemy is Orc)
+            {
+                enemySymbol = 'O';
+            }
+            else
+            {
+                Log.Warning("Invalid enemy type");
+            }
+            Console.Write(enemySymbol);
         }
 
         foreach (var p in state.players.Where(p => p.Room.Equals(state.Identity?.Room)))

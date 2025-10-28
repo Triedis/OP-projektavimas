@@ -13,6 +13,7 @@ namespace OP_Projektavimas.Utils
             if (enemy.Dead) return null;
 
             Character? nearestPlayer = enemy.GetClosestOpponent();
+            Log.Debug("Nearest player for {skeleton} is {nearestPlayer}", this, nearestPlayer);
             if (nearestPlayer is null) return null;
 
             int distance = enemy.GetDistanceTo(nearestPlayer);

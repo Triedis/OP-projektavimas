@@ -2,6 +2,8 @@ using System.Text.Json.Serialization;
 
 [JsonDerivedType(typeof(Player), typeDiscriminator: "Player")]
 [JsonDerivedType(typeof(Skeleton), typeDiscriminator: "Skeleton")]
+[JsonDerivedType(typeof(Orc), typeDiscriminator: "Orc")]
+[JsonDerivedType(typeof(Zombie), typeDiscriminator: "Zombie")]
 abstract class Character
 {
     public Guid Identity { get; set; }
@@ -23,18 +25,20 @@ abstract class Character
     }
 
 
-    public void EnterRoom(Room room) {
+    public void EnterRoom(Room room)
+    {
         Room = room;
     }
 
-    public void SetPositionInRoom(Vector2 position) {
+    public void SetPositionInRoom(Vector2 position)
+    {
         PositionInRoom = position;
     }
 
     public void TakeDamage(int damage)
     {
         if (Dead) return;
-        
+
         Health -= damage;
         if (Health <= 0)
         {
@@ -52,14 +56,16 @@ abstract class Character
     /// <returns></returns>
     public abstract Character? GetClosestOpponent();
 
-    public void Destroy() {
+    public void Destroy()
+    {
         Room.Exit(this);
         Room.Occupants.Remove(this);
     }
 
     public int GetDistanceTo(Character target)
     {
-        if (!Room.Equals(target.Room)) {
+        if (!Room.Equals(target.Room))
+        {
             return int.MaxValue;
         }
 

@@ -1,5 +1,8 @@
-class Bow(int maxRange, int damage, Guid identity) : Weapon(identity, maxRange, damage)
+
+class Dagger : Weapon
 {
+    public Dagger(int maxRange, int damage, Guid identity) : base(identity, maxRange, damage) {}
+
     public override IReadOnlyList<IActionCommand> Act(Character actor, Character target)
     {
         var results = new List<IActionCommand>
@@ -16,26 +19,10 @@ class Bow(int maxRange, int damage, Guid identity) : Weapon(identity, maxRange, 
             return false;
         }
 
-        if (target.Dead)
-        {
-            return false;
-        }
-
         return true;
     }
-
-    public override bool Equals(object? obj)
+    public override string ToString()
     {
-        return base.Equals(obj);
-    }
-
-    public override int GetHashCode()
-    {
-        return base.GetHashCode(); // TODO
-    }
-
-    public override string? ToString()
-    {
-        return base.ToString(); // TODO
+        return "Dagger";
     }
 }
