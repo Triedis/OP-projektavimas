@@ -1,12 +1,17 @@
 using System.Text.Json.Serialization;
 using OP_Projektavimas.Utils;
 [JsonDerivedType(typeof(Skeleton), typeDiscriminator: "Skeleton")]
+<<<<<<< Updated upstream
 [JsonDerivedType(typeof(Orc), typeDiscriminator: "Orc")]
 [JsonDerivedType(typeof(Zombie), typeDiscriminator: "Zombie")]
 
 abstract class Enemy : Character {
     [JsonIgnore]
     public int attackTick = 5;
+=======
+[JsonDerivedType(typeof(Slime), typeDiscriminator: "Slime")]
+abstract class Enemy : Character, Prototype {
+>>>>>>> Stashed changes
     private IStrategy? strategy;
     [JsonConstructor]
     public Enemy() : base() {}
@@ -22,7 +27,11 @@ abstract class Enemy : Character {
     {
         return strategy?.TickAI(this);
     }
-
+    public Enemy Clone()
+    {
+        Slime clone = new Slime(Guid.NewGuid(), this.Room, this.PositionInRoom, (Sword)this.Weapon);
+        return clone;
+    }
     public override Character? GetClosestOpponent()
     {
         Player? nearestPlayer = null;

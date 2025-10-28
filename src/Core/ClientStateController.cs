@@ -284,4 +284,23 @@ class ClientStateController : IStateController
             Log.Error(e, "terrible...");
         }
     }
+    private readonly Queue<Enemy> _pendingSpawns = new();
+
+    public void EnqueueEnemySpawn(Enemy enemy)
+    {
+        _pendingSpawns.Enqueue(enemy);
+    }
+
+    // Call this **after RunAI()** in your game loop:
+    private void ProcessPendingSpawns()
+    {
+        while (_pendingSpawns.Count > 0)
+        {
+            Enemy enemy = _pendingSpawns.Dequeue();
+            enemies.Add(enemy);
+            enemy.Room.Enter(enemy);
+            Log.Information("Enemy {enemy} actually spawned in room {room}", enemy, enemy.Room);
+        }
+    }
+
 }

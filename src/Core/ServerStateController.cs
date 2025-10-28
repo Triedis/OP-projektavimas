@@ -23,6 +23,7 @@ class ServerStateController(int port) : IStateController
             IEnemyFactory factory3 = new ZombieFactory();
             Room _ = worldGrid.GenRoom(_initialRoomPosition);
             //Bow skeletonSword = new(3, 10, Guid.NewGuid());
+<<<<<<< Updated upstream
             // Enemy testSkeleton = factory1.CreateEnemy(_, new(2, 2));
             // enemies.Add(testSkeleton);
             // _.Enter(testSkeleton);
@@ -34,6 +35,18 @@ class ServerStateController(int port) : IStateController
             // Enemy testZombie = factory3.CreateEnemy(_, new(4, 4));
             // enemies.Add(testZombie);
             // _.Enter(testZombie);
+=======
+            //Skeleton testSkeleton = new(System.Guid.NewGuid(), _, new(2, 2), skeletonSword);
+            //enemies.Add(testSkeleton);
+            //_.Enter(testSkeleton);
+
+
+            Sword slimeSword = new(1, 10, Guid.NewGuid());
+            Slime testSlime = new(System.Guid.NewGuid(), _, new(3, 3), slimeSword);
+            enemies.Add(testSlime);
+            _.Enter(testSlime);
+
+>>>>>>> Stashed changes
 
             var clientTask = ListenForClients();
             var serverTask = GameLoop();
@@ -52,6 +65,7 @@ class ServerStateController(int port) : IStateController
         while (true)
         {
             RunAI();
+            ProcessPendingSpawns();
             await ExecuteClientCommands();
 
             await SyncAll(); // ideally should be a delta update ...
@@ -82,6 +96,24 @@ class ServerStateController(int port) : IStateController
 
         }
 
+    }
+    private readonly Queue<Enemy> _pendingSpawns = new();
+
+    public void EnqueueEnemySpawn(Enemy enemy)
+    {
+        _pendingSpawns.Enqueue(enemy);
+    }
+
+    // Call this **after RunAI()** in your game loop:
+    private void ProcessPendingSpawns()
+    {
+        while (_pendingSpawns.Count > 0)
+        {
+            Enemy enemy = _pendingSpawns.Dequeue();
+            enemies.Add(enemy);
+            enemy.Room.Enter(enemy);
+            Log.Information("Enemy {enemy} actually spawned in room {room}", enemy, enemy.Room);
+        }
     }
 
     private void RunAI()

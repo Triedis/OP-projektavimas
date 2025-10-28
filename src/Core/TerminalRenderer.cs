@@ -64,6 +64,7 @@ class TerminalRenderer
             }
             Console.ForegroundColor = color;
             Console.SetCursorPosition(enemy.PositionInRoom.X, enemy.PositionInRoom.Y);
+<<<<<<< Updated upstream
             char enemySymbol = 'E';
             if (enemy is Skeleton)
             {
@@ -82,6 +83,10 @@ class TerminalRenderer
                 Log.Warning("Invalid enemy type");
             }
             Console.Write(enemySymbol);
+=======
+            if (enemy is Skeleton) Console.Write('S');
+            else Console.Write('L');
+>>>>>>> Stashed changes
         }
 
         foreach (var p in state.players.Where(p => p.Room.Equals(state.Identity?.Room)))

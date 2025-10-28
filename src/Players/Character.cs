@@ -2,12 +2,18 @@ using System.Text.Json.Serialization;
 
 [JsonDerivedType(typeof(Player), typeDiscriminator: "Player")]
 [JsonDerivedType(typeof(Skeleton), typeDiscriminator: "Skeleton")]
+<<<<<<< Updated upstream
 [JsonDerivedType(typeof(Orc), typeDiscriminator: "Orc")]
 [JsonDerivedType(typeof(Zombie), typeDiscriminator: "Zombie")]
+=======
+[JsonDerivedType(typeof(Slime), typeDiscriminator: "Slime")]
+>>>>>>> Stashed changes
 abstract class Character
 {
     public Guid Identity { get; set; }
     public Vector2 PositionInRoom { get; set; }
+    public int StartingHealth { get; set; } = 100;
+    public bool HasSplit { get; set; } = false;
     public int Health { get; set; } = 100;
     public Weapon Weapon { get; set; }
     public bool Dead { get; set; } = false;
