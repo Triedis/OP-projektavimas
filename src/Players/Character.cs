@@ -12,9 +12,9 @@ abstract class Character
     public int StartingHealth { get; set; } = 100;
     public bool HasSplit { get; set; } = false;
     public int Health { get; set; } = 100;
-    public Weapon Weapon { get; set; }
-    public bool Dead { get; set; } = false;
-    public Room Room { get; set; }
+    public virtual Weapon Weapon { get; set; }
+    public virtual bool Dead { get; set; } = false;
+    public virtual Room Room { get; set; }
 
     [JsonConstructor]
     public Character() { }

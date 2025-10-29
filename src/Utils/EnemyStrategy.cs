@@ -2,11 +2,11 @@ using System.Text.Json.Serialization;
 using Serilog;
 namespace OP_Projektavimas.Utils
 {
-    interface IStrategy // pervadint
+    interface EnemyStrategy
     {
         ICommand? TickAI(Enemy enemy);
     }
-    internal class SkeletonStrategy : IStrategy // pervadint visus
+    internal class RangedStrategy : EnemyStrategy 
     {
         public ICommand? TickAI(Enemy enemy)
         {
@@ -58,7 +58,7 @@ namespace OP_Projektavimas.Utils
         }
 
     }
-    internal class ZombieStrategy : IStrategy
+    internal class MeleeStrategy : EnemyStrategy
     {
         public ICommand? TickAI(Enemy enemy)
         {
@@ -93,7 +93,8 @@ namespace OP_Projektavimas.Utils
         }
 
     }
-    internal class SlimeStrategy : IStrategy
+
+internal class ShallowSplitStrategy : EnemyStrategy
     {
         public ICommand? TickAI(Enemy enemy)
         {
@@ -105,20 +106,24 @@ namespace OP_Projektavimas.Utils
             int distance = enemy.GetDistanceTo(nearestPlayer);
             Weapon weapon = enemy.Weapon;
 
-                if (!enemy.HasSplit && enemy.Health <= enemy.StartingHealth / 2)
-                {
-                    enemy.HasSplit = true;
-                    Enemy clone = enemy.Clone();
-                    clone.SetPositionInRoom(enemy.PositionInRoom + new Vector2(1, 0));
+            if (!enemy.HasSplit && enemy.Health <= enemy.StartingHealth / 2)
+            {
+                enemy.HasSplit = true;
+                Enemy clone = enemy.ShallowClone();
+                clone.SetPositionInRoom(enemy.PositionInRoom + new Vector2(1, 0));
+
+                Log.Information("=== SHALLOW CLONE ===");
+                Log.Information("Original Enemy Addr: {addr1}", enemy.GetHashCode());
+                Log.Information("Cloned Enemy Addr: {addr2}", clone.GetHashCode());
+                Log.Information("Original Weapon Addr: {addr3}", enemy.Weapon.GetHashCode());
+                Log.Information("Cloned Weapon Addr: {addr4}", clone.Weapon.GetHashCode());
+
                 return new SpawnEnemyCommand(clone);
-                }
+            }
 
             // Attack if in range
             if (weapon is Sword sword && distance <= sword.MaxRange && !nearestPlayer.Dead)
-            {
-                Log.Debug("{enemy} attacks {player} with {weapon}", enemy, nearestPlayer, weapon);
                 return new UseWeaponCommand(enemy.Identity);
-            }
 
             // Otherwise, move toward player
             Vector2 direction = new(
@@ -129,10 +134,52 @@ namespace OP_Projektavimas.Utils
             );
 
             Vector2 newPosition = enemy.PositionInRoom + direction;
-            Log.Debug("{enemy} moves toward {player} to {newPos}", enemy, nearestPlayer, newPosition);
-
             return new MoveCommand(newPosition, enemy.Identity);
         }
-
     }
+
+internal class DeepSplitStrategy : EnemyStrategy
+    {
+        public ICommand? TickAI(Enemy enemy)
+        {
+            if (enemy.Dead) return null;
+
+            Character? nearestPlayer = enemy.GetClosestOpponent();
+            if (nearestPlayer is null) return null;
+
+            int distance = enemy.GetDistanceTo(nearestPlayer);
+            Weapon weapon = enemy.Weapon;
+
+            if (!enemy.HasSplit && enemy.Health <= enemy.StartingHealth / 2)
+            {
+                enemy.HasSplit = true;
+                Enemy clone = enemy.DeepClone();
+                clone.SetPositionInRoom(enemy.PositionInRoom + new Vector2(1, 0));
+
+                Log.Information("=== DEEP CLONE ===");
+                Log.Information("Original Enemy Addr: {addr1}", enemy.GetHashCode());
+                Log.Information("Cloned Enemy Addr: {addr2}", clone.GetHashCode());
+                Log.Information("Original Weapon Addr: {addr3}", enemy.Weapon.GetHashCode());
+                Log.Information("Cloned Weapon Addr: {addr4}", clone.Weapon.GetHashCode());
+
+                return new SpawnEnemyCommand(clone);
+            }
+
+            // Attack if in range
+            if (weapon is Sword sword && distance <= sword.MaxRange && !nearestPlayer.Dead)
+                return new UseWeaponCommand(enemy.Identity);
+
+            // Otherwise, move toward player
+            Vector2 direction = new(
+                nearestPlayer.PositionInRoom.X > enemy.PositionInRoom.X ? 1 :
+                nearestPlayer.PositionInRoom.X < enemy.PositionInRoom.X ? -1 : 0,
+                nearestPlayer.PositionInRoom.Y > enemy.PositionInRoom.Y ? 1 :
+                nearestPlayer.PositionInRoom.Y < enemy.PositionInRoom.Y ? -1 : 0
+            );
+
+            Vector2 newPosition = enemy.PositionInRoom + direction;
+            return new MoveCommand(newPosition, enemy.Identity);
+        }
+    }
+
 }

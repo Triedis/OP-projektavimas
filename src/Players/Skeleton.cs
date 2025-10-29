@@ -4,8 +4,8 @@ using OP_Projektavimas.Utils;
 class Skeleton : Enemy
 {
     [JsonConstructor]
-    public Skeleton() : base() { SetStrategy(new SkeletonStrategy()); }//runtime setint ne čia
-    public Skeleton(Guid identity, Room room, Vector2 positionInRoom, Bow bow) : base(identity, room, positionInRoom, bow) { SetStrategy(new SkeletonStrategy()); }
+    public Skeleton() : base() { SetStrategy(new RangedStrategy()); }//runtime setint ne čia
+    public Skeleton(Guid identity, Room room, Vector2 positionInRoom, Bow bow) : base(identity, room, positionInRoom, bow) { SetStrategy(new RangedStrategy()); }
 
     //public override ICommand? TickAI() {
     //    if (Dead) {

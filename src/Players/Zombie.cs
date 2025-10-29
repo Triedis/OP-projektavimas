@@ -1,15 +1,15 @@
 
 using System.Text.Json.Serialization;
 using Serilog;
-
+using OP_Projektavimas.Utils;
 class Zombie : Enemy
 {
     [JsonIgnore]
     public bool SeenPlayer = false;
-    public Zombie() { SetStrategy(new ZombieStrategy()); }
+    public Zombie() { SetStrategy(new MeleeStrategy()); }
     public Zombie(Guid identity, Room room, Vector2 positionInRoom, Sword weapon) : base(identity, room, positionInRoom, weapon)
     {
-        SetStrategy(new ZombieStrategy());
+        SetStrategy(new MeleeStrategy());
     }
     /// <summary>
     /// waits for player to get within certain distance and makes this and other zombies within the room attack 

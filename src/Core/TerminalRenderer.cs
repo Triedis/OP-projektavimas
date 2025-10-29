@@ -81,6 +81,10 @@ class TerminalRenderer
             {
                 enemySymbol = 'L';
             }
+            else if (enemy is PlayerEnemyAdapter)
+            {
+                enemySymbol = 'A';
+            }
             else
             {
                 Log.Warning("Invalid enemy type");

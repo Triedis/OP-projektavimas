@@ -1,13 +1,13 @@
 
 using Serilog;
-
+using OP_Projektavimas.Utils;
 class Orc : Enemy
 {
     
-    public Orc() { SetStrategy(new OrcStrategy()); }
+    public Orc() { SetStrategy(new MeleeStrategy()); }
     public Orc(Guid identity, Room room, Vector2 positionInRoom, Axe weapon) : base(identity, room, positionInRoom, weapon)
     {
-        SetStrategy(new OrcStrategy());
+        SetStrategy(new MeleeStrategy());
     }
     /// <summary>
     /// waits for player to get within certain distance to move

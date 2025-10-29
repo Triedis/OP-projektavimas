@@ -1,10 +1,10 @@
-using System.Collections.Concurrent;
+﻿using System.Collections.Concurrent;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Text.Json;
 using Serilog;
-
+using OP_Projektavimas.Utils;
 class ServerStateController(int port) : IStateController
 {
     private readonly Vector2 _initialRoomPosition = new(0, 0);
@@ -12,7 +12,7 @@ class ServerStateController(int port) : IStateController
     private readonly Queue<ICommand> _receivedCommands = [];
     private readonly Dictionary<Guid, NetworkStream> _clients = [];
     private readonly Random rng = new(); // should be a singleton for consistency.
-
+    private PlayerEnemyAdapter adaptedEnemy;
 
     public override async Task Run()
     {
@@ -31,18 +31,27 @@ class ServerStateController(int port) : IStateController
             //enemies.Add(testOrc);
             //_.Enter(testOrc);
 
-            Enemy testZombie = factory3.CreateEnemy(_, new(4, 4));
-            enemies.Add(testZombie);
-            _.Enter(testZombie);
+            //Enemy testZombie = factory3.CreateEnemy(_, new(4, 4));
+            //enemies.Add(testZombie);
+            //_.Enter(testZombie);
             //Skeleton testSkeleton = new(System.Guid.NewGuid(), _, new(2, 2), skeletonSword);
             //enemies.Add(testSkeleton);
             //_.Enter(testSkeleton);
 
 
-            Sword slimeSword = new(1, 10, Guid.NewGuid());
+            Sword slimeSword = new(1, 1, Guid.NewGuid());
             Slime testSlime = new(System.Guid.NewGuid(), _, new(3, 3), slimeSword);
             enemies.Add(testSlime);
             _.Enter(testSlime);
+
+            Player testPlayer = new("TestPlayer", Guid.NewGuid(), Color.Red, _, new Vector2(2, 2), new Sword(1, 1, Guid.NewGuid()));
+            //_.Enter(testPlayer);
+            adaptedEnemy = new(testPlayer, _);
+            adaptedEnemy.SetStrategy(new MeleeStrategy()); // start with melee
+            //enemies.Add(adaptedEnemy); //jeigu atkomentuoju šitą kliento gui nebeloadina
+            //Log.Information(adaptedEnemy.Room.ToString());
+            _.Enter(adaptedEnemy);
+
 
 
             var clientTask = ListenForClients();
@@ -58,13 +67,20 @@ class ServerStateController(int port) : IStateController
 
     private async Task GameLoop()
     {
-
+        int count = 0;
         while (true)
         {
+            //if (count == 20)
+            //{
+            //    adaptedEnemy.Weapon = new Bow(3, 1, Guid.NewGuid()); // give it a bow
+            //    adaptedEnemy.SetStrategy(new RangedStrategy());
+            //    Log.Information("{enemy} switched to RangedStrategy!", adaptedEnemy);
+            //}
+
             RunAI();
             ProcessPendingSpawns();
             await ExecuteClientCommands();
-
+            count++;
             await SyncAll(); // ideally should be a delta update ...
             await Task.Delay(500);
         }
@@ -118,13 +134,16 @@ class ServerStateController(int port) : IStateController
         Log.Debug("Ticking AI with {count} entities", enemies.Count);
         foreach (Enemy enemy in enemies)
         {
-            ICommand? command = enemy.TickAI();
-
-            if (command is not null)
+            if (enemy.GetType() != typeof(Player))
             {
-                Log.Debug("Entity {enemy} decided to {command}", enemy, command.GetType());
+                ICommand? command = enemy.TickAI();
+
+                if (command is not null)
+                {
+                    Log.Debug("Entity {enemy} decided to {command}", enemy, command.GetType());
+                }
+                command?.ExecuteOnServer(this);
             }
-            command?.ExecuteOnServer(this);
         }
     }
 

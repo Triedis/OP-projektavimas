@@ -1,4 +1,5 @@
 interface Prototype
 {
-	Enemy Clone();
+	Enemy ShallowClone();
+	Enemy DeepClone();
 }

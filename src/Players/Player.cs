@@ -20,7 +20,7 @@ class Player : Character {
         double minDistance = double.MaxValue;
 
         foreach (Character character in Room.Occupants) {
-            if (character is Enemy enemy) {
+            if (character is Enemy enemy && character.GetType()!=typeof(PlayerEnemyAdapter)) {
                 double distance = Vector2.Distance(PositionInRoom, enemy.PositionInRoom);
                 if (distance < minDistance) {
                     minDistance = distance;
