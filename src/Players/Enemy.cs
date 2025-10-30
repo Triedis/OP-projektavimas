@@ -41,7 +41,7 @@ abstract class Enemy : Character, Prototype
         clone.PositionInRoom = new Vector2(PositionInRoom.X, PositionInRoom.Y);
 
         // Make a new weapon so they don't share the same one
-        clone.Weapon = new Sword(Weapon.MaxRange, Weapon.Damage, Guid.NewGuid());
+        clone.Weapon = new Sword(Guid.NewGuid(), Weapon.MaxRange, Weapon.Effect);
 
         clone.HasSplit = true;
         clone.Health = this.Health;

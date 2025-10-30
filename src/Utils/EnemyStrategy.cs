@@ -13,7 +13,7 @@ namespace OP_Projektavimas.Utils
             if (enemy.Dead) return null;
 
             Character? nearestPlayer = enemy.GetClosestOpponent();
-            Log.Debug("Nearest player for {skeleton} is {nearestPlayer}", this, nearestPlayer);
+            Log.Debug("Nearest player for {skeleton} is {nearestPlayer}", enemy, nearestPlayer);
             if (nearestPlayer is null) return null;
 
             int distance = enemy.GetDistanceTo(nearestPlayer);
@@ -65,15 +65,16 @@ namespace OP_Projektavimas.Utils
             if (enemy.Dead) return null;
 
             Character? nearestPlayer = enemy.GetClosestOpponent();
-            Log.Debug("Nearest player for {zombie} is {nearestPlayer}", this, nearestPlayer);
+            Log.Debug("Nearest player for {zombie} is {nearestPlayer}", enemy, nearestPlayer);
             if (nearestPlayer is null) return null;
 
             int distance = enemy.GetDistanceTo(nearestPlayer);
             Weapon weapon = enemy.Weapon;
-
+            if (enemy.attackTick > 0) enemy.attackTick -= 1;
             // Attack if in range
-            if (weapon is Sword sword && distance <= sword.MaxRange && !nearestPlayer.Dead)
+            if (distance <= weapon.MaxRange && !nearestPlayer.Dead && enemy.attackTick <= 0)
             {
+                enemy.attackTick = 5;
                 Log.Debug("{enemy} attacks {player} with {weapon}", enemy, nearestPlayer, weapon);
                 return new UseWeaponCommand(enemy.Identity);
             }
@@ -101,10 +102,12 @@ internal class ShallowSplitStrategy : EnemyStrategy
             if (enemy.Dead) return null;
 
             Character? nearestPlayer = enemy.GetClosestOpponent();
+            Log.Debug("Nearest player for {zombie} is {nearestPlayer}", enemy, nearestPlayer);
             if (nearestPlayer is null) return null;
 
             int distance = enemy.GetDistanceTo(nearestPlayer);
             Weapon weapon = enemy.Weapon;
+            if (enemy.attackTick > 0) enemy.attackTick -= 1;
 
             if (!enemy.HasSplit && enemy.Health <= enemy.StartingHealth / 2)
             {
@@ -122,8 +125,13 @@ internal class ShallowSplitStrategy : EnemyStrategy
             }
 
             // Attack if in range
-            if (weapon is Sword sword && distance <= sword.MaxRange && !nearestPlayer.Dead)
+            if (weapon is Dagger sword && distance <= sword.MaxRange && !nearestPlayer.Dead && enemy.attackTick <= 0)
+            {
+                enemy.attackTick = 5;
+                Log.Debug("{enemy} attacks {player} with {weapon}", enemy, nearestPlayer, weapon);
                 return new UseWeaponCommand(enemy.Identity);
+            }
+                
 
             // Otherwise, move toward player
             Vector2 direction = new(
@@ -145,10 +153,12 @@ internal class DeepSplitStrategy : EnemyStrategy
             if (enemy.Dead) return null;
 
             Character? nearestPlayer = enemy.GetClosestOpponent();
+            Log.Debug("Nearest player for {zombie} is {nearestPlayer}", enemy, nearestPlayer);
             if (nearestPlayer is null) return null;
 
             int distance = enemy.GetDistanceTo(nearestPlayer);
             Weapon weapon = enemy.Weapon;
+            if (enemy.attackTick > 0) enemy.attackTick -= 1;
 
             if (!enemy.HasSplit && enemy.Health <= enemy.StartingHealth / 2)
             {
@@ -166,8 +176,12 @@ internal class DeepSplitStrategy : EnemyStrategy
             }
 
             // Attack if in range
-            if (weapon is Sword sword && distance <= sword.MaxRange && !nearestPlayer.Dead)
+            if (weapon is Dagger sword && distance <= sword.MaxRange && !nearestPlayer.Dead && enemy.attackTick <= 0)
+            {
+                enemy.attackTick = 5;
                 return new UseWeaponCommand(enemy.Identity);
+            }
+                
 
             // Otherwise, move toward player
             Vector2 direction = new(

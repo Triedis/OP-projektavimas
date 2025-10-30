@@ -15,6 +15,6 @@ class SkeletonFactory : IEnemyFactory
 
     public Weapon CreateWeapon()
     {
-        return new Bow(random.Next(MinRange, MaxRange), random.Next(MinDamage, MaxDamage), Guid.NewGuid());
+        return new Bow(Guid.NewGuid(), random.Next(MinRange, MaxRange), new PhysicalDamageEffect(random.Next(MinDamage, MaxDamage)));
     }
 }

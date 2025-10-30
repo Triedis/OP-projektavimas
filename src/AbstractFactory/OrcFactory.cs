@@ -13,6 +13,6 @@ class OrcFactory : IEnemyFactory
 
     public Weapon CreateWeapon()
     {
-        return new Axe(random.Next(MinRange, MaxRange), random.Next(MinDamage, MaxDamage), Guid.NewGuid());
+        return new Axe(Guid.NewGuid(), random.Next(MinRange, MaxRange), new PhysicalDamageEffect(random.Next(MinDamage, MaxDamage)));
     }
 }

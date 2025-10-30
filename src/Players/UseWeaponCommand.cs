@@ -39,7 +39,7 @@ class UseWeaponCommand(Guid actorIdentity) : ICommand
         if (weapon.CanUse(actor, target, gameState))
         {
             Log.Information("Weapon acting on {tgt} {id}", target, target.Identity);
-            LogEntry weaponUseLogEntry = LogEntry.ForRoom($"{actor} swings and hits {target}", room);
+            LogEntry weaponUseLogEntry = LogEntry.ForRoom($"{actor} swings {actor.Weapon} and hits {target}", room);
             MessageLog.Instance.Add(weaponUseLogEntry);
             
             IReadOnlyList<IActionCommand> consequencues = weapon.Act(actor, target);

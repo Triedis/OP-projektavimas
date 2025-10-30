@@ -7,20 +7,18 @@ using System.Text.Json.Serialization;
 [JsonDerivedType(typeof(Dagger), typeDiscriminator: "Dagger")]
 abstract class Weapon
 {
+    public Effect Effect;
     public int MaxRange{ get; set; }
-    public int Damage{ get; set; }
     public Guid Identity { get; set; }
     public Weapon(Guid identity)
     {
-        this.MaxRange = 1;
-        this.Damage = 1;
+        //this.Effect = new PhysicalDamageEffect(1, 1);
         this.Identity = identity;
     }
-    public Weapon(Guid identity, int maxRange, int damage)
+    public Weapon(Guid identity, int maxRange, Effect effect)
     {
-        this.Identity = identity;
+        this.Effect = effect;
         this.MaxRange = maxRange;
-        this.Damage = damage;
     }
     /// <summary>
     /// Determines whether the game state situation allows for the weapon to be used.

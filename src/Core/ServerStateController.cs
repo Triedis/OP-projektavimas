@@ -18,33 +18,29 @@ class ServerStateController(int port) : IStateController
     {
         try
         {
-            IEnemyFactory factory1 = new SkeletonFactory();
-            IEnemyFactory factory2 = new OrcFactory();
-            IEnemyFactory factory3 = new ZombieFactory();
+            IEnemyFactory skeletonFactory = new SkeletonFactory();
+            IEnemyFactory orcFactory = new OrcFactory();
+            IEnemyFactory zombieFactory = new ZombieFactory();
+            IEnemyFactory slimeFactory = new SlimeFactory();
             Room _ = worldGrid.GenRoom(_initialRoomPosition);
-            //Bow skeletonSword = new(3, 10, Guid.NewGuid());
-            // Enemy testSkeleton = factory1.CreateEnemy(_, new(2, 2));
+
+            // Enemy testSkeleton = skeletonFactory.CreateEnemy(_, new(1, 1));
             // enemies.Add(testSkeleton);
             // _.Enter(testSkeleton);
 
-            //Enemy testOrc = factory2.CreateEnemy(_, new(3, 3));
-            //enemies.Add(testOrc);
-            //_.Enter(testOrc);
+            // Enemy testOrc = orcFactory.CreateEnemy(_, new(2, 2));
+            // enemies.Add(testOrc);
+            // _.Enter(testOrc);
 
-            //Enemy testZombie = factory3.CreateEnemy(_, new(4, 4));
-            //enemies.Add(testZombie);
-            //_.Enter(testZombie);
-            //Skeleton testSkeleton = new(System.Guid.NewGuid(), _, new(2, 2), skeletonSword);
-            //enemies.Add(testSkeleton);
-            //_.Enter(testSkeleton);
+            Enemy testZombie = zombieFactory.CreateEnemy(_, new(4, 4));
+            enemies.Add(testZombie);
+            _.Enter(testZombie);
 
-
-            Sword slimeSword = new(1, 1, Guid.NewGuid());
-            Slime testSlime = new(System.Guid.NewGuid(), _, new(3, 3), slimeSword);
+            Enemy testSlime = slimeFactory.CreateEnemy(_, new(3, 3));
             enemies.Add(testSlime);
             _.Enter(testSlime);
 
-            Player testPlayer = new("TestPlayer", Guid.NewGuid(), Color.Red, _, new Vector2(2, 2), new Sword(1, 1, Guid.NewGuid()));
+            Player testPlayer = new("TestPlayer", Guid.NewGuid(), Color.Red, _, new Vector2(2, 2), new Sword(Guid.NewGuid(), 1, new PhysicalDamageEffect(1)));
             //_.Enter(testPlayer);
             adaptedEnemy = new(testPlayer, _);
             adaptedEnemy.SetStrategy(new MeleeStrategy()); // start with melee
@@ -78,6 +74,7 @@ class ServerStateController(int port) : IStateController
             //}
 
             RunAI();
+            TickOngoingEffects();
             ProcessPendingSpawns();
             await ExecuteClientCommands();
             count++;
@@ -126,6 +123,22 @@ class ServerStateController(int port) : IStateController
             enemies.Add(enemy);
             enemy.Room.Enter(enemy);
             Log.Information("Enemy {enemy} actually spawned in room {room}", enemy, enemy.Room);
+        }
+    }
+    private readonly List<IStatus> _ongoingEffects = new();
+    public void RegisterOngoingEffect(IStatus effect)
+    {
+        _ongoingEffects.Add(effect);
+    }
+    private void TickOngoingEffects()
+    {
+        for (int i = _ongoingEffects.Count - 1; i >= 0; i--)
+        {
+            var effect = _ongoingEffects[i];
+            if (!effect.Tick())
+            {
+                _ongoingEffects.RemoveAt(i);
+            }
         }
     }
 
@@ -276,7 +289,7 @@ class ServerStateController(int port) : IStateController
 
         Vector2 initialRoomShape = initialRoom.Shape;
         Vector2 middlePosition = new(initialRoomShape.X / 2, initialRoomShape.Y / 2);
-        Sword starterWeapon = new(1, 25, Guid.NewGuid());
+        Sword starterWeapon = new(Guid.NewGuid(), 1, new PhysicalDamageEffect(1));
         Array colorValues = typeof(Color).GetEnumValues();
         Color randomColor = (Color?)colorValues.GetValue(rng.Next(colorValues.Length)) ?? throw new InvalidOperationException();
         Player player = new(username, identity, randomColor, initialRoom, middlePosition, starterWeapon);

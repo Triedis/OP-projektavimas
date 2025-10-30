@@ -8,7 +8,7 @@ class Slime : Enemy
     { 
         SetStrategy(new DeepSplitStrategy());
     }
-    public Slime(Guid identity, Room room, Vector2 positionInRoom, Sword sword) : base(identity, room, positionInRoom, sword) 
+    public Slime(Guid identity, Room room, Vector2 positionInRoom, Dagger sword) : base(identity, room, positionInRoom, sword) 
     {
         SetStrategy(new DeepSplitStrategy()); 
     }

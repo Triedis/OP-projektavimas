@@ -16,6 +16,6 @@ class ZombieFactory : IEnemyFactory
 
     public Weapon CreateWeapon()
     {
-        return new Sword(random.Next(MinRange, MaxRange), random.Next(MinDamage, MaxDamage), Guid.NewGuid());
+        return new Sword(Guid.NewGuid(), random.Next(MinRange, MaxRange), new PhysicalDamageEffect(random.Next(MinDamage, MaxDamage)));
     }
 }

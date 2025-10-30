@@ -1,13 +1,9 @@
-class Sword(int maxRange, int damage, Guid identity) : Weapon(identity, maxRange, damage)
+class Sword(Guid identity, int maxRange, Effect effect) : Weapon(identity, maxRange, effect)
 {
 
     public override IReadOnlyList<IActionCommand> Act(Character actor, Character target)
     {
-        var results = new List<IActionCommand>
-        {
-            new DamageCommand(target, Damage)
-        };
-        return results;
+        return Effect.Apply(actor, target);
     }
 
     public override bool CanUse(Character actor, Character target, IStateController gameState)

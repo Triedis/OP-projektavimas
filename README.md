@@ -21,7 +21,7 @@ There can be multiple clients on one machine. Clients bind to a random non-restr
 - [ ] Rendering of loot drops
 - [ ] Interaction with loop drops (Can be implemented as nested logic within MoveCommand)
 - [x] Basic Skeleton/AI behavior
-- [ ] Skeleton/AI combat (needs UseWeaponCommand to be returned from TickAI implementations) 
+- [X] Skeleton/AI combat (needs UseWeaponCommand to be returned from TickAI implementations) 
 - [x] Basic room generation (basic logic in WorldGrid::GenRoom)
 - [ ] Difficulty-based room generation (Needs a Singleton RNG, RoomFactory and AbstractEnemyFactory)
 - [ ] Room loot and enemies generation (Needs a RoomFactory, related to difficulty-based gen)

@@ -16,7 +16,7 @@ class PlayerEnemyAdapter : Enemy
 	[JsonIgnore] public override Weapon Weapon => base.Weapon;
 
 	public PlayerEnemyAdapter(Player player, Room room)
-		: base(Guid.NewGuid(), room, player.PositionInRoom, new Sword(player.Weapon.MaxRange, player.Weapon.Damage, Guid.NewGuid()))
+		: base(Guid.NewGuid(), room, player.PositionInRoom, new Dagger(Guid.NewGuid(), player.Weapon.MaxRange, new PhysicalDamageEffect(player.Weapon.Effect.Power)))
 	{
 		_player = player;
 		StartingHealth = player.Health;
@@ -32,7 +32,7 @@ class PlayerEnemyAdapter : Enemy
 	// Optional override if you want it to behave slightly differently
 	public override Character? GetClosestOpponent()
 	{
-		// Let’s reuse player’s opponent logic
+		// Letï¿½s reuse playerï¿½s opponent logic
 		return _player.GetClosestOpponent();
 	}
 
