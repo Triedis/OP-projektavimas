@@ -15,7 +15,7 @@ class BleedingEffect : Effect
             new DamageCommand(target, Power)
         };
         if (rng.Next(2) == 1)
-            actions.Add(new ApplyBleedCommand(target, Power, Duration));
+            actions.Add(new ApplyStatusCommand(target, Power, Duration));
 
         return actions;
     }

@@ -1,12 +1,12 @@
 
 using Serilog;
 
-class ApplyBleedCommand : IActionCommand
+class ApplyStatusCommand : IActionCommand
 {
     private readonly Character Target;
     private readonly int TickDamage;
     private readonly int Duration;
-    public ApplyBleedCommand(Character target, int tickDamage, int duration)
+    public ApplyStatusCommand(Character target, int tickDamage, int duration)
     {
         Target = target;
         TickDamage = tickDamage;
@@ -19,7 +19,7 @@ class ApplyBleedCommand : IActionCommand
 
         if (gameState is ServerStateController server)
         {
-            server.RegisterOngoingEffect(new BleedingStatus(Target, TickDamage, Duration));
+            server.Game.RegisterOngoingEffect(new BleedingStatus(Target, TickDamage, Duration));
         }
 
     }

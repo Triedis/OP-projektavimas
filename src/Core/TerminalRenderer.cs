@@ -57,9 +57,12 @@ class TerminalRenderer
         foreach (Enemy enemy in state.enemies.Where(s => s.Room.Equals(currentRoom)))
         {
             ConsoleColor color;
-            if (!enemy.Dead) {
+            if (!enemy.Dead)
+            {
                 color = ConsoleColor.Red;
-            } else {
+            }
+            else
+            {
                 color = ConsoleColor.Gray;
             }
             Console.ForegroundColor = color;
@@ -91,6 +94,35 @@ class TerminalRenderer
             }
             Console.Write(enemySymbol);
 
+        }
+        
+        foreach(var l in currentRoom.LootDrops)
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.SetCursorPosition(l.PositionInRoom.X, l.PositionInRoom.Y);
+
+            char lootSymbol = 'L';
+            if (l.Item is Sword)
+            {
+                lootSymbol = 'S';
+            }
+            else if (l.Item is Axe)
+            {
+                lootSymbol = 'A';
+            }
+            else if (l.Item is Dagger)
+            {
+                lootSymbol = 'D';
+            }
+            else if (l.Item is Bow)
+            {
+                lootSymbol = 'B';
+            }
+            else
+            {
+                Log.Warning("Invalid loot type");
+            }
+            Console.Write(lootSymbol);
         }
 
         foreach (var p in state.players.Where(p => p.Room.Equals(state.Identity?.Room)))

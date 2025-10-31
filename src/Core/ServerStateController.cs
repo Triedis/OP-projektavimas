@@ -7,48 +7,34 @@ using Serilog;
 using OP_Projektavimas.Utils;
 class ServerStateController(int port) : IStateController
 {
-    private readonly Vector2 _initialRoomPosition = new(0, 0);
     private readonly int _port = port;
     private readonly Queue<ICommand> _receivedCommands = [];
     private readonly Dictionary<Guid, NetworkStream> _clients = [];
-    private readonly Random rng = new(); // should be a singleton for consistency.
+     // should be a singleton for consistency.
     private PlayerEnemyAdapter adaptedEnemy;
+    private GameFacade? _game;
+    public GameFacade Game => _game ?? throw new InvalidOperationException("GameFacade not initialized");
 
     public override async Task Run()
     {
         try
         {
-            IEnemyFactory skeletonFactory = new SkeletonFactory();
-            IEnemyFactory orcFactory = new OrcFactory();
-            IEnemyFactory zombieFactory = new ZombieFactory();
-            IEnemyFactory slimeFactory = new SlimeFactory();
-            Room _ = worldGrid.GenRoom(_initialRoomPosition);
+            _game = new(this, worldGrid, MessageLog.Instance);
+            Room _ = _game.CreateInitialRoom();
 
-            // Enemy testSkeleton = skeletonFactory.CreateEnemy(_, new(1, 1));
-            // enemies.Add(testSkeleton);
-            // _.Enter(testSkeleton);
-
-            // Enemy testOrc = orcFactory.CreateEnemy(_, new(2, 2));
-            // enemies.Add(testOrc);
-            // _.Enter(testOrc);
-
-            Enemy testZombie = zombieFactory.CreateEnemy(_, new(4, 4));
-            enemies.Add(testZombie);
-            _.Enter(testZombie);
-
-            Enemy testSlime = slimeFactory.CreateEnemy(_, new(3, 3));
-            enemies.Add(testSlime);
-            _.Enter(testSlime);
+            //moved to GameFacade 
+            // _game.SpawnEnemy("Zombie", _, new(1, 1));
+            // _game.SpawnEnemy("Skeleton", _, new(2, 2));
+            // _game.SpawnEnemy("Orc", _, new(3, 3));
+            // _game.SpawnEnemy("Slime", _, new(4, 4));
 
             Player testPlayer = new("TestPlayer", Guid.NewGuid(), Color.Red, _, new Vector2(2, 2), new Sword(Guid.NewGuid(), 1, new PhysicalDamageEffect(1)));
             //_.Enter(testPlayer);
             adaptedEnemy = new(testPlayer, _);
             adaptedEnemy.SetStrategy(new MeleeStrategy()); // start with melee
-            //enemies.Add(adaptedEnemy); //jeigu atkomentuoju šitą kliento gui nebeloadina
+            //players.Add(adaptedEnemy); //jeigu atkomentuoju šitą kliento gui nebeloadina
             //Log.Information(adaptedEnemy.Room.ToString());
             _.Enter(adaptedEnemy);
-
-
 
             var clientTask = ListenForClients();
             var serverTask = GameLoop();
@@ -73,9 +59,8 @@ class ServerStateController(int port) : IStateController
             //    Log.Information("{enemy} switched to RangedStrategy!", adaptedEnemy);
             //}
 
-            RunAI();
-            TickOngoingEffects();
-            ProcessPendingSpawns();
+            //AI, status effects and spawning moved to game facade
+            _game.Run();
             await ExecuteClientCommands();
             count++;
             await SyncAll(); // ideally should be a delta update ...
@@ -106,58 +91,6 @@ class ServerStateController(int port) : IStateController
 
         }
 
-    }
-    private readonly Queue<Enemy> _pendingSpawns = new();
-
-    public void EnqueueEnemySpawn(Enemy enemy)
-    {
-        _pendingSpawns.Enqueue(enemy);
-    }
-
-    // Call this **after RunAI()** in your game loop:
-    private void ProcessPendingSpawns()
-    {
-        while (_pendingSpawns.Count > 0)
-        {
-            Enemy enemy = _pendingSpawns.Dequeue();
-            enemies.Add(enemy);
-            enemy.Room.Enter(enemy);
-            Log.Information("Enemy {enemy} actually spawned in room {room}", enemy, enemy.Room);
-        }
-    }
-    private readonly List<IStatus> _ongoingEffects = new();
-    public void RegisterOngoingEffect(IStatus effect)
-    {
-        _ongoingEffects.Add(effect);
-    }
-    private void TickOngoingEffects()
-    {
-        for (int i = _ongoingEffects.Count - 1; i >= 0; i--)
-        {
-            var effect = _ongoingEffects[i];
-            if (!effect.Tick())
-            {
-                _ongoingEffects.RemoveAt(i);
-            }
-        }
-    }
-
-    private void RunAI()
-    {
-        Log.Debug("Ticking AI with {count} entities", enemies.Count);
-        foreach (Enemy enemy in enemies)
-        {
-            if (enemy.GetType() != typeof(Player))
-            {
-                ICommand? command = enemy.TickAI();
-
-                if (command is not null)
-                {
-                    Log.Debug("Entity {enemy} decided to {command}", enemy, command.GetType());
-                }
-                command?.ExecuteOnServer(this);
-            }
-        }
     }
 
     private async Task SendCommand(ICommand command, NetworkStream clientStream)
@@ -223,7 +156,7 @@ class ServerStateController(int port) : IStateController
             return;
         }
 
-        Player player = AddPlayer(Guid.NewGuid(), username);
+        Player player = _game.AddPlayer(Guid.NewGuid(), username);
         Guid clientIdentity = player.Identity;
 
         // Register for replication
@@ -240,7 +173,7 @@ class ServerStateController(int port) : IStateController
         }
     }
 
-    private async Task SyncAll()
+    public async Task SyncAll()
     {
         foreach (KeyValuePair<Guid, NetworkStream> entry in _clients)
         {
@@ -278,30 +211,6 @@ class ServerStateController(int port) : IStateController
         _clients.Remove(identity);
     }
 
-    private Player AddPlayer(System.Guid identity, string username)
-    {
-        Room? initialRoom = worldGrid.GetRoom(_initialRoomPosition);
-        if (initialRoom is null)
-        {
-            Log.Error("Initial room missing?");
-            throw new InvalidOperationException();
-        }
-
-        Vector2 initialRoomShape = initialRoom.Shape;
-        Vector2 middlePosition = new(initialRoomShape.X / 2, initialRoomShape.Y / 2);
-        Sword starterWeapon = new(Guid.NewGuid(), 1, new PhysicalDamageEffect(1));
-        Array colorValues = typeof(Color).GetEnumValues();
-        Color randomColor = (Color?)colorValues.GetValue(rng.Next(colorValues.Length)) ?? throw new InvalidOperationException();
-        Player player = new(username, identity, randomColor, initialRoom, middlePosition, starterWeapon);
-        initialRoom.Enter(player);
-
-        players.Add(player);
-
-        LogEntry playerJoinEntry = LogEntry.ForGlobal($"Player {username} has appeared.");
-        MessageLog.Instance.Add(playerJoinEntry);
-
-        return player;
-    }
 
     private SyncCommand GetSnapshotCommand(System.Guid clientIdentity)
     {
