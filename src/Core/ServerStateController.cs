@@ -13,38 +13,27 @@ class ServerStateController(int port) : IStateController
     private readonly Dictionary<Guid, NetworkStream> _clients = [];
     private readonly Random rng = new(); // should be a singleton for consistency.
     private PlayerEnemyAdapter adaptedEnemy;
+    private GameFacade? _game;
+    public GameFacade Game => _game ?? throw new InvalidOperationException("GameFacade not initialized");
+
 
     public override async Task Run()
     {
         try
         {
-            IEnemyFactory skeletonFactory = new SkeletonFactory();
-            IEnemyFactory orcFactory = new OrcFactory();
-            IEnemyFactory zombieFactory = new ZombieFactory();
-            IEnemyFactory slimeFactory = new SlimeFactory();
-            Room _ = worldGrid.GenRoom(_initialRoomPosition);
+            _game = new(this, worldGrid, MessageLog.Instance);
+            Room _ = _game.createRoom(_initialRoomPosition);
 
-            // Enemy testSkeleton = skeletonFactory.CreateEnemy(_, new(1, 1));
-            // enemies.Add(testSkeleton);
-            // _.Enter(testSkeleton);
-
-            // Enemy testOrc = orcFactory.CreateEnemy(_, new(2, 2));
-            // enemies.Add(testOrc);
-            // _.Enter(testOrc);
-
-            Enemy testZombie = zombieFactory.CreateEnemy(_, new(4, 4));
-            enemies.Add(testZombie);
-            _.Enter(testZombie);
-
-            Enemy testSlime = slimeFactory.CreateEnemy(_, new(3, 3));
-            enemies.Add(testSlime);
-            _.Enter(testSlime);
+            _game.SpawnEnemy("Zombie", _, new(1, 1));
+            _game.SpawnEnemy("Skeleton", _, new(2, 2));
+            _game.SpawnEnemy("Orc", _, new(3, 3));
+            _game.SpawnEnemy("Slime", _, new(4, 4));
 
             Player testPlayer = new("TestPlayer", Guid.NewGuid(), Color.Red, _, new Vector2(2, 2), new Sword(Guid.NewGuid(), 1, new PhysicalDamageEffect(1)));
             //_.Enter(testPlayer);
             adaptedEnemy = new(testPlayer, _);
             adaptedEnemy.SetStrategy(new MeleeStrategy()); // start with melee
-            //enemies.Add(adaptedEnemy); //jeigu atkomentuoju šitą kliento gui nebeloadina
+            //players.Add(adaptedEnemy); //jeigu atkomentuoju šitą kliento gui nebeloadina
             //Log.Information(adaptedEnemy.Room.ToString());
             _.Enter(adaptedEnemy);
 
@@ -240,7 +229,7 @@ class ServerStateController(int port) : IStateController
         }
     }
 
-    private async Task SyncAll()
+    public async Task SyncAll()
     {
         foreach (KeyValuePair<Guid, NetworkStream> entry in _clients)
         {
