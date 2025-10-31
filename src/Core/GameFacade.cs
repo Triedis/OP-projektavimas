@@ -5,6 +5,8 @@ class GameFacade
     private readonly ServerStateController _server;
     private readonly WorldGrid _world;
     private readonly MessageLog _log;
+    private readonly Random rng = new();
+    private readonly Vector2 _initialRoomPosition = new(0, 0);
     private readonly Dictionary<string, IEnemyFactory> _factories = new();
 
     public GameFacade(ServerStateController server, WorldGrid worldGrid, MessageLog log)
@@ -34,12 +36,39 @@ class GameFacade
         }
 
         Enemy enemy = factory.CreateEnemy(room, position);
-        _server.EnqueueEnemySpawn(enemy);
+        EnqueueEnemySpawn(enemy);
         _log.Add(LogEntry.ForGlobal($"{type} spawned at {position}."));
     }
-    public Room createRoom(Vector2 pos)
+    public Room CreateInitialRoom()
     {
-        return _world.GenRoom(pos);
+        Room _ = _world.GenRoom(_initialRoomPosition);
+
+        SpawnEnemy("Zombie", _, new(1, 1));
+        //SpawnEnemy("Skeleton", _, new(2, 2));
+        SpawnEnemy("Orc", _, new(3, 3));
+        SpawnEnemy("Slime", _, new(4, 4));
+        CreateLootDrop(new Axe(Guid.NewGuid(), 1, new PhysicalDamageEffect(10)), _, new(2, 2));
+        return _;
+    }
+    public LootDrop CreateLootDrop(Weapon item, Room room, Vector2 pos)
+    {
+        LootDrop loot = new LootDrop(item, pos);
+        room.LootDrops.Add(loot);
+        return loot;
+    }
+    public LootDrop CreateRandomLootDrop(Room room, Vector2 pos)
+    {
+        if (_factories.Count == 0)
+        {
+            throw new InvalidOperationException("No enemy factories registered!");
+        }
+
+        var randomIndex = new Random().Next(_factories.Count);
+        var factory = _factories.ElementAt(randomIndex).Value;
+        Weapon weapon = factory.CreateWeapon();
+
+        _log.Add(LogEntry.ForGlobal($"Random weapon generated: {weapon}"));
+        return CreateLootDrop(weapon, room, pos);
     }
     public async Task UseWeapon(Guid actorId)
     {
@@ -82,6 +111,66 @@ class GameFacade
             }
         }
     }
+    public void Run()
+    {
+        //CreateInitialRoom();
+        RunAI();
+        TickOngoingEffects();
+        ProcessPendingSpawns();
+    }
+    private void RunAI()
+    {
+        Log.Debug("Ticking AI with {count} entities", _server.enemies.Count);
+        foreach (Enemy enemy in _server.enemies)
+        {
+            if (enemy.GetType() != typeof(Player))
+            {
+                ICommand? command = enemy.TickAI();
+
+                if (command is not null)
+                {
+                    Log.Debug("Entity {enemy} decided to {command}", enemy, command.GetType());
+                }
+                command?.ExecuteOnServer(_server);
+            }
+        }
+    }
+    private readonly Queue<Enemy> _pendingSpawns = new();
+
+    public void EnqueueEnemySpawn(Enemy enemy)
+    {
+        _pendingSpawns.Enqueue(enemy);
+    }
+
+    // Call this **after RunAI()** in your game loop:
+    public void ProcessPendingSpawns()
+    {
+        while (_pendingSpawns.Count > 0)
+        {
+            Enemy enemy = _pendingSpawns.Dequeue();
+            _server.enemies.Add(enemy);
+            enemy.Room.Enter(enemy);
+            Log.Information("Enemy {enemy} actually spawned in room {room}", enemy, enemy.Room);
+        }
+    }
+    private readonly List<IStatus> _ongoingEffects = new();
+    public void RegisterOngoingEffect(IStatus effect)
+    {
+        _ongoingEffects.Add(effect);
+    }
+    public void TickOngoingEffects()
+    {
+        Log.Debug("Ticking with {count} effects", _ongoingEffects.Count);
+        for (int i = _ongoingEffects.Count - 1; i >= 0; i--)
+        {
+            var effect = _ongoingEffects[i];
+            if (!effect.Tick())
+            {
+                _ongoingEffects.RemoveAt(i);
+            }
+        }
+    }
+
     public async Task MovePlayer(Guid playerId, Vector2 newPosition)
     {
         await Task.Run(() =>
@@ -129,11 +218,11 @@ class GameFacade
                     }
                 }
 
-                if (clear) {
+                if (clear)
+                {
                     Log.Debug("Moving in room to {pos}", pos);
                     target.SetPositionInRoom(pos);
                     Console.ForegroundColor = ConsoleColor.White;
-
                 }
 
             }
@@ -141,12 +230,12 @@ class GameFacade
             {
                 Vector2 offsetPosition = room.WorldGridPosition + DirectionUtils.GetVectorDirection(exitDirValuePair.Key);
                 Console.WriteLine($"Trying to enter room at {offsetPosition}");
-                Room? newRoom = _server.worldGrid.GetRoom(offsetPosition);
+                Room? newRoom = _world.GetRoom(offsetPosition);
                 if (newRoom is null)
                 {
 
                     Console.WriteLine("Room is null ... Creating.");
-                    newRoom = _server.worldGrid.GenRoom(offsetPosition);
+                    newRoom = _world.GenRoom(offsetPosition);
                 }
                 Direction enteringFrom = DirectionUtils.GetOpposite(exitDirValuePair.Key);
                 Console.WriteLine($"Entering room from {enteringFrom}");
@@ -155,5 +244,29 @@ class GameFacade
                 return;
             }
         });
+    }
+    public Player AddPlayer(System.Guid identity, string username)
+    {
+        Room? initialRoom = _world.GetRoom(_initialRoomPosition);
+        if (initialRoom is null)
+        {
+            Log.Error("Initial room missing?");
+            throw new InvalidOperationException();
+        }
+
+        Vector2 initialRoomShape = initialRoom.Shape;
+        Vector2 middlePosition = new(initialRoomShape.X / 2, initialRoomShape.Y / 2);
+        Sword starterWeapon = new(Guid.NewGuid(), 1, new PhysicalDamageEffect(10));
+        Array colorValues = typeof(Color).GetEnumValues();
+        Color randomColor = (Color?)colorValues.GetValue(rng.Next(colorValues.Length)) ?? throw new InvalidOperationException();
+        Player player = new(username, identity, randomColor, initialRoom, middlePosition, starterWeapon);
+        initialRoom.Enter(player);
+
+        _server.players.Add(player);
+
+        LogEntry playerJoinEntry = LogEntry.ForGlobal($"Player {username} has appeared.");
+        MessageLog.Instance.Add(playerJoinEntry);
+
+        return player;
     }
 }

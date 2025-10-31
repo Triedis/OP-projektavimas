@@ -1,5 +1,5 @@
-class LootDrop(Sword item, Vector2 positionInRoom)
+class LootDrop(Weapon item, Vector2 positionInRoom)
 {
-    Sword Item { get; } = item;
-    Vector2 PositionInRoom { get; } = positionInRoom;
+    public Weapon Item { get; private set; } = item;
+    public Vector2 PositionInRoom { get; private set; } = positionInRoom;
 }

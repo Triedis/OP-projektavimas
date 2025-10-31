@@ -14,7 +14,11 @@ class SpawnEnemyCommand(Enemy enemy) : ICommand
         Log.Information("Spawning enemy {enemy} in room {room}", EnemyToSpawn, EnemyToSpawn.Room);
 
         // Instead of directly adding to enemies, enqueue it for the next tick
-        gameState.EnqueueEnemySpawn(EnemyToSpawn);
+        if(gameState is ServerStateController)
+        {
+            gameState.Game.EnqueueEnemySpawn(EnemyToSpawn);
+        }
+            
 
         Log.Information("Enemy spawn enqueued");
         return Task.CompletedTask;
