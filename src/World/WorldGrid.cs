@@ -26,107 +26,46 @@ class WorldGrid(int seed)
     public int Seed = seed;
     public readonly Random random = new(seed);
 
-    public Room GenRoom(Vector2 position)
+    private readonly IRoomFactory standardRoomFactory = new StandardRoomFactory();
+    private readonly IRoomFactory treasureRoomFactory = new TreasureRoomFactory();
+    private readonly IRoomFactory bossRoomFactory = new BossRoomFactory();
+
+    /// <summary>
+    /// Generates a new room at the specified position.
+    /// This method now uses the Factory pattern to create different types of rooms,
+    /// adding variety and extensibility to the dungeon generation process.
+    /// </summary>
+    /// <param name="position">The grid position to generate the room at.</param>
+    /// <returns>The newly created Room, or null if a room already exists at that position.</returns>
+    public Room? GenRoom(Vector2 position)
     {
-        if (Rooms.TryGetValue(position, out Room? existingRoom)) {
+        if (Rooms.ContainsKey(position))
+        {
             Console.WriteLine("Would dupe rooms, abort!");
             return null;
         }
 
-        Vector2 shape = new(
-            (int)random.NextInt64(10, 25),
-            (int)random.NextInt64(10, 25)
-        );
+        IRoomFactory selectedFactory;
+        double chance = random.NextDouble();
 
-        Dictionary<Direction, Room?> locality = new()
+        // Boss rooms are rare and should only appear after the dungeon has some size.
+        if (chance < 0.05 && Rooms.Count > 5)
         {
-            { Direction.NORTH, GetRoom(position + DirectionUtils.GetVectorDirection(Direction.NORTH)) },
-            { Direction.EAST, GetRoom(position + DirectionUtils.GetVectorDirection(Direction.EAST)) },
-            { Direction.SOUTH, GetRoom(position + DirectionUtils.GetVectorDirection(Direction.SOUTH)) },
-            { Direction.WEST, GetRoom(position + DirectionUtils.GetVectorDirection(Direction.WEST)) }
-        };
-
-        Room room = new(
-                    worldGridPosition: position,
-                    shape
-                );
-
-        Vector2 midPoint = new(shape.X / 2, shape.Y / 2);
-        Dictionary<Direction, bool> used = [];
-
-        int quota = 0;
-        foreach (Direction dir in Enum.GetValues<Direction>())
-        {
-            used[dir] = false;
-
-            locality.TryGetValue(dir, out Room? adjacent);
-            if (adjacent is null)
-            {
-                continue;
-            }
-
-            adjacent.BoundaryPoints.TryGetValue(DirectionUtils.GetOpposite(dir), out RoomBoundary? adjacentExit);
-            if (adjacentExit is null)
-            {
-                continue;
-            }
-
-            Console.WriteLine($"Existing room at {dir} requires exit/entry combo");
-
-            int maxX = shape.X - 1;
-            int maxY = shape.Y - 1;
-            int midX = shape.X / 2;
-            int midY = shape.Y / 2;
-            Vector2 newBoundarypoint = dir switch
-            {
-                Direction.NORTH => new Vector2(midX, 0),
-                Direction.EAST => new Vector2(maxX, midY),
-                Direction.SOUTH => new Vector2(midX, maxY),
-                Direction.WEST => new Vector2(0, midY),
-                _ => new Vector2(midX, midY),
-            };
-
-            room.BoundaryPoints[dir] = new(newBoundarypoint);
-            quota++;
-            used[dir] = true;
+            selectedFactory = bossRoomFactory;
         }
-        Console.WriteLine($"Existing locality quota added by {quota}");
-
-
-        int numBoundariesToGenerate = (int)random.NextInt64(1, 5 - quota);
-        for (int i = 0; i < numBoundariesToGenerate; i++)
+        // Treasure rooms are uncommon.
+        else if (chance < 0.20)
         {
-            var unusedDirections = used.Where(pair => pair.Value == false)
-                .Select(pair => pair.Key)
-                .ToList();
-            
-            if (unusedDirections.Count == 0)
-            {
-                break;
-            }
-
-            int randomIndex = random.Next(unusedDirections.Count);
-            Direction directionToUse = unusedDirections[randomIndex];
-            Console.WriteLine($"Choosing direction {directionToUse}");
-
-            int maxX = shape.X - 1;
-            int maxY = shape.Y - 1;
-            int midX = shape.X / 2;
-            int midY = shape.Y / 2;
-            Vector2 newBoundarypoint = directionToUse switch
-            {
-                Direction.NORTH => new Vector2(midX, 0),
-                Direction.EAST => new Vector2(maxX, midY),
-                Direction.SOUTH => new Vector2(midX, maxY),
-                Direction.WEST => new Vector2(0, midY),
-                _ => new Vector2(midX, midY),
-            };
-            room.BoundaryPoints[directionToUse] = new(newBoundarypoint);
-            quota++;
-            used[directionToUse] = true;
+            selectedFactory = treasureRoomFactory;
+        }
+        // Standard rooms are the most common.
+        else
+        {
+            selectedFactory = standardRoomFactory;
         }
 
-
+        // Delegate the room creation to the selected factory.
+        Room room = selectedFactory.CreateRoom(position, this);
         Rooms.Add(position, room);
 
         return room;
