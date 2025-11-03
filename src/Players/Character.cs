@@ -15,6 +15,8 @@ abstract class Character
     public virtual Weapon Weapon { get; set; }
     public virtual bool Dead { get; set; } = false;
     public virtual Room Room { get; set; }
+    [JsonIgnore]
+    public List<IActionCommand> ActiveCommands = [];
 
     [JsonConstructor]
     public Character() { }
@@ -51,6 +53,13 @@ abstract class Character
             LogEntry characterDiedLogEntry = LogEntry.ForRoom($"{this} has died", Room);
             MessageLog.Instance.Add(characterDiedLogEntry);
         }
+    }
+
+    public void Heal(int points)
+    {
+        if (Dead) return;
+
+        Health += points;
     }
 
     /// <summary>

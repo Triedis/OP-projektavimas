@@ -1,4 +1,4 @@
-﻿using System.Collections.Concurrent;
+using System.Collections.Concurrent;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -10,7 +10,7 @@ class ServerStateController(int port) : IStateController
     private readonly int _port = port;
     private readonly Queue<ICommand> _receivedCommands = [];
     private readonly Dictionary<Guid, NetworkStream> _clients = [];
-     // should be a singleton for consistency.
+    // should be a singleton for consistency.
     private PlayerEnemyAdapter adaptedEnemy;
     private GameFacade? _game;
     public GameFacade Game => _game ?? throw new InvalidOperationException("GameFacade not initialized");
@@ -22,7 +22,7 @@ class ServerStateController(int port) : IStateController
             _game = new(this, worldGrid, MessageLog.Instance);
             Room _ = _game.CreateInitialRoom();
 
-            //moved to GameFacade 
+            //moved to GameFacade
             // _game.SpawnEnemy("Zombie", _, new(1, 1));
             // _game.SpawnEnemy("Skeleton", _, new(2, 2));
             // _game.SpawnEnemy("Orc", _, new(3, 3));
@@ -60,11 +60,18 @@ class ServerStateController(int port) : IStateController
             //}
 
             //AI, status effects and spawning moved to game facade
-            _game.Run();
-            await ExecuteClientCommands();
-            count++;
-            await SyncAll(); // ideally should be a delta update ...
-            await Task.Delay(500);
+            try
+            {
+                _game.Run();
+                await ExecuteClientCommands();
+                count++;
+                await SyncAll(); // ideally should be a delta update ...
+                await Task.Delay(500);
+            }
+            catch (Exception ex)
+            {
+                Log.Error("{ex}", ex);
+            }
         }
     }
 
@@ -95,41 +102,41 @@ class ServerStateController(int port) : IStateController
 
     private async Task SendCommand(ICommand command, NetworkStream clientStream)
     {
-            Log.Debug($"Sending of type {command.GetType()}");
+        Log.Debug($"Sending of type {command.GetType()}");
 
-            var duplicateGroups = worldGrid.GetAllRooms()
-                .GroupBy(room => room.WorldGridPosition)
-                .Where(group => group.Count() > 1);
+        var duplicateGroups = worldGrid.GetAllRooms()
+            .GroupBy(room => room.WorldGridPosition)
+            .Where(group => group.Count() > 1);
 
-            if (duplicateGroups.Any())
+        if (duplicateGroups.Any())
+        {
+            foreach (var group in duplicateGroups)
             {
-                foreach (var group in duplicateGroups)
-                {
-                    Log.Warning($"Duplicate room found at position {group.Key}. Count: {group.Count()}");
-                }
+                Log.Warning($"Duplicate room found at position {group.Key}. Count: {group.Count()}");
             }
+        }
 
-            byte[] jsonBytes = JsonSerializer.SerializeToUtf8Bytes(command, NetworkSerializer.Options);
+        byte[] jsonBytes = JsonSerializer.SerializeToUtf8Bytes(command, NetworkSerializer.Options);
 
-            int messageLength = jsonBytes.Length; // required for length-prefixing. TCP can be annoying.
-            byte[] lengthPrefix = BitConverter.GetBytes(messageLength);
+        int messageLength = jsonBytes.Length; // required for length-prefixing. TCP can be annoying.
+        byte[] lengthPrefix = BitConverter.GetBytes(messageLength);
 
-            var b = Encoding.UTF8.GetString(jsonBytes, 0, messageLength);
-            Log.Debug("sending {b}", b);
+        var b = Encoding.UTF8.GetString(jsonBytes, 0, messageLength);
+        // Log.Debug("sending {b}", b);
 
-            try
-            {
-                await clientStream.WriteAsync(lengthPrefix);
-                await clientStream.WriteAsync(jsonBytes);
-                await clientStream.FlushAsync();
-            }
-            catch
-            {
-                Log.Debug($"Failed to repliate to client. Is it still alive?");
-                throw;
-            }
+        try
+        {
+            await clientStream.WriteAsync(lengthPrefix);
+            await clientStream.WriteAsync(jsonBytes);
+            await clientStream.FlushAsync();
+        }
+        catch
+        {
+            Log.Debug($"Failed to repliate to client. Is it still alive?");
+            throw;
+        }
 
-            Log.Debug($"Sent of type {command.GetType()} with length {messageLength}");
+        Log.Debug($"Sent of type {command.GetType()} with length {messageLength}");
     }
 
     private async Task ListenForClients()

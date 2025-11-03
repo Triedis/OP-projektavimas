@@ -26,7 +26,8 @@ class TerminalRenderer
         }
 
         Room? currentRoom = player.Room;
-        if (currentRoom is null) {
+        if (currentRoom is null)
+        {
             Log.Warning("No current room. Waiting for state update ...");
             return;
         }
@@ -42,10 +43,13 @@ class TerminalRenderer
                     log.Add($"calc room pixel {position}");
                     RoomBoundary? boundary = currentRoom.BoundaryPoints.Select(pair => pair.Value).Where(boundary => boundary.PositionInRoom.Equals(position)).FirstOrDefault();
                     Console.SetCursorPosition(x, y);
-                    if (boundary is null) {
+                    if (boundary is null)
+                    {
                         log.Add($"NO BOUND");
                         Console.Write('#');
-                    } else {
+                    }
+                    else
+                    {
                         log.Add($"BOUNDARY");
                         Console.Write('-');
                     }
@@ -95,8 +99,8 @@ class TerminalRenderer
             Console.Write(enemySymbol);
 
         }
-        
-        foreach(var l in currentRoom.LootDrops)
+
+        foreach (var l in currentRoom.LootDrops)
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.SetCursorPosition(l.PositionInRoom.X, l.PositionInRoom.Y);
@@ -127,7 +131,8 @@ class TerminalRenderer
 
         foreach (var p in state.players.Where(p => p.Room.Equals(state.Identity?.Room)))
         {
-            Log.Information("{p} is being rendered at {@pos}", p, p.PositionInRoom);
+            bool isSelf = p.Equals(state.Identity);
+            Log.Information("{p} is being rendered at {@pos} (is_self={isSelf})", p, p.PositionInRoom, isSelf);
             Console.ForegroundColor = (ConsoleColor)p.Color;
             Console.SetCursorPosition(p.PositionInRoom.X, p.PositionInRoom.Y);
             Console.Write('@');
@@ -138,11 +143,14 @@ class TerminalRenderer
 
         IReadOnlyList<string> MessagesToDisplay = [.. state.MessagesToDisplay.Reverse().Take(RENDER_N_LAST_MESSAGES)];
         int i = 0;
-        foreach (string message in MessagesToDisplay) {
-            if (i == RENDER_N_LAST_MESSAGES - 2) {
+        foreach (string message in MessagesToDisplay)
+        {
+            if (i == RENDER_N_LAST_MESSAGES - 2)
+            {
                 Console.ForegroundColor = ConsoleColor.Gray;
             }
-            if (i == RENDER_N_LAST_MESSAGES - 1) {
+            if (i == RENDER_N_LAST_MESSAGES - 1)
+            {
                 Console.ForegroundColor = ConsoleColor.DarkGray;
             }
             Console.WriteLine(message);
