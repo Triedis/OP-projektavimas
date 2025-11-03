@@ -15,6 +15,8 @@ abstract class Character
     public virtual Weapon Weapon { get; set; }
     public virtual bool Dead { get; set; } = false;
     public virtual Room Room { get; set; }
+    [JsonIgnore]
+    public List<IActionCommand> ActiveCommands = [];
 
     [JsonConstructor]
     public Character() { }

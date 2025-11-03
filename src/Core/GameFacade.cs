@@ -116,6 +116,7 @@ class GameFacade
             foreach (IActionCommand consequence in consequencues)
             {
                 consequence.Execute(_server);
+                target.ActiveCommands.Add(consequence);
             }
         }
     }
@@ -175,6 +176,24 @@ class GameFacade
             if (!effect.Tick())
             {
                 _ongoingEffects.RemoveAt(i);
+            }
+        }
+
+        IEnumerable<Character> characters = _server.players.Concat<Character>(_server.enemies);
+        foreach (var character in characters)
+        {
+            foreach (IActionCommand activeCommand in character.ActiveCommands)
+            {
+                if (activeCommand.Expired())
+                {
+                    if (character is Player player)
+                    {
+                        LogEntry expiryEntry = LogEntry.ForPlayer($"{activeCommand} went away...", player);
+                        MessageLog.Instance.Add(expiryEntry);
+                    }
+                    activeCommand.Undo(_server);
+                    character.ActiveCommands.Remove(activeCommand);
+                }
             }
         }
     }

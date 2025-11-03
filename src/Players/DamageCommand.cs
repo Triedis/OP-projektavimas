@@ -4,6 +4,7 @@ class DamageCommand(Character target, int damage) : IActionCommand
 {
     private Character Target { get; } = target;
     private int Damage { get; } = damage;
+    private long Age { get; } = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
 
     public void Execute(IStateController gameState)
     {
@@ -18,8 +19,23 @@ class DamageCommand(Character target, int damage) : IActionCommand
         Target.TakeDamage(Damage);
     }
 
+    public bool Expired()
+    {
+        return DateTimeOffset.UtcNow.ToUnixTimeSeconds() - Age > 15;
+    }
+
+    public bool CanExpire()
+    {
+        return true;
+    }
+
     public void Undo(IStateController gameState)
     {
         Target.Heal(Damage);
+    }
+
+    public override string? ToString()
+    {
+        return $"{Damage} damage";
     }
 }
