@@ -20,6 +20,6 @@ class DamageCommand(Character target, int damage) : IActionCommand
 
     public void Undo(IStateController gameState)
     {
-        throw new NotImplementedException();
+        Target.Heal(Damage);
     }
 }

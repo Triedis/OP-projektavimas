@@ -53,6 +53,13 @@ abstract class Character
         }
     }
 
+    public void Heal(int points)
+    {
+        if (Dead) return;
+
+        Health += points;
+    }
+
     /// <summary>
     /// Returns the closest hostile entity.
     /// </summary>
