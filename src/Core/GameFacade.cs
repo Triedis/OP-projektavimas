@@ -41,14 +41,22 @@ class GameFacade
     }
     public Room CreateInitialRoom()
     {
-        Room _ = _world.GenRoom(_initialRoomPosition);
+        Room? initialRoom = _world.GenRoom(_initialRoomPosition);
+        if (initialRoom is null)
+        {
+            initialRoom = _world.GetRoom(_initialRoomPosition);
+            if (initialRoom is null)
+            {
+                throw new InvalidOperationException("Initial room could not be created or retrieved.");
+            }
+        }
 
-        SpawnEnemy("Zombie", _, new(1, 1));
-        //SpawnEnemy("Skeleton", _, new(2, 2));
-        SpawnEnemy("Orc", _, new(3, 3));
-        SpawnEnemy("Slime", _, new(4, 4));
-        CreateLootDrop(new Axe(Guid.NewGuid(), 1, new PhysicalDamageEffect(10)), _, new(2, 2));
-        return _;
+        SpawnEnemy("Zombie", initialRoom, new(1, 1));
+        //SpawnEnemy("Skeleton", initialRoom, new(2, 2));
+        SpawnEnemy("Orc", initialRoom, new(3, 3));
+        SpawnEnemy("Slime", initialRoom, new(4, 4));
+        CreateLootDrop(new Axe(Guid.NewGuid(), 1, new PhysicalDamageEffect(10)), initialRoom, new(2, 2));
+        return initialRoom;
     }
     public LootDrop CreateLootDrop(Weapon item, Room room, Vector2 pos)
     {
@@ -236,6 +244,11 @@ class GameFacade
 
                     Console.WriteLine("Room is null ... Creating.");
                     newRoom = _world.GenRoom(offsetPosition);
+                    if (newRoom is null)
+                    {
+                        _log.Add(LogEntry.ForGlobal($"Failed to create new room at {offsetPosition}. Player movement halted."));
+                        return; // Exit if room creation failed
+                    }
                 }
                 Direction enteringFrom = DirectionUtils.GetOpposite(exitDirValuePair.Key);
                 Console.WriteLine($"Entering room from {enteringFrom}");
