@@ -2,8 +2,8 @@ using System.Text.Json.Serialization;
 
 class TreasureRoom : Room
 {
-    private readonly IEnemyFactory _orcFactory = new OrcFactory();
     public bool IsSealed { get; private set; }
+    private Dictionary<Direction, RoomBoundary>? _sealedBoundaries; // Simple technique for sealing the room without editing anything up-top. Boundaries can be directly manipulated.
 
     public TreasureRoom(Vector2 worldGridPosition, WorldGrid world, Random rng) : base(worldGridPosition, world)
     {
@@ -46,6 +46,10 @@ class TreasureRoom : Room
         if (Occupants.Any(c => c is Enemy))
         {
             IsSealed = true;
+
+            _sealedBoundaries = new Dictionary<Direction, RoomBoundary>(BoundaryPoints);
+            BoundaryPoints.Clear();
+
             LogEntry slamShutMessage = LogEntry.ForRoom(
                 "The door slams shut! You must defeat the loot guards!",
                 this
@@ -59,17 +63,14 @@ class TreasureRoom : Room
         if (IsSealed && !Occupants.OfType<Enemy>().Any(e => !e.Dead))
         {
             IsSealed = false;
+
+            if (_sealedBoundaries != null)
+            {
+                BoundaryPoints = _sealedBoundaries;
+            }
+            _sealedBoundaries = null;
+
             MessageLog.Instance.Add(LogEntry.ForRoom("With the last guardian defeated, the door unseals.", this));
         }
-    }
-
-    public void UnsealRoom()
-    {
-        IsSealed = false;
-        LogEntry slamShutMessage = LogEntry.ForRoom(
-            "The way is clear, you may exit.",
-            this
-        );
-        MessageLog.Instance.Add(slamShutMessage);
     }
 }

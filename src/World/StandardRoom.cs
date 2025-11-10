@@ -2,7 +2,6 @@ using System.Text.Json.Serialization;
 
 class StandardRoom : Room
 {
-    private readonly IEnemyFactory _skeletonFactory = new SkeletonFactory();
     public string EncounterType { get; private set; }
 
     // Structural initialization

@@ -1,7 +1,13 @@
 class BossRoomFactory : IRoomFactory
 {
-    private readonly IEnemyFactory _bossFactory = new SkeletonFactory();
-    private readonly IEnemyFactory _minionFactory = new SkeletonFactory();
+    private readonly IEnemyFactory _bossFactory;
+    private readonly IEnemyFactory _minionFactory;
+
+    public BossRoomFactory(IEnemyFactory bossFactory, IEnemyFactory minionFactory)
+    {
+        this._bossFactory = bossFactory;
+        this._minionFactory = minionFactory;
+    }
 
     public RoomCreationResult CreateRoom(Vector2 position, WorldGrid world, Random rng)
     {

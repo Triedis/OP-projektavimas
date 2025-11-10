@@ -1,3 +1,4 @@
+using System.Security.Authentication.ExtendedProtection;
 using Serilog;
 
 class GameFacade
@@ -11,6 +12,7 @@ class GameFacade
 
     private readonly IRoomFactory _standardRoomFactory;
     private readonly IRoomFactory _treasureRoomFactory;
+    private readonly IRoomFactory _bossRoomFactory;
 
     public GameFacade(ServerStateController server, WorldGrid worldGrid, MessageLog log)
     {
@@ -25,6 +27,7 @@ class GameFacade
 
         _standardRoomFactory = new StandardRoomFactory(_factories["Skeleton"]);
         _treasureRoomFactory = new TreasureRoomFactory(_factories["Orc"]);
+        _bossRoomFactory = new BossRoomFactory(_factories["Orc"], _factories["Skeleton"]);
     }
 
     public void SpawnEnemy(string type, Room room, Vector2 position)
@@ -56,12 +59,16 @@ class GameFacade
 
         IRoomFactory selectedFactory;
         double chance = rng.NextDouble();
-        
-        if (chance < 0.6 && _world.Rooms.Count > 2) // No treasure rooms right at the start
+
+        int roomCount = _world.Rooms.Count;
+        if (chance < 0.4 && roomCount > 2) // No treasure rooms right at the start
         {
             selectedFactory = _treasureRoomFactory;
         }
-        else
+        else if (chance < 0.3 && roomCount > 3)
+        {
+            selectedFactory = _bossRoomFactory;
+        } else
         {
             selectedFactory = _standardRoomFactory;
         }
@@ -223,11 +230,12 @@ class GameFacade
         IEnumerable<Character> characters = _server.players.Concat<Character>(_server.enemies);
         foreach (var character in characters)
         {
-            foreach (IActionCommand activeCommand in character.ActiveCommands)
+            var activeCmds = character.ActiveCommands.ToList(); // explicit copy
+            foreach (IActionCommand activeCommand in activeCmds)
             {
                 if (activeCommand.Expired())
                 {
-                    if (character is Player player)
+                    if (character is Player player && !player.Dead)
                     {
                         LogEntry expiryEntry = LogEntry.ForPlayer($"{activeCommand} went away...", player);
                         MessageLog.Instance.Add(expiryEntry);
