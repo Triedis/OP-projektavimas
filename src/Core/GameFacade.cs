@@ -61,7 +61,7 @@ class GameFacade
         double chance = rng.NextDouble();
 
         int roomCount = _world.Rooms.Count;
-        if (chance < 0.4 && roomCount > 2) // No treasure rooms right at the start
+        if (chance < 0.6 && roomCount > 1) // No treasure rooms right at the start
         {
             selectedFactory = _treasureRoomFactory;
         }
@@ -80,6 +80,7 @@ class GameFacade
         {
             EnqueueEnemySpawn(enemy); // use existing EnqueueEnemySpawn since the new characters aren't parented yet.
         }
+        ProcessPendingSpawns();
 
         _log.Add(LogEntry.ForGlobal($"A new area has been discovered: {result.Room.GetType().Name}"));
         return result.Room;
@@ -338,6 +339,8 @@ class GameFacade
         Vector2 initialRoomShape = initialRoom.Shape;
         Vector2 middlePosition = new(initialRoomShape.X / 2, initialRoomShape.Y / 2);
         Sword starterWeapon = new(Guid.NewGuid(), 1, new PhysicalDamageEffect(10));
+        // var vampiricEffect = new PhysicalDamageEffect(15); // It deals 15 damage
+        // var starterWeapon = new VampiricSword(Guid.NewGuid(), 1, vampiricEffect, 0.5f); // 50% lifesteal
         Array colorValues = typeof(Color).GetEnumValues();
         Color randomColor = (Color?)colorValues.GetValue(rng.Next(colorValues.Length)) ?? throw new InvalidOperationException();
         Player player = new(username, identity, randomColor, initialRoom, middlePosition, starterWeapon);

@@ -1,4 +1,6 @@
+using System.Diagnostics;
 using System.Text.Json.Serialization;
+using Serilog;
 
 class TreasureRoom : Room
 {
@@ -18,14 +20,38 @@ class TreasureRoom : Room
 
     public override void Enter(Character character)
     {
+        Log.Debug("Entering treasure generically");
         base.Enter(character);
 
         if (character is Enemy enemy) { enemy.OnDeath += OnOccupantDeath; }
 
+        Log.Debug("{a}", Occupants);
+        Log.Debug("{a}", Occupants.OfType<Enemy>().Any(e => !e.Dead));
+        Log.Debug("{a}", !IsSealed);
+        Log.Debug("{a}", character is Player);
         if (character is Player && !IsSealed && Occupants.OfType<Enemy>().Any(e => !e.Dead))
         {
+            Log.Debug("Triggering seal");
             SealRoom();
         }
+    }
+
+    public override void Enter(Character character, Direction enteringFrom) {
+        Log.Debug("Entering treasure from somewhere");
+        RoomBoundary? entryPoint = BoundaryPoints.GetValueOrDefault(enteringFrom!);
+        if (entryPoint is null)
+        {
+            Log.Error("Entering from nothing? Logic bug guard triggered");
+            throw new Exception();
+        }
+
+
+        Enter(character);
+
+        character.SetPositionInRoom(entryPoint.PositionInRoom
+            + DirectionUtils.GetVectorDirection(
+                enteringFrom!
+            ).ToScreenSpace());
     }
 
     [JsonConstructor]

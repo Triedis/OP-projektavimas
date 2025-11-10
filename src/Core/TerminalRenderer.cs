@@ -4,7 +4,7 @@ using Serilog;
 
 class TerminalRenderer
 {
-    private static readonly int RENDER_N_LAST_MESSAGES = 10;
+    private static readonly int RENDER_N_LAST_MESSAGES = 15;
     public static void Render(ClientStateController state)
     {
         Log.Debug("Hello, render");

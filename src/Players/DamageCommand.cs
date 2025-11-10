@@ -3,7 +3,7 @@ using Serilog;
 class DamageCommand(Character target, int damage) : IActionCommand
 {
     private Character Target { get; } = target;
-    private int Damage { get; } = damage;
+    public int Damage { get; } = damage;
     private long Age { get; } = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
 
     public void Execute(IStateController gameState)

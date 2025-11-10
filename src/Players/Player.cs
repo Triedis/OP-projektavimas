@@ -7,7 +7,7 @@ class Player : Character {
     [JsonConstructor]
     public Player() {}
 
-    public Player(string username, Guid identity, Color color, Room room, Vector2 positionInRoom, Sword weapon)
+    public Player(string username, Guid identity, Color color, Room room, Vector2 positionInRoom, Weapon weapon)
         : base(room, positionInRoom, weapon, identity)
     {
         Username = username;

@@ -192,7 +192,7 @@ class ServerStateController(int port) : IStateController
             {
                 await SendCommand(cmd, clientStream);
             }
-            catch
+            catch (Exception ex)
             {
                 Log.Warning("Failed to replicate to client {client}. Disconnecting.", clientIdentity);
                 Disconnect(clientIdentity);

@@ -5,6 +5,8 @@ using System.Text.Json.Serialization;
 [JsonDerivedType(typeof(Bow), typeDiscriminator: "Bow")]
 [JsonDerivedType(typeof(Axe), typeDiscriminator: "Axe")]
 [JsonDerivedType(typeof(Dagger), typeDiscriminator: "Dagger")]
+[JsonDerivedType(typeof(VampiricSword), typeDiscriminator: "VampiricSword")]
+
 abstract class Weapon
 {
     public Effect Effect;

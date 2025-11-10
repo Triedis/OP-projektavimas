@@ -89,7 +89,7 @@ abstract class Room
         Occupants.Add(character);
     }
 
-    public void Enter(Character character, Direction enteringFrom) {
+    public virtual void Enter(Character character, Direction enteringFrom) {
         Enter(character);
 
         RoomBoundary? entryPoint = BoundaryPoints.GetValueOrDefault(enteringFrom!);
@@ -110,12 +110,6 @@ abstract class Room
         Occupants.Remove(character);
     }
     
-    public void Exit(Character character, Room other)
-    {
-        character.EnterRoom(other);
-        Occupants.Remove(character);
-    }
-
     // Common base class logic
     public override bool Equals(object? obj)
     {
