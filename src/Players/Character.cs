@@ -15,6 +15,8 @@ abstract class Character
     public virtual Weapon Weapon { get; set; }
     public virtual bool Dead { get; set; } = false;
     public virtual Room Room { get; set; }
+    public event Action<Character> OnDeath; // Event-driven death notification
+
     [JsonIgnore]
     public List<IActionCommand> ActiveCommands = [];
 
@@ -52,6 +54,8 @@ abstract class Character
 
             LogEntry characterDiedLogEntry = LogEntry.ForRoom($"{this} has died", Room);
             MessageLog.Instance.Add(characterDiedLogEntry);
+
+            OnDeath?.Invoke(this); 
         }
     }
 

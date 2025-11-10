@@ -22,13 +22,8 @@ class WorldGrid(int seed)
             );
         }
     }
-
     public int Seed = seed;
     public readonly Random random = new(seed);
-
-    private readonly IRoomFactory standardRoomFactory = new StandardRoomFactory();
-    private readonly IRoomFactory treasureRoomFactory = new TreasureRoomFactory();
-    private readonly IRoomFactory bossRoomFactory = new BossRoomFactory();
 
     /// <summary>
     /// Generates a new room at the specified position.
@@ -37,39 +32,40 @@ class WorldGrid(int seed)
     /// </summary>
     /// <param name="position">The grid position to generate the room at.</param>
     /// <returns>The newly created Room, or null if a room already exists at that position.</returns>
-    public Room? GenRoom(Vector2 position)
-    {
-        if (Rooms.ContainsKey(position))
-        {
-            Console.WriteLine("Would dupe rooms, abort!");
-            return null;
-        }
+    // public Room? GenRoom(Vector2 position)
+    // {
+    //     if (Rooms.ContainsKey(position))
+    //     {
+    //         Console.WriteLine("Would dupe rooms, abort!");
+    //         return null;
+    //     }
 
-        IRoomFactory selectedFactory;
-        double chance = random.NextDouble();
+    //     IRoomFactory selectedFactory;
+    //     double chance = random.NextDouble();
 
-        // Boss rooms are rare and should only appear after the dungeon has some size.
-        if (chance < 0.05 && Rooms.Count > 5)
-        {
-            selectedFactory = bossRoomFactory;
-        }
-        // Treasure rooms are uncommon.
-        else if (chance < 0.20)
-        {
-            selectedFactory = treasureRoomFactory;
-        }
-        // Standard rooms are the most common.
-        else
-        {
-            selectedFactory = standardRoomFactory;
-        }
+    //     // Boss rooms are rare and should only appear after the dungeon has some size.
+    //     if (chance < 0.05 && Rooms.Count > 5)
+    //     {
+    //         selectedFactory = bossRoomFactory;
+    //     }
+    //     // Treasure rooms are uncommon.
+    //     else if (chance < 0.20)
+    //     {
+    //         selectedFactory = treasureRoomFactory;
+    //     }
+    //     // Standard rooms are the most common.
+    //     else
+    //     {
+    //         selectedFactory = standardRoomFactory;
+    //     }
 
-        // Delegate the room creation to the selected factory.
-        Room room = selectedFactory.CreateRoom(position, this);
-        Rooms.Add(position, room);
+    //     // Delegate the room creation to the selected factory.
+    //     Room room = selectedFactory.CreateRoom(position, this);
+    //     Rooms.Add(position, room);
 
-        return room;
-    }
+
+    //     return room;
+    // }
 
     public Room? GetRoom(Vector2 position)
     {

@@ -1,5 +1,6 @@
 
-static class DirectionUtils {
+public static class DirectionUtils
+{
     public static Direction GetOpposite(Direction direction) {
         Direction result = direction;
         switch (direction) {
@@ -23,7 +24,7 @@ static class DirectionUtils {
 }
 
 
-enum Direction
+public enum Direction
 {
     NORTH,
     EAST,

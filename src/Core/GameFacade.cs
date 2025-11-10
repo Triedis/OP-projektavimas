@@ -9,6 +9,9 @@ class GameFacade
     private readonly Vector2 _initialRoomPosition = new(0, 0);
     private readonly Dictionary<string, IEnemyFactory> _factories = new();
 
+    private readonly IRoomFactory _standardRoomFactory;
+    private readonly IRoomFactory _treasureRoomFactory;
+
     public GameFacade(ServerStateController server, WorldGrid worldGrid, MessageLog log)
     {
         this._server = server;
@@ -19,6 +22,9 @@ class GameFacade
         _factories["Zombie"] = new ZombieFactory();
         _factories["Orc"] = new OrcFactory();
         _factories["Slime"] = new SlimeFactory();
+
+        _standardRoomFactory = new StandardRoomFactory(_factories["Skeleton"]);
+        _treasureRoomFactory = new TreasureRoomFactory(_factories["Orc"]);
     }
 
     public void SpawnEnemy(string type, Room room, Vector2 position)
@@ -39,24 +45,59 @@ class GameFacade
         EnqueueEnemySpawn(enemy);
         _log.Add(LogEntry.ForGlobal($"{type} spawned at {position}."));
     }
-    public Room CreateInitialRoom()
-    {
-        Room? initialRoom = _world.GenRoom(_initialRoomPosition);
-        if (initialRoom is null)
+
+    private Room CreateAndPopulateRoom(Vector2 position)
         {
-            initialRoom = _world.GetRoom(_initialRoomPosition);
-            if (initialRoom is null)
-            {
-                throw new InvalidOperationException("Initial room could not be created or retrieved.");
-            }
+        if (_world.GetRoom(position) != null)
+        {
+            Log.Error("Attempted to generate a room at an existing position {pos}", position);
+            return _world.GetRoom(position)!;
         }
 
-        SpawnEnemy("Zombie", initialRoom, new(1, 1));
-        //SpawnEnemy("Skeleton", initialRoom, new(2, 2));
-        SpawnEnemy("Orc", initialRoom, new(3, 3));
-        SpawnEnemy("Slime", initialRoom, new(4, 4));
-        CreateLootDrop(new Axe(Guid.NewGuid(), 1, new PhysicalDamageEffect(10)), initialRoom, new(2, 2));
-        return initialRoom;
+        IRoomFactory selectedFactory;
+        double chance = rng.NextDouble();
+        
+        if (chance < 0.6 && _world.Rooms.Count > 2) // No treasure rooms right at the start
+        {
+            selectedFactory = _treasureRoomFactory;
+        }
+        else
+        {
+            selectedFactory = _standardRoomFactory;
+        }
+        
+        RoomCreationResult result = selectedFactory.CreateRoom(position, _world, rng);
+        _world.Rooms.Add(position, result.Room);
+
+        foreach (var enemy in result.GeneratedEnemies)
+        {
+            EnqueueEnemySpawn(enemy); // use existing EnqueueEnemySpawn since the new characters aren't parented yet.
+        }
+
+        _log.Add(LogEntry.ForGlobal($"A new area has been discovered: {result.Room.GetType().Name}"));
+        return result.Room;
+    }
+
+    public Room CreateInitialRoom()
+    {
+        return CreateAndPopulateRoom(_initialRoomPosition);
+
+        // Room? initialRoom = _world.GenRoom(_initialRoomPosition);
+        // if (initialRoom is null)
+        // {
+        //     initialRoom = _world.GetRoom(_initialRoomPosition);
+        //     if (initialRoom is null)
+        //     {
+        //         throw new InvalidOperationException("Initial room could not be created or retrieved.");
+        //     }
+        // }
+
+        // SpawnEnemy("Zombie", initialRoom, new(1, 1));
+        // //SpawnEnemy("Skeleton", initialRoom, new(2, 2));
+        // SpawnEnemy("Orc", initialRoom, new(3, 3));
+        // SpawnEnemy("Slime", initialRoom, new(4, 4));
+        // CreateLootDrop(new Axe(Guid.NewGuid(), 1, new PhysicalDamageEffect(10)), initialRoom, new(2, 2));
+        // return initialRoom;
     }
     public LootDrop CreateLootDrop(Weapon item, Room room, Vector2 pos)
     {
@@ -200,7 +241,7 @@ class GameFacade
 
     public async Task MovePlayer(Guid playerId, Vector2 newPosition)
     {
-        await Task.Run(() =>
+        await Task.Run((Action)(() =>
         {
             Character? target = _server.players.Cast<Character>().Concat(_server.enemies).FirstOrDefault((character) => character.Identity.Equals(playerId));
             if (target is null)
@@ -224,7 +265,7 @@ class GameFacade
             bool inBoundsY = pos.Y >= 1 && pos.Y <= roomy - 2;
             bool inBounds = inBoundsX && inBoundsY;
 
-            KeyValuePair<Direction, RoomBoundary> exitDirValuePair = room.BoundaryPoints.Where(pair => pair.Value.PositionInRoom.Equals(pos)).FirstOrDefault();
+            KeyValuePair<Direction, RoomBoundary> exitDirValuePair = Enumerable.Where<KeyValuePair<Direction, RoomBoundary>>(room.BoundaryPoints, (Func<KeyValuePair<Direction, RoomBoundary>, bool>)(pair => pair.Value.PositionInRoom.Equals(pos))).FirstOrDefault();
 
             Log.Debug("Movement in bounds? {inBounds}", inBounds);
             Log.Debug("Moving to exit? {exitDirValuePair}", exitDirValuePair.Value is not null);
@@ -262,7 +303,7 @@ class GameFacade
                 {
 
                     Console.WriteLine("Room is null ... Creating.");
-                    newRoom = _world.GenRoom(offsetPosition);
+                    newRoom = CreateAndPopulateRoom(offsetPosition);
                     if (newRoom is null)
                     {
                         _log.Add(LogEntry.ForGlobal($"Failed to create new room at {offsetPosition}. Player movement halted."));
@@ -275,7 +316,7 @@ class GameFacade
 
                 return;
             }
-        });
+        }));
     }
     public Player AddPlayer(System.Guid identity, string username)
     {
