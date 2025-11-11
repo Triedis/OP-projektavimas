@@ -1,3 +1,5 @@
+using DungeonCrawler.src.Observer;
+using Serilog;
 using System.Text.Json.Serialization;
 
 [JsonDerivedType(typeof(Player), typeDiscriminator: "Player")]
@@ -17,12 +19,18 @@ abstract class Character
     public virtual Room Room { get; set; }
     public event Action<Character> OnDeath; // Event-driven death notification
 
+    private readonly List<IHealthObserver> observers = new();
+
     [JsonIgnore]
     public List<IActionCommand> ActiveCommands = [];
 
     [JsonConstructor]
     public Character() { }
-
+    public Character(int initialHealth)
+    {
+        Health = initialHealth;
+        Dead = false;
+    }
     protected Character(Room room, Vector2 positionInRoom, Weapon weapon, Guid identity)
     {
         Room = room;
@@ -42,20 +50,25 @@ abstract class Character
         PositionInRoom = position;
     }
 
-    public void TakeDamage(int damage)
+    public virtual void TakeDamage(int damage)
     {
         if (Dead) return;
+        Log.Information("Character {character} takes {damage} damage.", this, damage);
 
+        int oldHealth = Health;
         Health -= damage;
+        if(Health!=oldHealth)
+            NotifyHealthChanged(oldHealth, Health);
+
         if (Health <= 0)
         {
             Dead = true;
             Health = 0;
+            NotifyDeath();
+            //LogEntry characterDiedLogEntry = LogEntry.ForRoom($"{this} has died", Room);
+            //MessageLog.Instance.Add(characterDiedLogEntry);
 
-            LogEntry characterDiedLogEntry = LogEntry.ForRoom($"{this} has died", Room);
-            MessageLog.Instance.Add(characterDiedLogEntry);
-
-            OnDeath?.Invoke(this); 
+            //OnDeath?.Invoke(this); 
         }
     }
 
@@ -103,5 +116,36 @@ abstract class Character
     public override string? ToString()
     {
         return $"char:{Identity}";
+    }
+    public void Attach(IHealthObserver observer)
+    {
+        if (!observers.Contains(observer))
+            observers.Add(observer);
+    }
+
+    public void Detach(IHealthObserver observer)
+    {
+        observers.Remove(observer);
+    }
+    private void NotifyHealthChanged(int oldHealth, int newHealth)
+    {
+        
+        var snapshot = new List<IHealthObserver>(observers);
+        foreach (var observer in snapshot)
+        {
+            observer.OnHealthChanged(this, oldHealth, newHealth);
+        }
+    }
+
+    private void NotifyDeath()
+    {
+        var snapshot = new List<IHealthObserver>(observers);
+        foreach (var observer in snapshot)
+        {
+            observer.OnDeath(this);
+        }
+
+        
+        OnDeath?.Invoke(this);
     }
 }
