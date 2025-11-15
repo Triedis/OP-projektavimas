@@ -10,17 +10,31 @@ class ServerStateController(int port) : IStateController
     private readonly int _port = port;
     private readonly Queue<ICommand> _receivedCommands = [];
     private readonly Dictionary<Guid, NetworkStream> _clients = [];
+    //private readonly MessageLog _log;
     // should be a singleton for consistency.
+    private readonly Random rng = new();
+    private readonly Vector2 _initialRoomPosition = new(0, 0);
     private PlayerEnemyAdapter adaptedEnemy;
-    private GameFacade? _game;
-    public GameFacade Game => _game ?? throw new InvalidOperationException("GameFacade not initialized");
+    private readonly Dictionary<string, IEnemyFactory> _factories = new();
+
+    private IRoomFactory _standardRoomFactory;
+    private IRoomFactory _treasureRoomFactory;
+    private IRoomFactory _bossRoomFactory;
 
     public override async Task Run()
     {
         try
         {
-            _game = new(this, worldGrid, MessageLog.Instance);
-            Room _ = _game.CreateInitialRoom();
+            _factories["Skeleton"] = new SkeletonFactory();
+            _factories["Zombie"] = new ZombieFactory();
+            _factories["Orc"] = new OrcFactory();
+            _factories["Slime"] = new SlimeFactory();
+
+            _standardRoomFactory = new StandardRoomFactory(_factories["Skeleton"]);
+            _treasureRoomFactory = new TreasureRoomFactory(_factories["Orc"]);
+            _bossRoomFactory = new BossRoomFactory(_factories["Orc"], _factories["Skeleton"]);
+
+            Room _ = CreateInitialRoom();
 
             //moved to GameFacade
             // _game.SpawnEnemy("Zombie", _, new(1, 1));
@@ -59,10 +73,11 @@ class ServerStateController(int port) : IStateController
             //    Log.Information("{enemy} switched to RangedStrategy!", adaptedEnemy);
             //}
 
-            //AI, status effects and spawning moved to game facade
             try
             {
-                _game.Run();
+                RunAI();
+                TickOngoingEffects();
+                ProcessPendingSpawns();
                 await ExecuteClientCommands();
                 count++;
                 await SyncAll(); // ideally should be a delta update ...
@@ -71,6 +86,118 @@ class ServerStateController(int port) : IStateController
             catch (Exception ex)
             {
                 Log.Error("{ex}", ex);
+            }
+        }
+    }
+    private void RunAI()
+    {
+        Log.Debug("Ticking AI with {count} entities", enemies.Count);
+        foreach (Enemy enemy in enemies)
+        {
+            if (enemy.GetType() != typeof(Player))
+            {
+                ICommand? command = enemy.TickAI();
+
+                if (command is not null)
+                {
+                    Log.Debug("Entity {enemy} decided to {command}", enemy, command.GetType());
+                }
+                command?.ExecuteOnServer(this);
+            }
+        }
+    }
+    public Room CreateInitialRoom()
+    {
+        return CreateAndPopulateRoom(_initialRoomPosition);
+    }
+    public Room CreateAndPopulateRoom(Vector2 position)
+    {
+        if (worldGrid.GetRoom(position) != null)
+        {
+            Log.Error("Attempted to generate a room at an existing position {pos}", position);
+            return worldGrid.GetRoom(position)!;
+        }
+
+        IRoomFactory selectedFactory;
+        double chance = rng.NextDouble();
+
+        int roomCount = worldGrid.Rooms.Count;
+        if (chance < 0.6 && roomCount > 1) // No treasure rooms right at the start
+        {
+            selectedFactory = _treasureRoomFactory;
+        }
+        else if (chance < 0.3 && roomCount > 3)
+        {
+            selectedFactory = _bossRoomFactory;
+        }
+        else
+        {
+            selectedFactory = _standardRoomFactory;
+        }
+
+        RoomCreationResult result = selectedFactory.CreateRoom(position, worldGrid, rng);
+        worldGrid.Rooms.Add(position, result.Room);
+
+        foreach (var enemy in result.GeneratedEnemies)
+        {
+            EnqueueEnemySpawn(enemy); // use existing EnqueueEnemySpawn since the new characters aren't parented yet.
+        }
+        ProcessPendingSpawns();
+
+        MessageLog.Instance.Add(LogEntry.ForGlobal($"A new area has been discovered: {result.Room.GetType().Name}"));
+        return result.Room;
+    }
+    private readonly Queue<Enemy> _pendingSpawns = new();
+
+    public void EnqueueEnemySpawn(Enemy enemy)
+    {
+        _pendingSpawns.Enqueue(enemy);
+    }
+
+    // Call this **after RunAI()** in your game loop:
+    public void ProcessPendingSpawns()
+    {
+        while (_pendingSpawns.Count > 0)
+        {
+            Enemy enemy = _pendingSpawns.Dequeue();
+            enemies.Add(enemy);
+            enemy.Room.Enter(enemy);
+            Log.Information("Enemy {enemy} actually spawned in room {room}", enemy, enemy.Room);
+        }
+    }
+    private readonly List<IStatus> _ongoingEffects = new();
+    public void RegisterOngoingEffect(IStatus effect)
+    {
+        _ongoingEffects.Add(effect);
+    }
+    public void TickOngoingEffects()
+    {
+        Log.Debug("Ticking with {count} effects", _ongoingEffects.Count);
+        for (int i = _ongoingEffects.Count - 1; i >= 0; i--)
+        {
+            var effect = _ongoingEffects[i];
+            if (!effect.Tick())
+            {
+                _ongoingEffects.RemoveAt(i);
+            }
+        }
+
+        IEnumerable<Character> characters = players.Concat<Character>(enemies);
+        foreach (var character in characters)
+        {
+            var activeCmds = character.ActiveCommands.ToList(); // explicit copy
+            foreach (IActionCommand activeCommand in activeCmds)
+            {
+                if (activeCommand.Expired())
+                {
+                    if (character is Player player && !player.Dead)
+                    {
+                        LogEntry expiryEntry = LogEntry.ForPlayer($"{activeCommand} went away...", player);
+                        MessageLog.Instance.Add(expiryEntry);
+                    }
+                    activeCommand.Undo(this);
+                    character.ActiveCommands.Remove(activeCommand);
+                }
             }
         }
     }
@@ -163,7 +290,7 @@ class ServerStateController(int port) : IStateController
             return;
         }
 
-        Player player = _game.AddPlayer(Guid.NewGuid(), username);
+        Player player = AddPlayer(Guid.NewGuid(), username);
         Guid clientIdentity = player.Identity;
 
         // Register for replication
@@ -269,6 +396,32 @@ class ServerStateController(int port) : IStateController
                 _log.Warning(e, "Failed to deserialize client packet.");
             }
         }
+    }
+    public Player AddPlayer(System.Guid identity, string username)
+    {
+        Room? initialRoom = worldGrid.GetRoom(_initialRoomPosition);
+        if (initialRoom is null)
+        {
+            //Log.Error("Initial room missing?");
+            throw new InvalidOperationException();
+        }
+
+        Vector2 initialRoomShape = initialRoom.Shape;
+        Vector2 middlePosition = new(initialRoomShape.X / 2, initialRoomShape.Y / 2);
+        Sword starterWeapon = new(Guid.NewGuid(), 1, new PhysicalDamageEffect(10));
+        // var vampiricEffect = new PhysicalDamageEffect(15); // It deals 15 damage
+        // var starterWeapon = new VampiricSword(Guid.NewGuid(), 1, vampiricEffect, 0.5f); // 50% lifesteal
+        Array colorValues = typeof(Color).GetEnumValues();
+        Color randomColor = (Color?)colorValues.GetValue(rng.Next(colorValues.Length)) ?? throw new InvalidOperationException();
+        Player player = new(username, identity, randomColor, initialRoom, middlePosition, starterWeapon);
+        initialRoom.Enter(player);
+
+        players.Add(player);
+
+        LogEntry playerJoinEntry = LogEntry.ForGlobal($"Player {username} has appeared.");
+        MessageLog.Instance.Add(playerJoinEntry);
+
+        return player;
     }
 
 

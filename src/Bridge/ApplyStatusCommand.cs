@@ -6,6 +6,7 @@ class ApplyStatusCommand : IActionCommand
     private readonly Character Target;
     private readonly int TickDamage;
     private readonly int Duration;
+    private BleedingStatus status;
 
     public ApplyStatusCommand(Character target, int tickDamage, int duration)
     {
@@ -32,14 +33,15 @@ class ApplyStatusCommand : IActionCommand
         // IActionCommand runs on an authoritative game state, so I'm not sure if this is even used
         if (gameState is ServerStateController server)
         {
-            server.Game.RegisterOngoingEffect(new BleedingStatus(Target, TickDamage, Duration));
+            status = new BleedingStatus(Target, TickDamage, Duration);
+            server.RegisterOngoingEffect(status);
         }
 
     }
 
     public bool Expired()
     {
-        return true;
+        return status.RemainingTicks <= 0;
     }
 
     public override string? ToString()

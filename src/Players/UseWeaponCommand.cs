@@ -12,15 +12,46 @@ class UseWeaponCommand(Guid actorIdentity) : ICommand
 
     public Task ExecuteOnServer(ServerStateController gameState)
     {
+
         Log.Information("UseWeaponCommand::ExecuteOnServer from {actorIdentity}", ActorIdentity);
 
-        if (gameState.Game is null)
+        Character? actor = gameState.players
+    .Concat(gameState.enemies.Cast<Character>())
+    .FirstOrDefault(c => c.Identity == ActorIdentity);
+
+        if (actor is null)
         {
-            Log.Error("GameFacade is not initialized in ServerStateController");
+            Log.Warning("UseWeaponCommand's ActorIdentity is not bound to any character object");
+            return Task.CompletedTask;
+        }
+        if (actor.Dead)
+        {
+            Log.Debug("Dead player {id} tried to act. Ignoring.", actor.Identity);
+            return Task.CompletedTask;
+        }
+        Weapon weapon = actor.Weapon;
+
+        Room room = actor.Room;
+        Character? target = actor.GetClosestOpponent();
+        if (target is null)
+        {
+            Log.Debug("UseWeaponCommand has no suitable target");
             return Task.CompletedTask;
         }
 
-        _ = gameState.Game.UseWeapon(ActorIdentity);
+        if (weapon.CanUse(actor, target, gameState))
+        {
+            Log.Information("Weapon acting on {tgt} {id}", target, target.Identity);
+            LogEntry weaponUseLogEntry = LogEntry.ForRoom($"{actor} swings {actor.Weapon} and hits {target}", room);
+            MessageLog.Instance.Add(weaponUseLogEntry);
+
+            IReadOnlyList<IActionCommand> consequencues = weapon.Act(actor, target);
+            foreach (IActionCommand consequence in consequencues)
+            {
+                consequence.Execute(gameState);
+                target.ActiveCommands.Add(consequence);
+            }
+        }
 
         return Task.CompletedTask;
     }

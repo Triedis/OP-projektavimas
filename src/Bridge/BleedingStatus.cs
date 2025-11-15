@@ -3,7 +3,7 @@ using Serilog;
 class BleedingStatus : IStatus
 {
     private readonly Character Target;
-    private int RemainingTicks;
+    public int RemainingTicks { get; private set; }
     private readonly int TickDamage;
 
     public BleedingStatus(Character target, int tickDamage, int duration)

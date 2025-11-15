@@ -16,7 +16,7 @@ class SpawnEnemyCommand(Enemy enemy) : ICommand
         // Instead of directly adding to enemies, enqueue it for the next tick
         if(gameState is ServerStateController)
         {
-            gameState.Game.EnqueueEnemySpawn(EnemyToSpawn);
+            gameState.EnqueueEnemySpawn(EnemyToSpawn);
         }
             
 

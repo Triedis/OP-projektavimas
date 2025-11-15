@@ -19,12 +19,81 @@ class MoveCommand : ICommand
 
     public async Task ExecuteOnServer(ServerStateController gameState)
     {
-        if (gameState.Game is null)
-        {
-            Log.Error("GameFacade is not initialized in ServerStateController");
-            return;
-        }
+        await Task.Run((Action)(() =>
+                {
+                    Character? target = gameState.players.Cast<Character>().Concat(gameState.enemies).FirstOrDefault((character) => character.Identity.Equals(ActorIdentity));
+                    if (target is null)
+                    {
+                        Console.WriteLine("Failed to replicate movement on server. Nil.");
+                        return;
+                    }
+                    if (target.Dead)
+                    {
+                        Console.WriteLine("Actor is dead and cant move");
+                        return;
+                    }
+                    var pos = Position;
+                    var room = target.Room;
+                    var roomx = room.Shape.X;
+                    var roomy = room.Shape.Y;
 
-        await gameState.Game.MovePlayer(ActorIdentity, Position);
+                    Console.WriteLine($"MoveCommand exec: pos={pos},char={ActorIdentity},rs={room.Shape}");
+
+                    bool inBoundsX = pos.X >= 1 && pos.X <= roomx - 2;
+                    bool inBoundsY = pos.Y >= 1 && pos.Y <= roomy - 2;
+                    bool inBounds = inBoundsX && inBoundsY;
+
+                    KeyValuePair<Direction, RoomBoundary> exitDirValuePair = Enumerable.Where<KeyValuePair<Direction, RoomBoundary>>(room.BoundaryPoints, (Func<KeyValuePair<Direction, RoomBoundary>, bool>)(pair => pair.Value.PositionInRoom.Equals(pos))).FirstOrDefault();
+
+                    Log.Debug("Movement in bounds? {inBounds}", inBounds);
+                    Log.Debug("Moving to exit? {exitDirValuePair}", exitDirValuePair.Value is not null);
+                    if (inBounds)
+                    {
+                        IEnumerable<Character> occupants = room.Occupants;
+                        bool clear = true;
+                        foreach (Character occupant in occupants)
+                        {
+                            if (occupant.Identity.Equals(ActorIdentity))
+                            {
+                                continue;
+                            }
+
+                            if (occupant.PositionInRoom.Equals(pos) && !occupant.Dead)
+                            {
+                                clear = false;
+                            }
+                        }
+
+                        if (clear)
+                        {
+                            Log.Debug("Moving in room to {pos}", pos);
+                            target.SetPositionInRoom(pos);
+                            Console.ForegroundColor = ConsoleColor.White;
+                        }
+
+                    }
+                    else if (exitDirValuePair.Value is not null)
+                    {
+                        Vector2 offsetPosition = room.WorldGridPosition + DirectionUtils.GetVectorDirection(exitDirValuePair.Key);
+                        Console.WriteLine($"Trying to enter room at {offsetPosition}");
+                        Room? newRoom = gameState.worldGrid.GetRoom(offsetPosition);
+                        if (newRoom is null)
+                        {
+
+                            Console.WriteLine("Room is null ... Creating.");
+                            newRoom = gameState.CreateAndPopulateRoom(offsetPosition);
+                            if (newRoom is null)
+                            {
+                                MessageLog.Instance.Add(LogEntry.ForGlobal($"Failed to create new room at {offsetPosition}. Player movement halted."));
+                                return; // Exit if room creation failed
+                            }
+                        }
+                        Direction enteringFrom = DirectionUtils.GetOpposite(exitDirValuePair.Key);
+                        Console.WriteLine($"Entering room from {enteringFrom}");
+                        newRoom.Enter(target, enteringFrom);
+
+                        return;
+                    }
+                }));
     }
 }
