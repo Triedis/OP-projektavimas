@@ -2,7 +2,7 @@ using System.Diagnostics;
 using System.Text.Json.Serialization;
 using Serilog;
 
-class TreasureRoom : Room
+class TreasureRoom : SafeRoom
 {
     public bool IsSealed { get; private set; }
     private Dictionary<Direction, RoomBoundary>? _sealedBoundaries; // Simple technique for sealing the room without editing anything up-top. Boundaries can be directly manipulated.

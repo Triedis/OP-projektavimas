@@ -1,5 +1,5 @@
     
-class BossRoom : Room
+class BossRoom : SafeRoom
 {
     public Character Boss { get; private set; }
     public BossRoom(Vector2 worldGridPosition, WorldGrid world) : base(worldGridPosition, world)

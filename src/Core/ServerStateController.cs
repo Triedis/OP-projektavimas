@@ -35,7 +35,7 @@ class ServerStateController(int port) : IStateController
             _bossRoomFactory = new BossRoomFactory(_factories["Orc"], _factories["Skeleton"]);
 
             Room _ = CreateInitialRoom();
-
+            worldGrid.PrintRoomTree(_);
             //moved to GameFacade
             // _game.SpawnEnemy("Zombie", _, new(1, 1));
             // _game.SpawnEnemy("Skeleton", _, new(2, 2));
@@ -112,41 +112,95 @@ class ServerStateController(int port) : IStateController
     }
     public Room CreateAndPopulateRoom(Vector2 position)
     {
-        if (worldGrid.GetRoom(position) != null)
-        {
-            Log.Error("Attempted to generate a room at an existing position {pos}", position);
-            return worldGrid.GetRoom(position)!;
-        }
+        // If the world already has rooms, return the root (first room)
+        if (worldGrid.Rooms.Count > 0)
+            return worldGrid.Rooms.Values.First();
 
-        IRoomFactory selectedFactory;
-        double chance = rng.NextDouble();
+        // ---- CREATE ROOT ROOM (same as you had) ----
+        IRoomFactory selectedFactory = PickFactoryFor(position);
 
-        int roomCount = worldGrid.Rooms.Count;
-        if (chance < 0.6 && roomCount > 1) // No treasure rooms right at the start
-        {
-            selectedFactory = _treasureRoomFactory;
-        }
-        else if (chance < 0.3 && roomCount > 3)
-        {
-            selectedFactory = _bossRoomFactory;
-        }
-        else
-        {
-            selectedFactory = _standardRoomFactory;
-        }
+        RoomCreationResult rootResult = selectedFactory.CreateRoom(position, worldGrid, rng);
+        Room root = rootResult.Room;
 
-        RoomCreationResult result = selectedFactory.CreateRoom(position, worldGrid, rng);
-        worldGrid.Rooms.Add(position, result.Room);
+        worldGrid.Rooms.Add(position, root);
 
-        foreach (var enemy in result.GeneratedEnemies)
-        {
-            EnqueueEnemySpawn(enemy); // use existing EnqueueEnemySpawn since the new characters aren't parented yet.
-        }
+        foreach (var enemy in rootResult.GeneratedEnemies)
+            EnqueueEnemySpawn(enemy);
+
         ProcessPendingSpawns();
+        MessageLog.Instance.Add(LogEntry.ForGlobal($"A new area has been discovered: {root.GetType().Name}"));
 
-        MessageLog.Instance.Add(LogEntry.ForGlobal($"A new area has been discovered: {result.Room.GetType().Name}"));
-        return result.Room;
+        // ---- NEW: generate a full Composite dungeon ----
+        GenerateChildren(root, depth: 3);   // 3 levels deep, tweak as needed
+
+        return root;
     }
+    private IRoomFactory PickFactoryFor(Vector2 position)
+    {
+        double chance = rng.NextDouble();
+        int roomCount = worldGrid.Rooms.Count;
+
+        if (chance < 0.6 && roomCount > 1)
+            return _treasureRoomFactory;
+
+        if (chance < 0.3 && roomCount > 3)
+            return _bossRoomFactory;
+
+        return _standardRoomFactory;
+    }
+    private void GenerateChildren(Room parent, int depth)
+    {
+        if (depth <= 0)
+            return;
+
+        int childCount = rng.Next(1, 4); // 1–3 new rooms per room
+
+        for (int i = 0; i < childCount; i++)
+        {
+            Vector2 newPos = FindFreePositionNear(parent);
+
+            IRoomFactory factory = PickFactoryFor(newPos);
+            RoomCreationResult result = factory.CreateRoom(newPos, worldGrid, rng);
+            Room child = result.Room;
+
+            // Composite connection first
+            parent.Add(child);
+
+            // Then add to world grid
+            worldGrid.Rooms.Add(newPos, child);
+
+            // Populate enemies
+            foreach (var e in result.GeneratedEnemies)
+                EnqueueEnemySpawn(e);
+
+            ProcessPendingSpawns();
+
+            // Recurse
+            GenerateChildren(child, depth - 1);
+        }
+    }
+    private Vector2 FindFreePositionNear(Room parent)
+    {
+        // Adjacent offsets
+        Vector2[] offsets =
+        {
+        new Vector2(1, 0),
+        new Vector2(-1, 0),
+        new Vector2(0, 1),
+        new Vector2(0, -1)
+    };
+
+        foreach (var off in offsets)
+        {
+            Vector2 candidate = parent.WorldGridPosition + off;
+            if (!worldGrid.Rooms.ContainsKey(candidate))
+                return candidate;
+        }
+
+        // Fallback random position
+        return parent.WorldGridPosition + new Vector2(rng.Next(-5, 6), rng.Next(-5, 6));
+    }
+
     private readonly Queue<Enemy> _pendingSpawns = new();
 
     public void EnqueueEnemySpawn(Enemy enemy)

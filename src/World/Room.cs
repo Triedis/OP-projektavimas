@@ -4,15 +4,24 @@ using Serilog;
 [JsonDerivedType(typeof(StandardRoom), typeDiscriminator: "StandardRoom")]
 [JsonDerivedType(typeof(TreasureRoom), typeDiscriminator: "TreasureRoom")]
 [JsonDerivedType(typeof(BossRoom), typeDiscriminator: "BossRoom")]
-abstract class Room
+abstract class Room : IRoomComposite
 {
     public Vector2 WorldGridPosition { get; }
     public Vector2 Shape { get; protected set; }
     public List<LootDrop> LootDrops { get; protected set; } = [];
-    
+    protected List<Room> _children = new();
+    public Room? ParentRoom { get; set; }
+
+
+    public virtual void Add(Room child) => _children.Add(child);
+    public virtual void Remove(Room child) => _children.Remove(child);
+    public IReadOnlyList<Room> GetChildren() => _children;
+
+
     [JsonIgnore]
     public List<Character> Occupants { get; private set; } = [];
     public Dictionary<Direction, RoomBoundary> BoundaryPoints { get; protected set; } = [];
+    protected Room() { }
 
     protected Room(Vector2 worldGridPosition, WorldGrid world)
     {
@@ -79,16 +88,12 @@ abstract class Room
         };
         return new RoomBoundary(position);
     }
-
-    
-    // Common logic
     public virtual void Enter(Character character)
     {
         character.Room.Exit(character);
         character.EnterRoom(this);
         Occupants.Add(character);
     }
-
     public virtual void Enter(Character character, Direction enteringFrom) {
         Enter(character);
 
@@ -123,5 +128,34 @@ abstract class Room
     public override string? ToString()
     {
         return WorldGridPosition.ToString();
+    }
+}
+class SafeRoom : Room
+{
+    public SafeRoom(Vector2 worldGridPosition, WorldGrid world)
+    : base(worldGridPosition, world) // call Room's constructor
+    {
+    }
+    public SafeRoom(Vector2 worldGridPosition, WorldGrid world, Random rng)
+    : base(worldGridPosition, world)
+    {
+        // you can use rng if needed
+    }
+    public SafeRoom(Vector2 worldGridPosition, Vector2 shape, List<LootDrop> lootDrops, Dictionary<Direction, RoomBoundary> boundaryPoints)
+    : base(worldGridPosition, shape, lootDrops, boundaryPoints)
+    {
+    }
+    public override void Add(Room child)
+    {
+        if (child.ParentRoom != null)
+            throw new InvalidOperationException("This room is already part of another composite!");
+        _children.Add(child);
+        child.ParentRoom = this;
+    }
+
+    public override void Remove(Room child)
+    {
+        if (_children.Remove(child))
+            child.ParentRoom = null;
     }
 }

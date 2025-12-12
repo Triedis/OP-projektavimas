@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-class StandardRoom : Room
+class StandardRoom : SafeRoom
 {
     public string EncounterType { get; private set; }
 

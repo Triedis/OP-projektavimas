@@ -24,7 +24,18 @@ class WorldGrid(int seed)
     }
     public int Seed = seed;
     public readonly Random random = new(seed);
+    public void PrintRoomTree(Room root)
+    {
+        PrintRoomRecursive(root, 0);
+    }
 
+    private void PrintRoomRecursive(Room room, int indent)
+    {
+        Console.WriteLine($"{new string(' ', indent * 2)}- {room.GetType().Name} at {room.WorldGridPosition}");
+
+        foreach (var child in room.GetChildren())
+            PrintRoomRecursive(child, indent + 1);
+    }
     /// <summary>
     /// Generates a new room at the specified position.
     /// This method now uses the Factory pattern to create different types of rooms,
