@@ -43,7 +43,7 @@ static class DungeonCrawler
                         .CreateLogger();
                     Log.Logger = log;
 
-                    ServerStateController server = new(port);
+                    ServerStateController server = new ServerStateProxy(port);
                     await server.Run();
                     break;
                 }

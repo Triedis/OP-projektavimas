@@ -479,7 +479,7 @@ class ServerStateController(int port) : IStateController
     }
 
 
-    private void EnqueueCommand(ICommand command)
+    public void EnqueueCommand(ICommand command)
     {
         _receivedCommands.Enqueue(command);
     }
