@@ -20,11 +20,27 @@ class ServerStateController(int port) : IStateController
     private IRoomFactory _standardRoomFactory;
     private IRoomFactory _treasureRoomFactory;
     private IRoomFactory _bossRoomFactory;
+    private GameLoggerHandler? _loggerChain;
+
 
     public override async Task Run()
     {
         try
         {
+            var firstPlayerId = Guid.NewGuid(); // could be a test player or use placeholder
+            var initialRoomPos = _initialRoomPosition;
+
+            var globalLogger = new GlobalLogger();
+            var playerLogger = new PlayerLogger(firstPlayerId);
+            var roomLogger = new RoomLogger(initialRoomPos);
+            var allLogger = new AllLogger();
+
+            globalLogger.SetNext(playerLogger);
+            playerLogger.SetNext(roomLogger);
+            roomLogger.SetNext(allLogger);
+
+            _loggerChain = globalLogger;
+
             _factories["Skeleton"] = new SkeletonFactory();
             _factories["Zombie"] = new ZombieFactory();
             _factories["Orc"] = new OrcFactory();
@@ -36,6 +52,7 @@ class ServerStateController(int port) : IStateController
 
             Room _ = CreateInitialRoom();
             worldGrid.PrintRoomTree(_);
+
             //moved to GameFacade
             // _game.SpawnEnemy("Zombie", _, new(1, 1));
             // _game.SpawnEnemy("Skeleton", _, new(2, 2));
@@ -349,7 +366,9 @@ class ServerStateController(int port) : IStateController
 
         // Register for replication
         _clients.Add(clientIdentity, client.GetStream());
-        Log.Information($"Received client connection ... {clientIdentity}");
+        var joinEntry = LogEntry.ForGlobal($"Received client connection ... {clientIdentity}");
+        MessageLog.Instance.Add(joinEntry);
+        _loggerChain.Handle(joinEntry);
 
         try
         {
