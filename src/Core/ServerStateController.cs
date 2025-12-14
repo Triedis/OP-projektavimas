@@ -145,7 +145,13 @@ class ServerStateController(int port) : IStateController
             EnqueueEnemySpawn(enemy);
 
         ProcessPendingSpawns();
-        MessageLog.Instance.Add(LogEntry.ForGlobal($"A new area has been discovered: {root.GetType().Name}"));
+        var entry = LogEntry.ForGlobal(
+    $"A new area has been discovered: {root.GetType().Name}"
+);
+
+MessageLog.Instance.Add(entry);
+_loggerChain?.Handle(entry);
+
 
         // ---- NEW: generate a full Composite dungeon ----
         GenerateChildren(root, depth: 3);   // 3 levels deep, tweak as needed
@@ -233,7 +239,14 @@ class ServerStateController(int port) : IStateController
             Enemy enemy = _pendingSpawns.Dequeue();
             enemies.Add(enemy);
             enemy.Room.Enter(enemy);
-            Log.Information("Enemy {enemy} actually spawned in room {room}", enemy, enemy.Room);
+            var entry = LogEntry.ForRoom(
+    $"Enemy {enemy.GetType().Name} has appeared!",
+    enemy.Room
+);
+
+            MessageLog.Instance.Add(entry);
+            _loggerChain?.Handle(entry);
+
         }
     }
     private readonly List<IStatus> _ongoingEffects = new();
@@ -263,8 +276,12 @@ class ServerStateController(int port) : IStateController
                 {
                     if (character is Player player && !player.Dead)
                     {
-                        LogEntry expiryEntry = LogEntry.ForPlayer($"{activeCommand} went away...", player);
+                        var expiryEntry =
+    LogEntry.ForPlayer($"{activeCommand} went away...", player);
+
                         MessageLog.Instance.Add(expiryEntry);
+                        _loggerChain?.Handle(expiryEntry);
+
                     }
                     activeCommand.Undo(this);
                     character.ActiveCommands.Remove(activeCommand);
@@ -410,8 +427,12 @@ class ServerStateController(int port) : IStateController
             return;
         }
 
-        LogEntry playerLeaveEntry = LogEntry.ForGlobal($"Player {player.Username} has departed.");
+        var playerLeaveEntry =
+            LogEntry.ForGlobal($"Player {player.Username} has departed.");
+
         MessageLog.Instance.Add(playerLeaveEntry);
+        _loggerChain?.Handle(playerLeaveEntry);
+
 
         player.Destroy(); // destroy is called to remove the character from any rooms
         players.Remove(player);
@@ -491,9 +512,9 @@ class ServerStateController(int port) : IStateController
 
         players.Add(player);
 
-        LogEntry playerJoinEntry = LogEntry.ForGlobal($"Player {username} has appeared.");
+        var playerJoinEntry = LogEntry.ForGlobal($"Player {username} has appeared.");
         MessageLog.Instance.Add(playerJoinEntry);
-
+        _loggerChain?.Handle(playerJoinEntry);
         return player;
     }
 
