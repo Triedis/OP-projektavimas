@@ -1,5 +1,7 @@
 class Bow(Guid identity, int maxRange, Effect effect) : Weapon(identity, maxRange, effect)
 {
+    public override string Name => "Bow";
+
     public override IReadOnlyList<IActionCommand> Act(Character actor, Character target)
     {
         return Effect.Apply(actor, target);

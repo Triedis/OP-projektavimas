@@ -7,8 +7,13 @@ using System.Text;
 using System.Text.Json;
 using Serilog;
 
-class ClientStateController : IStateController
+public class ClientStateController : IStateController
 {
+    // IStateController implementation
+    public List<Player> players { get; set; } = [];
+    public List<Enemy> enemies { get; set; } = [];
+    public WorldGrid worldGrid { get; set; } = new(1337);
+
     private readonly TcpClient _client; // Don't interact with directly.
     private readonly NetworkStream _stream; // Don't interact with directly. Use ICommand.ExecuteOnClient().
     public ConcurrentQueue<ConsoleKey> InputQueue { get; private set; } = [];
@@ -31,7 +36,7 @@ class ClientStateController : IStateController
         return new ClientStateController(client);
     }
 
-    public override async Task Run()
+    public async Task Run()
     {
         Log.Debug("Hello, run");
         CancellationTokenSource masterCts = new();
@@ -137,6 +142,18 @@ class ClientStateController : IStateController
                     case ConsoleKey.Spacebar:
                         shouldUseWeapon = true;
                         break;
+                case ConsoleKey.E: // Enemy count visitor
+                    var enemyCountVisitor = new EnemyCountVisitor();
+                    worldGrid.Accept(enemyCountVisitor);
+                    MessageLog.Instance.Add(new LogEntry(Loggers.Game, enemyCountVisitor.GetReport()));
+                    break;
+                case ConsoleKey.I: // Room interaction visitor
+                    if (Identity?.Room is IVisitableRoom interactableRoom)
+                    {
+                        var roomInteractionVisitor = new RoomInteractionVisitor(Identity);
+                        interactableRoom.Accept(roomInteractionVisitor);
+                    }
+                    break;
                 }
                 if (moveDirection is not null)
                 {
@@ -217,16 +234,29 @@ class ClientStateController : IStateController
         Log.Debug($"Identity updated to {identity}");
     }
 
+    public Character? FindCharacterByIdentity(Guid identity)
+    {
+        return players.Cast<Character>().Concat(enemies).FirstOrDefault(c => c.Identity == identity);
+    }
+
     /// <summary>
     /// Applies a dumb (entire game state) snapshot to the current world.
     /// </summary>
     /// <param name="snapshot">snapshot</param>
+    private readonly Minimap _minimap = new();
+    public MinimapTile[,] MinimapDisplay { get; private set; } = new MinimapTile[0, 0];
+
     public void ApplySnapshot(GameStateSnapshot snapshot)
     {
         Log.Debug("Received snapshot with n={n} players...", snapshot.Players.Count);
         players = snapshot.Players;
         enemies = snapshot.Enemies;
         worldGrid = snapshot.WorldGrid;
+
+        if (Identity != null && Identity.Room != null)
+        {
+            MinimapDisplay = _minimap.Render(worldGrid, Identity.Room.WorldGridPosition);
+        }
 
         foreach (var room in worldGrid.GetAllRooms())
         {

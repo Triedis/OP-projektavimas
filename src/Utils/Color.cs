@@ -1,9 +1,9 @@
 // Refer to builtin ConsoleColor
-enum Color
+public enum Color
 {
-    Red,
-    Green,
-    Blue,
-    Magenta,
-    Yellow,
+    Red = 12,
+    Green = 10,
+    Blue = 9,
+    Magenta = 13,
+    Yellow = 14,
 }

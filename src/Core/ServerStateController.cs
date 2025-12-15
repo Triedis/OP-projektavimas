@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using System.Collections.Concurrent;
 using System.Net;
 using System.Net.Sockets;
@@ -5,8 +7,13 @@ using System.Text;
 using System.Text.Json;
 using Serilog;
 using OP_Projektavimas.Utils;
-class ServerStateController(int port) : IStateController
+public class ServerStateController(int port) : IStateController
 {
+    // IStateController implementation
+    public List<Player> players { get; set; } = [];
+    public List<Enemy> enemies { get; set; } = [];
+    public WorldGrid worldGrid { get; set; } = new(1337);
+
     private readonly int _port = port;
     private readonly Queue<ICommand> _receivedCommands = [];
     private readonly Dictionary<Guid, NetworkStream> _clients = [];
@@ -23,7 +30,7 @@ class ServerStateController(int port) : IStateController
     private GameLoggerHandler? _loggerChain;
 
 
-    public override async Task Run()
+    public async Task Run()
     {
         try
         {
@@ -53,13 +60,15 @@ class ServerStateController(int port) : IStateController
             Room _ = CreateInitialRoom();
             worldGrid.PrintRoomTree(_);
 
+
+
             //moved to GameFacade
             // _game.SpawnEnemy("Zombie", _, new(1, 1));
             // _game.SpawnEnemy("Skeleton", _, new(2, 2));
             // _game.SpawnEnemy("Orc", _, new(3, 3));
             // _game.SpawnEnemy("Slime", _, new(4, 4));
 
-            Player testPlayer = new("TestPlayer", Guid.NewGuid(), Color.Red, _, new Vector2(2, 2), new Sword(Guid.NewGuid(), 1, new PhysicalDamageEffect(1)));
+            Player testPlayer = new("TestPlayer", Guid.NewGuid(), Color.Red, _, new Vector2(2, 2), new Sword(Guid.NewGuid(), 1, new PhysicalDamageEffect(1), "Test Sword"));
             //_.Enter(testPlayer);
             adaptedEnemy = new(testPlayer, _);
             adaptedEnemy.SetStrategy(new MeleeStrategy()); // start with melee
@@ -129,11 +138,6 @@ class ServerStateController(int port) : IStateController
     }
     public Room CreateAndPopulateRoom(Vector2 position)
     {
-        // If the world already has rooms, return the root (first room)
-        if (worldGrid.Rooms.Count > 0)
-            return worldGrid.Rooms.Values.First();
-
-        // ---- CREATE ROOT ROOM (same as you had) ----
         IRoomFactory selectedFactory = PickFactoryFor(position);
 
         RoomCreationResult rootResult = selectedFactory.CreateRoom(position, worldGrid, rng);
@@ -142,18 +146,16 @@ class ServerStateController(int port) : IStateController
         worldGrid.Rooms.Add(position, root);
 
         foreach (var enemy in rootResult.GeneratedEnemies)
+        {
             EnqueueEnemySpawn(enemy);
+        }
 
         ProcessPendingSpawns();
-        var entry = LogEntry.ForGlobal(
-    $"A new area has been discovered: {root.GetType().Name}"
-);
+        var entry = LogEntry.ForGlobal($"A new area has been discovered: {root.GetType().Name}");
 
-MessageLog.Instance.Add(entry);
-_loggerChain?.Handle(entry);
+        MessageLog.Instance.Add(entry);
+        _loggerChain?.Handle(entry);
 
-
-        // ---- NEW: generate a full Composite dungeon ----
         GenerateChildren(root, depth: 3);   // 3 levels deep, tweak as needed
 
         return root;
@@ -204,14 +206,11 @@ _loggerChain?.Handle(entry);
     }
     private Vector2 FindFreePositionNear(Room parent)
     {
-        // Adjacent offsets
-        Vector2[] offsets =
+        // Shuffled adjacent offsets for variety
+        var offsets = new List<Vector2>
         {
-        new Vector2(1, 0),
-        new Vector2(-1, 0),
-        new Vector2(0, 1),
-        new Vector2(0, -1)
-    };
+            new(1, 0), new(-1, 0), new(0, 1), new(0, -1)
+        }.OrderBy(_ => rng.Next());
 
         foreach (var off in offsets)
         {
@@ -220,8 +219,28 @@ _loggerChain?.Handle(entry);
                 return candidate;
         }
 
-        // Fallback random position
-        return parent.WorldGridPosition + new Vector2(rng.Next(-5, 6), rng.Next(-5, 6));
+        // Fallback: spiral search outwards from the parent
+        int radius = 1;
+        while (true)
+        {
+            radius++;
+            for (int i = -radius; i <= radius; i++)
+            {
+                for (int j = -radius; j <= radius; j++)
+                {
+                    // To only check the perimeter of the square defined by the radius
+                    if (Math.Abs(i) != radius && Math.Abs(j) != radius) continue;
+
+                    Vector2 candidate = parent.WorldGridPosition + new Vector2(i, j);
+                    if (!worldGrid.Rooms.ContainsKey(candidate))
+                    {
+                        return candidate;
+                    }
+                }
+            }
+            // As a safeguard against a completely full map, though unlikely
+            if (radius > 50) throw new InvalidOperationException("Could not find a free position for a new room.");
+        }
     }
 
     private readonly Queue<Enemy> _pendingSpawns = new();
@@ -502,7 +521,7 @@ _loggerChain?.Handle(entry);
 
         Vector2 initialRoomShape = initialRoom.Shape;
         Vector2 middlePosition = new(initialRoomShape.X / 2, initialRoomShape.Y / 2);
-        Sword starterWeapon = new(Guid.NewGuid(), 1, new PhysicalDamageEffect(10));
+        Sword starterWeapon = new(Guid.NewGuid(), 1, new PhysicalDamageEffect(10), "Starter Sword");
         // var vampiricEffect = new PhysicalDamageEffect(15); // It deals 15 damage
         // var starterWeapon = new VampiricSword(Guid.NewGuid(), 1, vampiricEffect, 0.5f); // 50% lifesteal
         Array colorValues = typeof(Color).GetEnumValues();
@@ -522,5 +541,10 @@ _loggerChain?.Handle(entry);
     public void EnqueueCommand(ICommand command)
     {
         _receivedCommands.Enqueue(command);
+    }
+
+    public Character? FindCharacterByIdentity(Guid identity)
+    {
+        return players.Cast<Character>().Concat(enemies).FirstOrDefault(c => c.Identity == identity);
     }
 }

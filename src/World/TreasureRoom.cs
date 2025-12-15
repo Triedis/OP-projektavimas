@@ -2,9 +2,12 @@ using System.Diagnostics;
 using System.Text.Json.Serialization;
 using Serilog;
 
-class TreasureRoom : SafeRoom
+public class TreasureRoom : SafeRoom
 {
     public bool IsSealed { get; private set; }
+    public LootDrop? Loot { get; set; }
+    public bool IsLooted { get; set; } = false;
+
     private Dictionary<Direction, RoomBoundary>? _sealedBoundaries; // Simple technique for sealing the room without editing anything up-top. Boundaries can be directly manipulated.
 
     public TreasureRoom(Vector2 worldGridPosition, WorldGrid world, Random rng) : base(worldGridPosition, world)
@@ -14,6 +17,12 @@ class TreasureRoom : SafeRoom
             world.random.Next(8, 15),
             world.random.Next(8, 15)
         );
+
+        // Create a weapon and a loot drop for it.
+        // In a real game, this would be more varied.
+        var weapon = new Sword(Guid.NewGuid(), 1, new PhysicalDamageEffect(5), "Rusty Sword");
+        Loot = new WeaponLootDrop(weapon, new Vector2(Shape.X / 2, Shape.Y / 2));
+
 
         InitializeBoundaries(world, minExits: 1, maxExits: 2);
     }
@@ -50,8 +59,8 @@ class TreasureRoom : SafeRoom
 
         character.SetPositionInRoom(entryPoint.PositionInRoom
             + DirectionUtils.GetVectorDirection(
-                enteringFrom!
-            ).ToScreenSpace());
+                DirectionUtils.GetOpposite(enteringFrom)
+            ));
     }
 
     [JsonConstructor]
@@ -98,5 +107,9 @@ class TreasureRoom : SafeRoom
 
             MessageLog.Instance.Add(LogEntry.ForRoom("With the last guardian defeated, the door unseals.", this));
         }
+    }
+    public override void Accept(IRoomVisitor visitor)
+    {
+        visitor.Visit(this);
     }
 }

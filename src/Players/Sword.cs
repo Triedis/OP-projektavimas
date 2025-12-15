@@ -1,5 +1,6 @@
-class Sword(Guid identity, int maxRange, Effect effect) : Weapon(identity, maxRange, effect)
+public class Sword(Guid identity, int maxRange, Effect effect, string name) : Weapon(identity, maxRange, effect)
 {
+    public override string Name { get; } = name;
 
     public override IReadOnlyList<IActionCommand> Act(Character actor, Character target)
     {

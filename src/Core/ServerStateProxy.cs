@@ -48,7 +48,7 @@ class ServerStateProxy : ServerStateController
     }
 
     // ---------- PROXY DELEGATION ----------
-    public override async Task Run()
+    public new async Task Run()
     {
         await RealServer.Run();
     }

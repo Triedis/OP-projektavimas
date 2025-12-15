@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-class Player : Character {
+public class Player : Character {
     public string Username { get; set; }
     public Color Color { get; set; }
 

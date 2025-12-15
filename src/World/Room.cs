@@ -4,8 +4,10 @@ using Serilog;
 [JsonDerivedType(typeof(StandardRoom), typeDiscriminator: "StandardRoom")]
 [JsonDerivedType(typeof(TreasureRoom), typeDiscriminator: "TreasureRoom")]
 [JsonDerivedType(typeof(BossRoom), typeDiscriminator: "BossRoom")]
-abstract class Room : IRoomComposite
+public abstract class Room : IRoomComposite, IVisitableRoom
 {
+    public abstract void Accept(IRoomVisitor visitor);
+
     public Vector2 WorldGridPosition { get; }
     public Vector2 Shape { get; protected set; }
     public List<LootDrop> LootDrops { get; protected set; } = [];
@@ -97,17 +99,23 @@ abstract class Room : IRoomComposite
     public virtual void Enter(Character character, Direction enteringFrom) {
         Enter(character);
 
-        RoomBoundary? entryPoint = BoundaryPoints.GetValueOrDefault(enteringFrom!);
+        RoomBoundary? entryPoint = BoundaryPoints.GetValueOrDefault(enteringFrom);
         if (entryPoint is null)
         {
-            Log.Error("Entering from nothing? Logic bug guard triggered");
-            throw new Exception();
+            Log.Error("[Room.Enter] Character {ActorID} tried to enter room {RoomID} from direction {EnteringFrom}, but no boundary exists.",
+                character.Identity, WorldGridPosition, enteringFrom);
+            throw new Exception("Character entered a room from a direction with no boundary.");
         }
 
-        character.SetPositionInRoom(entryPoint.PositionInRoom
+        var newPosition = entryPoint.PositionInRoom
             + DirectionUtils.GetVectorDirection(
-                enteringFrom!
-            ).ToScreenSpace());
+                DirectionUtils.GetOpposite(enteringFrom)
+            );
+        
+        character.SetPositionInRoom(newPosition);
+
+        Log.Information("[Room.Enter] Placed character {ActorID} at new position {Position} in room {RoomID}",
+            character.Identity, newPosition, WorldGridPosition);
     }
 
     public virtual void Exit(Character character)
@@ -130,8 +138,9 @@ abstract class Room : IRoomComposite
         return WorldGridPosition.ToString();
     }
 }
-class SafeRoom : Room
+public abstract class SafeRoom : Room
 {
+    public abstract override void Accept(IRoomVisitor visitor);
     public SafeRoom(Vector2 worldGridPosition, WorldGrid world)
     : base(worldGridPosition, world) // call Room's constructor
     {

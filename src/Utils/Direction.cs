@@ -14,9 +14,9 @@ public static class DirectionUtils
     public static Vector2 GetVectorDirection(Direction direction) {
         Vector2? result = null;
         switch (direction) {
-            case Direction.NORTH: result = new Vector2(0, 1); break;
+            case Direction.NORTH: result = new Vector2(0, -1); break;
             case Direction.EAST: result = new Vector2(1, 0); break;
-            case Direction.SOUTH: result = new Vector2(0, -1); break;
+            case Direction.SOUTH: result = new Vector2(0, 1); break;
             case Direction.WEST: result = new Vector2(-1, 0); break;
         }
         return result!;

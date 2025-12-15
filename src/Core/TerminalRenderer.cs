@@ -4,12 +4,14 @@ using Serilog;
 
 class TerminalRenderer
 {
-    private static readonly int RENDER_N_LAST_MESSAGES = 15;
+    private static readonly int MAP_WIDTH = 50;
+    private static readonly int MAP_HEIGHT = 20;
+    private static readonly int LOG_HEIGHT = 15;
+    private static readonly int RENDER_N_LAST_MESSAGES = LOG_HEIGHT;
+
     public static void Render(ClientStateController state)
     {
-        Log.Debug("Hello, render");
         Console.Clear();
-        List<string> log = [];
 
         if (state.worldGrid == null)
         {
@@ -32,32 +34,8 @@ class TerminalRenderer
             return;
         }
 
-        Console.ForegroundColor = ConsoleColor.Gray;
-        for (int y = 0; y < currentRoom.Shape.Y; y++)
-        {
-            for (int x = 0; x < currentRoom.Shape.X; x++)
-            {
-                Vector2 position = new(x, y);
-                if (y == 0 || y == currentRoom.Shape.Y - 1 || x == 0 || x == currentRoom.Shape.X - 1)
-                {
-                    log.Add($"calc room pixel {position}");
-                    RoomBoundary? boundary = currentRoom.BoundaryPoints.Select(pair => pair.Value).Where(boundary => boundary.PositionInRoom.Equals(position)).FirstOrDefault();
-                    Console.SetCursorPosition(x, y);
-                    if (boundary is null)
-                    {
-                        log.Add($"NO BOUND");
-                        Console.Write('#');
-                    }
-                    else
-                    {
-                        log.Add($"BOUNDARY");
-                        Console.Write('-');
-                    }
-                }
-            }
-        }
+        RenderRoom(currentRoom);
 
-        Console.ForegroundColor = ConsoleColor.White;
         foreach (Enemy enemy in state.enemies.Where(s => s.Room.Equals(currentRoom)))
         {
             ConsoleColor color;
@@ -67,7 +45,7 @@ class TerminalRenderer
             }
             else
             {
-                color = ConsoleColor.Gray;
+                color = ConsoleColor.DarkGray;
             }
             Console.ForegroundColor = color;
             Console.SetCursorPosition(enemy.PositionInRoom.X, enemy.PositionInRoom.Y);
@@ -97,7 +75,7 @@ class TerminalRenderer
                 Log.Warning("Invalid enemy type");
             }
             Console.Write(enemySymbol);
-
+            Console.ResetColor();
         }
 
         foreach (var l in currentRoom.LootDrops)
@@ -106,56 +84,110 @@ class TerminalRenderer
             Console.SetCursorPosition(l.PositionInRoom.X, l.PositionInRoom.Y);
 
             char lootSymbol = 'L';
-            if (l.Item is Sword)
+            if (l is WeaponLootDrop weaponLoot)
             {
-                lootSymbol = 'S';
-            }
-            else if (l.Item is Axe)
-            {
-                lootSymbol = 'A';
-            }
-            else if (l.Item is Dagger)
-            {
-                lootSymbol = 'D';
-            }
-            else if (l.Item is Bow)
-            {
-                lootSymbol = 'B';
-            }
-            else
-            {
-                Log.Warning("Invalid loot type");
+                if (weaponLoot.Item is Sword)
+                {
+                    lootSymbol = 'S';
+                }
+                else if (weaponLoot.Item is Axe)
+                {
+                    lootSymbol = 'A';
+                }
+                else if (weaponLoot.Item is Dagger)
+                {
+                    lootSymbol = 'D';
+                }
+                else if (weaponLoot.Item is Bow)
+                {
+                    lootSymbol = 'B';
+                }
+                else
+                {
+                    Log.Warning("Invalid loot type");
+                }
             }
             Console.Write(lootSymbol);
+            Console.ResetColor();
         }
 
         foreach (var p in state.players.Where(p => p.Room.Equals(state.Identity?.Room)))
         {
             bool isSelf = p.Equals(state.Identity);
-            Log.Information("{p} is being rendered at {@pos} (is_self={isSelf})", p, p.PositionInRoom, isSelf);
             Console.ForegroundColor = (ConsoleColor)p.Color;
             Console.SetCursorPosition(p.PositionInRoom.X, p.PositionInRoom.Y);
             Console.Write('@');
+            Console.ResetColor();
         }
 
-        Console.SetCursorPosition(0, currentRoom.Shape.Y + 1);
-        Console.ResetColor();
+        RenderMinimap(state);
+        RenderLogMessages(state);
+    }
 
-        IReadOnlyList<string> MessagesToDisplay = [.. state.MessagesToDisplay.Reverse().Take(RENDER_N_LAST_MESSAGES)];
-        int i = 0;
-        foreach (string message in MessagesToDisplay)
+    private static void RenderRoom(Room currentRoom)
+    {
+        Console.ForegroundColor = ConsoleColor.Gray;
+        for (int y = 0; y < currentRoom.Shape.Y; y++)
         {
-            if (i == RENDER_N_LAST_MESSAGES - 2)
+            for (int x = 0; x < currentRoom.Shape.X; x++)
             {
-                Console.ForegroundColor = ConsoleColor.Gray;
+                Vector2 position = new(x, y);
+                if (y == 0 || y == currentRoom.Shape.Y - 1 || x == 0 || x == currentRoom.Shape.X - 1)
+                {
+                    RoomBoundary? boundary = currentRoom.BoundaryPoints.Select(pair => pair.Value).Where(boundary => boundary.PositionInRoom.Equals(position)).FirstOrDefault();
+                    Console.SetCursorPosition(x, y);
+                    if (boundary is null)
+                    {
+                        Console.Write('#');
+                    }
+                    else
+                    {
+                        Console.Write('-');
+                    }
+                }
             }
-            if (i == RENDER_N_LAST_MESSAGES - 1)
-            {
-                Console.ForegroundColor = ConsoleColor.DarkGray;
-            }
-            Console.WriteLine(message);
-            i++;
         }
-        Console.ForegroundColor = ConsoleColor.White;
+        Console.ResetColor();
+    }
+
+    private static void RenderMinimap(ClientStateController state)
+    {
+        var minimapGrid = state.MinimapDisplay;
+        int gridHeight = minimapGrid.GetLength(0);
+        int gridWidth = minimapGrid.GetLength(1);
+
+        if (gridHeight > 0)
+        {
+            // Position the minimap at the top right
+            int minimapStartX = Console.WindowWidth - gridWidth - 1;
+            int minimapStartY = 0;
+
+            for (int y = 0; y < gridHeight; y++)
+            {
+                Console.SetCursorPosition(minimapStartX, minimapStartY + y);
+                for (int x = 0; x < gridWidth; x++)
+                {
+                    var tile = minimapGrid[y, x];
+                    Console.ForegroundColor = tile.Color;
+                    Console.Write(tile.Character);
+                }
+            }
+        }
+        Console.ResetColor();
+    }
+
+    private static void RenderLogMessages(ClientStateController state)
+    {
+        // Render Message Log below the main game view
+        int logStartY = MAP_HEIGHT + 2; // Position below the main map
+        Console.SetCursorPosition(0, logStartY);
+
+        IReadOnlyList<string> messagesToDisplay = [.. state.MessagesToDisplay.Reverse().Take(RENDER_N_LAST_MESSAGES)];
+        Console.ForegroundColor = ConsoleColor.DarkGray; // Distinct color for logs
+        foreach (string message in messagesToDisplay)
+        {
+            Console.WriteLine(message);
+        }
+        Console.ResetColor();
     }
 }

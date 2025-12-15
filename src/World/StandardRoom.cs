@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-class StandardRoom : SafeRoom
+public class StandardRoom : SafeRoom
 {
     public string EncounterType { get; private set; }
 
@@ -18,5 +18,9 @@ class StandardRoom : SafeRoom
         : base(worldGridPosition, shape, lootDrops, boundaryPoints) // Pass base properties up
     {
         EncounterType = encounterType;
+    }
+    public override void Accept(IRoomVisitor visitor)
+    {
+        visitor.Visit(this);
     }
 }

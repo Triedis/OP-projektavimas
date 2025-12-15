@@ -8,7 +8,7 @@ using OP_Projektavimas.Utils;
 [JsonDerivedType(typeof(PlayerEnemyAdapter), typeDiscriminator: "PlayerEnemyAdapter")]
 
 
-abstract class Enemy : Character, Prototype
+public abstract class Enemy : Character, Prototype
     {
     [JsonIgnore]//deep ir shallow atributus pažiūrėt kaip klonuot
     public int attackTick = 5;
@@ -41,7 +41,7 @@ abstract class Enemy : Character, Prototype
         clone.PositionInRoom = new Vector2(PositionInRoom.X, PositionInRoom.Y);
 
         // Make a new weapon so they don't share the same one
-        clone.Weapon = new Sword(Guid.NewGuid(), Weapon.MaxRange, Weapon.Effect);
+        clone.Weapon = new Sword(Guid.NewGuid(), Weapon.MaxRange, Weapon.Effect, Weapon.Name);
 
         clone.HasSplit = true;
         clone.Health = this.Health;

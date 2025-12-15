@@ -1,4 +1,4 @@
-interface IStatus
+public interface IStatus
 {
     public bool Tick();
 }

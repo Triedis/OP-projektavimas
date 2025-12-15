@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 [JsonDerivedType(typeof(PhysicalDamageEffect), typeDiscriminator: "Physical")]
 [JsonDerivedType(typeof(BleedingEffect), typeDiscriminator: "Bleeding")]
-abstract class Effect
+public abstract class Effect
 {
     public int Power { get; set; }
 

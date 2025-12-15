@@ -1,12 +1,9 @@
-abstract class IStateController
+public interface IStateController
 {
-    public List<Player> players = [];
-    public List<Enemy> enemies = [];
-    public WorldGrid worldGrid = new(1337);
-    public abstract Task Run();
+    public List<Player> players { get; set; } // Added setters
+    public List<Enemy> enemies { get; set; } // Added setters
+    public WorldGrid worldGrid { get; set; } // Added setters
 
-    public Character? FindCharacterByIdentity(System.Guid identity)
-    {
-        return players.Where(player => player.Identity == identity).FirstOrDefault();
-    }
+    Task Run();
+    Character? FindCharacterByIdentity(System.Guid identity);
 }

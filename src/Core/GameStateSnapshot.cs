@@ -1,4 +1,4 @@
-class GameStateSnapshot(List<Player> players, List<Enemy> enemies, WorldGrid worldGrid, List<LogEntryDto> logEntries)
+public class GameStateSnapshot(List<Player> players, List<Enemy> enemies, WorldGrid worldGrid, List<LogEntryDto> logEntries)
 {
     public List<Player> Players { get; } = players;
     public List<Enemy> Enemies { get; } = enemies;

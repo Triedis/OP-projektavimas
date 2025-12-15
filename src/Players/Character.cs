@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 [JsonDerivedType(typeof(Orc), typeDiscriminator: "Orc")]
 [JsonDerivedType(typeof(Zombie), typeDiscriminator: "Zombie")]
 [JsonDerivedType(typeof(Slime), typeDiscriminator: "Slime")]
-abstract class Character
+public abstract class Character
 {
     public Guid Identity { get; set; }
     public Vector2 PositionInRoom { get; set; }

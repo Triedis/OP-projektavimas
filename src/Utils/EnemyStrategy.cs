@@ -2,18 +2,18 @@ using System.Text.Json.Serialization;
 using Serilog;
 namespace OP_Projektavimas.Utils
 {
-    interface EnemyStrategy
+    public interface EnemyStrategy
     {
         ICommand? TickAI(Enemy enemy);
     }
-    internal class RangedStrategy : EnemyStrategy 
+    internal class RangedStrategy : EnemyStrategy
     {
         public ICommand? TickAI(Enemy enemy)
         {
             if (enemy.Dead) return null;
 
             Character? nearestPlayer = enemy.GetClosestOpponent();
-            Log.Debug("Nearest player for {skeleton} is {nearestPlayer}", enemy, nearestPlayer);
+            // Log.Debug("Nearest player for {skeleton} is {nearestPlayer}", enemy, nearestPlayer);
             if (nearestPlayer is null) return null;
 
             int distance = enemy.GetDistanceTo(nearestPlayer);
@@ -95,7 +95,7 @@ namespace OP_Projektavimas.Utils
 
     }
 
-internal class ShallowSplitStrategy : EnemyStrategy
+    internal class ShallowSplitStrategy : EnemyStrategy
     {
         public ICommand? TickAI(Enemy enemy)
         {
@@ -131,7 +131,7 @@ internal class ShallowSplitStrategy : EnemyStrategy
                 Log.Debug("{enemy} attacks {player} with {weapon}", enemy, nearestPlayer, weapon);
                 return new UseWeaponCommand(enemy.Identity);
             }
-                
+
 
             // Otherwise, move toward player
             Vector2 direction = new(
@@ -146,7 +146,7 @@ internal class ShallowSplitStrategy : EnemyStrategy
         }
     }
 
-internal class DeepSplitStrategy : EnemyStrategy
+    internal class DeepSplitStrategy : EnemyStrategy
     {
         public ICommand? TickAI(Enemy enemy)
         {
@@ -181,7 +181,7 @@ internal class DeepSplitStrategy : EnemyStrategy
                 enemy.attackTick = 5;
                 return new UseWeaponCommand(enemy.Identity);
             }
-                
+
 
             // Otherwise, move toward player
             Vector2 direction = new(

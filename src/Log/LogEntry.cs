@@ -1,17 +1,30 @@
-enum LogScope
+public enum LogScope
 {
     Player,
     Room,
     Global,
 }
 
-struct LogEntry
+public enum Loggers
+{
+    Game
+}
+
+public struct LogEntry
 {
     public string Text { get; }
     public LogScope Scope { get; }
 
     public Player? PlayerIdentity { get; }
     public Vector2? RoomPosition { get; }
+
+    public LogEntry(Loggers logger, string text)
+    {
+        Text = text;
+        Scope = LogScope.Global;
+        PlayerIdentity = null;
+        RoomPosition = null;
+    }
 
     private LogEntry(string text, LogScope scope, Player? player, Vector2? roomPosition)
     {

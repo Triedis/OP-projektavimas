@@ -19,8 +19,8 @@ class TreasureRoomFactory : IRoomFactory
         }
 
         // or something else... the logic doesn't shine here but is easily expandable.
-        var legendaryWeapon = new Sword(Guid.NewGuid(), 2, new PhysicalDamageEffect(50));
-        room.LootDrops.Add(new LootDrop(legendaryWeapon, new Vector2(room.Shape.X / 2, room.Shape.Y / 2)));
+        var legendaryWeapon = new Sword(Guid.NewGuid(), 2, new PhysicalDamageEffect(50), "Legendary Sword");
+        room.LootDrops.Add(new WeaponLootDrop(legendaryWeapon, new Vector2(room.Shape.X / 2, room.Shape.Y / 2)));
 
         return new RoomCreationResult(room, enemies);
     }

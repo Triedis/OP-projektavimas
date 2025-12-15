@@ -7,8 +7,9 @@ using System.Text.Json.Serialization;
 [JsonDerivedType(typeof(Dagger), typeDiscriminator: "Dagger")]
 [JsonDerivedType(typeof(VampiricSword), typeDiscriminator: "VampiricSword")]
 
-abstract class Weapon
+public abstract class Weapon
 {
+    public abstract string Name { get; }
     public Effect Effect;
     public int MaxRange{ get; set; }
     public Guid Identity { get; set; }

@@ -1,5 +1,7 @@
 class Axe : Weapon
 {
+    public override string Name => "Axe";
+
     public Axe(Guid identity, int maxRange, Effect effect) : base(identity, maxRange, effect){}
 
     public override IReadOnlyList<IActionCommand> Act(Character actor, Character target)

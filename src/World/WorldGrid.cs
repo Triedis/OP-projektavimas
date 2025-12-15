@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-class WorldGrid(int seed)
+public class WorldGrid(int seed)
 {
     [JsonIgnore]
     public Dictionary<Vector2, Room> Rooms { get; private set; } = [];
@@ -86,5 +86,13 @@ class WorldGrid(int seed)
     public IReadOnlyCollection<Room> GetAllRooms()
     {
         return Rooms.Values;
+    }
+
+    public void Accept(IRoomVisitor visitor)
+    {
+        foreach (var room in Rooms.Values)
+        {
+            room.Accept(visitor);
+        }
     }
 }

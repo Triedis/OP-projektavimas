@@ -1,6 +1,8 @@
 
 class Dagger : Weapon
 {
+    public override string Name => "Dagger";
+
     public Dagger(Guid identity, int maxRange, Effect effect) : base(identity, maxRange, effect) {}
 
     public override IReadOnlyList<IActionCommand> Act(Character actor, Character target)

@@ -4,6 +4,7 @@ using Serilog;
 
 class VampiricSword : Weapon
 {
+    public override string Name => "Vampiric Sword";
     public float LifestealPercentage { get; private set; }
 
     public VampiricSword(Guid identity, int maxRange, Effect effect, float lifestealPercentage = 0.5f)
