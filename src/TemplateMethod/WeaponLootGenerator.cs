@@ -12,6 +12,6 @@ public sealed class WeaponLootGenerator : LootGenerator
 
     protected override bool ShouldDropLoot()
     {
-        return Random.Shared.NextDouble() < 0.5
+        return Random.Shared.NextDouble() < 0.5;
     }
 }
