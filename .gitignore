@@ -6,3 +6,4 @@ client_log.txt
 *.json
 .vs/OP-projektavimas/v17/.wsuo
 *.txt
+.vs/

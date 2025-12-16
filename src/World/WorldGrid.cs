@@ -1,6 +1,7 @@
+using DungeonCrawler.src.Iterators;
 using System.Text.Json.Serialization;
 
-public class WorldGrid(int seed)
+public class WorldGrid(int seed):IterableCollection<Room>
 {
     [JsonIgnore]
     public Dictionary<Vector2, Room> Rooms { get; private set; } = [];
@@ -27,6 +28,19 @@ public class WorldGrid(int seed)
     public void PrintRoomTree(Room root)
     {
         PrintRoomRecursive(root, 0);
+    }
+
+    public Iterator<Room> CreateIterator()
+    {
+        return new WorldGridIterator(Rooms.Values.ToList());
+    }
+
+    public void ClearAllOccupants()
+    {
+        foreach (var room in Rooms.Values)
+        {
+            room.Occupants.Clear();
+        }
     }
 
     private void PrintRoomRecursive(Room room, int indent)

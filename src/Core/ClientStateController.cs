@@ -1,3 +1,5 @@
+using DungeonCrawler.src.Interpreter;
+using Serilog;
 using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.Net;
@@ -5,7 +7,6 @@ using System.Net.Sockets;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.Json;
-using Serilog;
 
 public class ClientStateController : IStateController
 {
@@ -131,6 +132,8 @@ public class ClientStateController : IStateController
 
     private async Task GameLoop(CancellationToken token)
     {
+        var interpreter = new DungeonCrawler.src.Interpreter.CommandInterpreter();
+
         while (!token.IsCancellationRequested)
         {
             if (Identity is null && _state is not SyncingState)
@@ -143,6 +146,56 @@ public class ClientStateController : IStateController
             if (InputQueue.TryDequeue(out ConsoleKey key))
             {
                 Log.Debug($"Key pressed: {key}");
+
+
+                
+                switch (key)
+                {
+                    case ConsoleKey.E:
+                        var enemyCountVisitor = new EnemyCountVisitor();
+                        worldGrid.Accept(enemyCountVisitor);
+                        MessageLog.Instance.Add(
+                            new LogEntry(Loggers.Game, enemyCountVisitor.GetReport())
+                        );
+                        continue;
+
+                    case ConsoleKey.I:
+                        if (Identity.Room is IVisitableRoom interactableRoom)
+                        {
+                            var roomInteractionVisitor = new RoomInteractionVisitor(Identity);
+                            interactableRoom.Accept(roomInteractionVisitor);
+                        }
+                        continue;
+                }
+
+                // INTERPRETER dalis (judejimas + attack)
+                string? input = key switch
+                {
+                    ConsoleKey.W => "w",
+                    ConsoleKey.A => "a",
+                    ConsoleKey.S => "s",
+                    ConsoleKey.D => "d",
+                    ConsoleKey.Spacebar => "space",
+                    _ => null
+                };
+
+                if (input is null)
+                    continue;
+
+                try
+                {
+                    var expression = interpreter.Parse(input);
+
+                    var context = new GameContext(Identity, worldGrid);
+
+                    ICommand command = expression.Interpret(context);
+
+                    await command.ExecuteOnClient(this);
+                }
+                catch (InvalidOperationException)
+                {
+                    Log.Debug("Unknown command input: {input}", input);
+                }
 
                 await Mediator.NotifyInput(key);
             }
