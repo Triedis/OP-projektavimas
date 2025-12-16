@@ -1,7 +1,7 @@
 
 using Serilog;
 
-class SyncCommand(GameStateSnapshot snapshot, Guid identity) : ICommand
+public class SyncCommand(GameStateSnapshot snapshot, Guid identity) : ICommand
 {
     public GameStateSnapshot Snapshot = snapshot;
     public Guid Identity = identity;
