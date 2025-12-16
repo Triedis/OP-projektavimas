@@ -22,11 +22,19 @@ public class ClientStateController : IStateController
     public IReadOnlyList<string> MessagesToDisplay { get; private set; } = []; // List of relevant messages
 
     public Player? Identity; // Reference to actual local player..
+    private readonly object _stateLock = new();
+    public IClientState _state;
+    public IClientMediator Mediator { get; }
 
     private ClientStateController(TcpClient client)
     {
         _client = client;
         _stream = client.GetStream();
+
+        Mediator = new ClientMediator(this);
+
+        _state = new ConnectingState();
+        _state.Enter(this);
     }
 
     public static async Task<ClientStateController> CreateAsync(string ipAddress, int port)
@@ -34,6 +42,19 @@ public class ClientStateController : IStateController
         var client = new TcpClient();
         await client.ConnectAsync(ipAddress, port);
         return new ClientStateController(client);
+    }
+    public void SetState(IClientState state)
+    {
+        lock (_stateLock)
+        {
+            _state.Exit(this);
+            _state = state;
+            _state.Enter(this);
+        }
+    }
+    public Task HandleInput(ConsoleKey key)
+    {
+        return _state.HandleInput(this, key);
     }
 
     public async Task Run()
@@ -81,12 +102,12 @@ public class ClientStateController : IStateController
                 if (Console.KeyAvailable)
                 {
                     ConsoleKeyInfo key = Console.ReadKey(true);
-                    InputQueue.Enqueue(key.Key);
+                    await Mediator.NotifyInput(key.Key);
                 }
 
                 try
                 {
-                    TerminalRenderer.Render(this);
+                    Mediator.RequestRender();
                 }
                 catch (Exception e)
                 {
@@ -112,7 +133,7 @@ public class ClientStateController : IStateController
     {
         while (!token.IsCancellationRequested)
         {
-            if (Identity is null)
+            if (Identity is null && _state is not SyncingState)
             {
                 Log.Debug("GameLoop is waiting for synchronization ...");
                 await Task.Delay(100, token);
@@ -123,58 +144,14 @@ public class ClientStateController : IStateController
             {
                 Log.Debug($"Key pressed: {key}");
 
-                Vector2? moveDirection = null;
-                bool shouldUseWeapon = false;
-                switch (key)
-                {
-                    case ConsoleKey.W:
-                        moveDirection = new Vector2(0, -1);
-                        break;
-                    case ConsoleKey.S:
-                        moveDirection = new Vector2(0, 1);
-                        break;
-                    case ConsoleKey.A:
-                        moveDirection = new Vector2(-1, 0);
-                        break;
-                    case ConsoleKey.D:
-                        moveDirection = new Vector2(1, 0);
-                        break;
-                    case ConsoleKey.Spacebar:
-                        shouldUseWeapon = true;
-                        break;
-                case ConsoleKey.E: // Enemy count visitor
-                    var enemyCountVisitor = new EnemyCountVisitor();
-                    worldGrid.Accept(enemyCountVisitor);
-                    MessageLog.Instance.Add(new LogEntry(Loggers.Game, enemyCountVisitor.GetReport()));
-                    break;
-                case ConsoleKey.I: // Room interaction visitor
-                    if (Identity?.Room is IVisitableRoom interactableRoom)
-                    {
-                        var roomInteractionVisitor = new RoomInteractionVisitor(Identity);
-                        interactableRoom.Accept(roomInteractionVisitor);
-                    }
-                    break;
-                }
-                if (moveDirection is not null)
-                {
-                    Log.Information("Moving");
-                    Vector2 movePosition = Identity.PositionInRoom + moveDirection;
-                    MoveCommand command = new(movePosition, Identity.Identity);
-                    await command.ExecuteOnClient(this);
-                }
-
-                if (shouldUseWeapon)
-                {
-                    UseWeaponCommand command = new(Identity.Identity);
-                    await command.ExecuteOnClient(this);
-                }
+                await Mediator.NotifyInput(key);
             }
-
+            await _state.Update(this);
             await Task.Delay(10, token);
         }
     }
 
-
+    public SyncCommand currentSync;
     private async Task ListenForServer(CancellationToken token)
     {
         try
@@ -207,7 +184,7 @@ public class ClientStateController : IStateController
                     }
 
                     Log.Information($"Executing command from server of type {command.GetType()}");
-                    await command.ExecuteOnClient(this);
+                    await Mediator.NotifyServerCommand(command);
 
                 }
                 catch (Exception e)

@@ -18,6 +18,7 @@ static class DungeonCrawler
     public static async Task Main(string[] args)
     {
         Partition partition;
+        bool runTests = false;
         try
         {
             string partitionString = args[0][2..];
@@ -26,6 +27,10 @@ static class DungeonCrawler
                 case "server": { partition = Partition.SERVER; break; };
                 case "client": { partition = Partition.CLIENT; break; };
                 default: throw new ArgumentException();
+            }
+            if (args.Length > 1 && args[1] == "--testing")
+            {
+                runTests = true;
             }
         }
         catch
@@ -44,7 +49,14 @@ static class DungeonCrawler
                     Log.Logger = log;
 
                     ServerStateController server = new ServerStateProxy(port);
-                    await server.Run();
+                    if (runTests)
+                    {
+                        server.RunPerformanceTests();
+                    }
+                    else
+                    {  
+                        await server.Run();
+                    }
                     break;
                 }
                 ;

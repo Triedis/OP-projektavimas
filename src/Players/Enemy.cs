@@ -1,5 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 using OP_Projektavimas.Utils;
+using Serilog;
 [JsonPolymorphic(TypeDiscriminatorPropertyName = "$type")]
 [JsonDerivedType(typeof(Skeleton), typeDiscriminator: "Skeleton")]
 [JsonDerivedType(typeof(Orc), typeDiscriminator: "Orc")]
@@ -12,12 +13,35 @@ public abstract class Enemy : Character, Prototype
     {
     [JsonIgnore]//deep ir shallow atributus pažiūrėt kaip klonuot
     public int attackTick = 5;
+    public byte[] ImageBytes { get; private set; }
     private EnemyStrategy? strategy;
         [JsonConstructor]
         public Enemy() : base() { }
         protected Enemy(Guid identity, Room room, Vector2 positionInRoom, Weapon weapon)
             : base(room, positionInRoom, weapon, identity)
         { }
+        protected Enemy(Guid identity, Room room, Vector2 positionInRoom, Weapon weapon, string imagePath, bool useFlyweight)
+            : base(room, positionInRoom, weapon, identity)
+    {
+        if (useFlyweight)
+        {
+            ImageBytes = EnemyImageFlyweight.GetOrLoad(this.ToString(), imagePath);
+        }
+        else
+        {
+            //Load the bytes if you want to send them to client
+            if (System.IO.File.Exists(imagePath))
+            {
+                //Log.Debug($"Loaded bytes for enemy: {this}");
+                ImageBytes = System.IO.File.ReadAllBytes(imagePath);
+                //Log.Debug($"Loaded bytes: {ImageBytes.Length}");
+            }
+            else
+            {
+                Log.Debug($"could not find file for {this} at: {imagePath}");
+            }
+        }
+    }
         public void SetStrategy(EnemyStrategy newStrategy)
         {
             strategy = newStrategy;
