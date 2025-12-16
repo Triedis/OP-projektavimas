@@ -116,19 +116,21 @@ namespace OP_Projektavimas.Utils
             out ICommand? command)
         {
 
-            if (enemy.Dead)
-            {
-              command = null;
-              return null;
-             }
+            // if (enemy.Dead)
+            // {
+            //   command = null;
+            //   return false;
+            //  }
+            command = null;
 
             Character? nearestPlayer = enemy.GetClosestOpponent();
             // Log.Debug("Nearest player for {zombie} is {nearestPlayer}", enemy, nearestPlayer);
-            if (nearestPlayer is null)
-            {
-              command = null;
-              return null;
-            }
+            // if (nearestPlayer is null)
+            // {
+              
+            //   command = null;
+            //   return false;
+            // }
 
             int distance = enemy.GetDistanceTo(player);
             Weapon weapon = enemy.Weapon;
@@ -143,7 +145,6 @@ namespace OP_Projektavimas.Utils
                 command = new UseWeaponCommand(enemy.Identity);
                 return true;
             }
-
             return false;
         }
 
@@ -156,7 +157,7 @@ namespace OP_Projektavimas.Utils
 
             if (enemy.Dead)
             {
-              command = null;
+              
               return null;
              }
 
@@ -164,7 +165,7 @@ namespace OP_Projektavimas.Utils
             // Log.Debug("Nearest player for {zombie} is {nearestPlayer}", enemy, nearestPlayer);
             if (nearestPlayer is null)
             {
-              command = null;
+              
               return null;
             }
 
@@ -222,7 +223,6 @@ namespace OP_Projektavimas.Utils
 
             if (enemy.Dead)
             {
-              command = null;
               return null;
              };
 
@@ -230,7 +230,6 @@ namespace OP_Projektavimas.Utils
             // Log.Debug("Nearest player for {zombie} is {nearestPlayer}", enemy, nearestPlayer);
             if (nearestPlayer is null)
             {
-              command = null;
               return null;
             }
 

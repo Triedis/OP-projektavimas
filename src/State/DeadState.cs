@@ -13,6 +13,10 @@ class DeadState : IClientState
 
     public Task HandleInput(ClientStateController clinet, ConsoleKey key)
     {
+        if (key == ConsoleKey.Q)
+        {
+            Environment.Exit(0);
+        }
         return Task.CompletedTask;
     }
 
