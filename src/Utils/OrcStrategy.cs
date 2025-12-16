@@ -1,6 +1,7 @@
 //using OP_Projektavimas.Utils;
 //using Serilog;
 
+
 //public class OrcStrategy : EnemyStrategy
 //{
 //    private bool SeenPlayer = false;
@@ -17,6 +18,7 @@
 //            if (distance <= locateDistance)
 //            {
 //                if (enemy.attackTick > 0) enemy.attackTick -= 1;
+
 
 //                if (enemy.attackTick <= 0 && distance <= enemy.Weapon.MaxRange)
 //                {

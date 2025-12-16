@@ -23,11 +23,19 @@ public class ClientStateController : IStateController
     public IReadOnlyList<string> MessagesToDisplay { get; private set; } = []; // List of relevant messages
 
     public Player? Identity; // Reference to actual local player..
+    private readonly object _stateLock = new();
+    public IClientState _state;
+    public IClientMediator Mediator { get; }
 
     private ClientStateController(TcpClient client)
     {
         _client = client;
         _stream = client.GetStream();
+
+        Mediator = new ClientMediator(this);
+
+        _state = new ConnectingState();
+        _state.Enter(this);
     }
 
     public static async Task<ClientStateController> CreateAsync(string ipAddress, int port)
@@ -35,6 +43,19 @@ public class ClientStateController : IStateController
         var client = new TcpClient();
         await client.ConnectAsync(ipAddress, port);
         return new ClientStateController(client);
+    }
+    public void SetState(IClientState state)
+    {
+        lock (_stateLock)
+        {
+            _state.Exit(this);
+            _state = state;
+            _state.Enter(this);
+        }
+    }
+    public Task HandleInput(ConsoleKey key)
+    {
+        return _state.HandleInput(this, key);
     }
 
     public async Task Run()
@@ -82,12 +103,12 @@ public class ClientStateController : IStateController
                 if (Console.KeyAvailable)
                 {
                     ConsoleKeyInfo key = Console.ReadKey(true);
-                    InputQueue.Enqueue(key.Key);
+                    await Mediator.NotifyInput(key.Key);
                 }
 
                 try
                 {
-                    TerminalRenderer.Render(this);
+                    Mediator.RequestRender();
                 }
                 catch (Exception e)
                 {
@@ -115,7 +136,7 @@ public class ClientStateController : IStateController
 
         while (!token.IsCancellationRequested)
         {
-            if (Identity is null)
+            if (Identity is null && _state is not SyncingState)
             {
                 Log.Debug("GameLoop is waiting for synchronization ...");
                 await Task.Delay(100, token);
@@ -125,6 +146,7 @@ public class ClientStateController : IStateController
             if (InputQueue.TryDequeue(out ConsoleKey key))
             {
                 Log.Debug($"Key pressed: {key}");
+
 
                 
                 switch (key)
@@ -146,7 +168,7 @@ public class ClientStateController : IStateController
                         continue;
                 }
 
-                // INTERPRETER dalis (jud?jimas + attack)
+                // INTERPRETER dalis (judejimas + attack)
                 string? input = key switch
                 {
                     ConsoleKey.W => "w",
@@ -174,13 +196,15 @@ public class ClientStateController : IStateController
                 {
                     Log.Debug("Unknown command input: {input}", input);
                 }
-            }
 
+                await Mediator.NotifyInput(key);
+            }
+            await _state.Update(this);
             await Task.Delay(10, token);
         }
     }
 
-
+    public SyncCommand currentSync;
     private async Task ListenForServer(CancellationToken token)
     {
         try
@@ -213,7 +237,7 @@ public class ClientStateController : IStateController
                     }
 
                     Log.Information($"Executing command from server of type {command.GetType()}");
-                    await command.ExecuteOnClient(this);
+                    await Mediator.NotifyServerCommand(command);
 
                 }
                 catch (Exception e)

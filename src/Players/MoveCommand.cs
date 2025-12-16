@@ -70,6 +70,18 @@ class MoveCommand : ICommand
                         {
                             Log.Information("[MoveCommand] Path is clear. Moving actor {Actor} within room.", target.Identity);
                             target.SetPositionInRoom(pos);
+
+                            // Check for loot
+                            if (target is Player player)
+                            {
+                                var loot = room.LootDrops.FirstOrDefault(l => l.PositionInRoom.Equals(pos));
+                                if (loot != null)
+                                {
+                                    string message = loot.Collect(player);
+                                    room.LootDrops.Remove(loot);
+                                    MessageLog.Instance.Add(LogEntry.ForRoom(message, room));
+                                }
+                            }
                         }
                     }
                     else if (exitDirValuePair.Value is not null)
@@ -93,6 +105,12 @@ class MoveCommand : ICommand
 
                         Direction enteringFrom = DirectionUtils.GetOpposite(exitDirection);
                         Log.Information("[MoveCommand] Entering new room {NewRoomID} from direction {EnteringFrom}", newRoom.WorldGridPosition, enteringFrom);
+
+                        if (target is Player player)
+                        {
+                            gameState._playerStateCaretaker.SaveState(player);
+                        }
+
                         newRoom.Enter(target, enteringFrom);
                     }
                 });

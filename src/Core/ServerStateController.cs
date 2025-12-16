@@ -7,6 +7,7 @@ using System.Text;
 using System.Text.Json;
 using Serilog;
 using OP_Projektavimas.Utils;
+using System.Diagnostics;
 public class ServerStateController(int port) : IStateController
 {
     // IStateController implementation
@@ -28,6 +29,7 @@ public class ServerStateController(int port) : IStateController
     private IRoomFactory _treasureRoomFactory;
     private IRoomFactory _bossRoomFactory;
     private GameLoggerHandler? _loggerChain;
+    public readonly PlayerStateCaretaker _playerStateCaretaker = new();
 
 
     public async Task Run()
@@ -531,6 +533,14 @@ public class ServerStateController(int port) : IStateController
 
         players.Add(player);
 
+        player.OnDeath += (character) =>
+        {
+            if (character is Player p)
+            {
+                _playerStateCaretaker.Undo(p);
+            }
+        };
+
         var playerJoinEntry = LogEntry.ForGlobal($"Player {username} has appeared.");
         MessageLog.Instance.Add(playerJoinEntry);
         _loggerChain?.Handle(playerJoinEntry);
@@ -546,5 +556,121 @@ public class ServerStateController(int port) : IStateController
     public Character? FindCharacterByIdentity(Guid identity)
     {
         return players.Cast<Character>().Concat(enemies).FirstOrDefault(c => c.Identity == identity);
+    }
+    //################# performanc testing #################
+    string imagePath = Path.Combine(AppContext.BaseDirectory, "images", "orc.png");
+    string filePath = "performance_results.txt";
+    public void RunPerformanceTests()
+    {
+        if (File.Exists(filePath))
+        {
+            File.Delete(filePath);
+        }
+        _factories["Skeleton"] = new SkeletonFactory();
+        _factories["Zombie"] = new ZombieFactory();
+        _factories["Orc"] = new OrcFactory();
+        _factories["Slime"] = new SlimeFactory();
+
+        _standardRoomFactory = new StandardRoomFactory(_factories["Skeleton"]);
+        _treasureRoomFactory = new TreasureRoomFactory(_factories["Orc"]);
+        _bossRoomFactory = new BossRoomFactory(_factories["Orc"], _factories["Skeleton"]);
+
+
+
+        Console.WriteLine("=== Performance Test ===");
+        Room testRoom = CreateInitialRoom(); // create a single room for testing
+
+        int enemyCount = 1000; // number of enemies to spawn
+        Console.WriteLine("Testing Non-Flyweight...");
+        MeasureEnemySpawnPerformanceNonFlyweight(enemyCount, testRoom);
+
+        Console.WriteLine("Testing Flyweight...");
+        MeasureEnemySpawnPerformanceFlyweight(enemyCount, testRoom);
+
+        Console.WriteLine("=== End of Test ===");
+        Console.WriteLine($"Result file: {filePath}");
+        ClearServerState();
+    }
+
+    private void MeasureEnemySpawnPerformanceNonFlyweight(int count, Room testRoom)
+    {
+        // Clear enemies
+        enemies.Clear();
+        _pendingSpawns.Clear();
+
+        GC.Collect();
+        GC.WaitForPendingFinalizers();
+        long memoryBefore = GC.GetTotalMemory(true);
+
+        Stopwatch sw = Stopwatch.StartNew();
+
+        for (int i = 0; i < count; i++)
+        {
+            // Each enemy loads its own image (non-flyweight)
+            Enemy e = new OrcTest(Guid.NewGuid(), testRoom, new Vector2(0, 0), new Axe(Guid.NewGuid(), 1, new PhysicalDamageEffect(1)), imagePath);
+            EnqueueEnemySpawn(e);
+        }
+
+        ProcessPendingSpawns();
+
+        sw.Stop();
+        long memoryAfter = GC.GetTotalMemory(true);
+
+        Console.WriteLine($"Non-Flyweight: Spawned {count} enemies in {sw.ElapsedMilliseconds} ms");
+        Console.WriteLine($"Memory used: {(memoryAfter - memoryBefore) / 1024.0:F2} KB");
+        LogResult($"Non-Flyweight: Spawned {count} enemies in {sw.ElapsedMilliseconds} ms\n Memory used: {(memoryAfter - memoryBefore) / 1024.0:F2} KB");
+    }
+
+    private void MeasureEnemySpawnPerformanceFlyweight(int count, Room testRoom)
+    {
+        // Clear enemies
+        enemies.Clear();
+        _pendingSpawns.Clear();
+
+        GC.Collect();
+        GC.WaitForPendingFinalizers();
+        long memoryBefore = GC.GetTotalMemory(true);
+
+        // Flyweight: share the image bytes among all enemies
+
+        Stopwatch sw = Stopwatch.StartNew();
+
+        for (int i = 0; i < count; i++)
+        {
+            Enemy e = new OrcTest(Guid.NewGuid(), testRoom, new Vector2(0, 0), new Axe(Guid.NewGuid(), 1, new PhysicalDamageEffect(1)), imagePath, true);
+            EnqueueEnemySpawn(e);
+        }
+
+        ProcessPendingSpawns();
+
+        sw.Stop();
+        long memoryAfter = GC.GetTotalMemory(true);
+
+        Console.WriteLine($"Flyweight: Spawned {count} enemies in {sw.ElapsedMilliseconds} ms");
+        Console.WriteLine($"Memory used: {(memoryAfter - memoryBefore) / 1024.0:F2} KB");
+        LogResult($"Flyweight: Spawned {count} enemies in {sw.ElapsedMilliseconds} ms\n Memory used: {(memoryAfter - memoryBefore) / 1024.0:F2} KB");
+    }
+
+    void LogResult(string text)
+    {
+        File.AppendAllText(filePath, text + Environment.NewLine);
+    }
+    private void ClearServerState()
+    {
+        // Clear enemies and pending spawns
+        enemies.Clear();
+        _pendingSpawns.Clear();
+        _factories.Clear();
+
+        _standardRoomFactory = null;
+        _bossRoomFactory = null;
+        _treasureRoomFactory = null;
+
+        EnemyImageFlyweight.ClearCache();
+
+        // Optional: reset world rooms or other state if generated during tests
+        worldGrid.Rooms.Clear();
+
+        Console.WriteLine("Server state cleared after performance tests.");
     }
 }

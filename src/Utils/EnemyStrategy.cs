@@ -115,7 +115,20 @@ namespace OP_Projektavimas.Utils
             Character player,
             out ICommand? command)
         {
-            command = null;
+
+            if (enemy.Dead)
+            {
+              command = null;
+              return null;
+             }
+
+            Character? nearestPlayer = enemy.GetClosestOpponent();
+            // Log.Debug("Nearest player for {zombie} is {nearestPlayer}", enemy, nearestPlayer);
+            if (nearestPlayer is null)
+            {
+              command = null;
+              return null;
+            }
 
             int distance = enemy.GetDistanceTo(player);
             Weapon weapon = enemy.Weapon;
@@ -140,6 +153,25 @@ namespace OP_Projektavimas.Utils
     {
         protected override ICommand? TrySpecialAction(Enemy enemy, Character player)
         {
+
+            if (enemy.Dead)
+            {
+              command = null;
+              return null;
+             }
+
+            Character? nearestPlayer = enemy.GetClosestOpponent();
+            // Log.Debug("Nearest player for {zombie} is {nearestPlayer}", enemy, nearestPlayer);
+            if (nearestPlayer is null)
+            {
+              command = null;
+              return null;
+            }
+
+            int distance = enemy.GetDistanceTo(nearestPlayer);
+            Weapon weapon = enemy.Weapon;
+            if (enemy.attackTick > 0) enemy.attackTick -= 1;
+
             if (!enemy.HasSplit && enemy.Health <= enemy.StartingHealth / 2)
             {
                 enemy.HasSplit = true;
@@ -187,6 +219,26 @@ namespace OP_Projektavimas.Utils
     {
         protected override ICommand? TrySpecialAction(Enemy enemy, Character player)
         {
+
+            if (enemy.Dead)
+            {
+              command = null;
+              return null;
+             };
+
+            Character? nearestPlayer = enemy.GetClosestOpponent();
+            // Log.Debug("Nearest player for {zombie} is {nearestPlayer}", enemy, nearestPlayer);
+            if (nearestPlayer is null)
+            {
+              command = null;
+              return null;
+            }
+
+            int distance = enemy.GetDistanceTo(nearestPlayer);
+            Weapon weapon = enemy.Weapon;
+            if (enemy.attackTick > 0) enemy.attackTick -= 1;
+
+
             if (!enemy.HasSplit && enemy.Health <= enemy.StartingHealth / 2)
             {
                 enemy.HasSplit = true;

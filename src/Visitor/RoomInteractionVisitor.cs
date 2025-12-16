@@ -10,11 +10,17 @@ public class RoomInteractionVisitor : IRoomVisitor
 
     public void Visit(StandardRoom room)
     {
-        MessageLog.Instance.Add(new LogEntry(Loggers.Game, "You see nothing of interest to interact with here."));
+        bool foundLoot = CollectFloorLoot(room);
+        if (!foundLoot)
+        {
+            MessageLog.Instance.Add(new LogEntry(Loggers.Game, "You see nothing of interest to interact with here."));
+        }
     }
 
     public void Visit(TreasureRoom room)
     {
+        CollectFloorLoot(room);
+
         if (room.IsLooted)
         {
             MessageLog.Instance.Add(new LogEntry(Loggers.Game, "The treasure chest is empty."));
@@ -41,6 +47,8 @@ public class RoomInteractionVisitor : IRoomVisitor
 
     public void Visit(BossRoom room)
     {
+        CollectFloorLoot(room);
+
         if (room.IsBossDefeated)
         {
             MessageLog.Instance.Add(new LogEntry(Loggers.Game, "The boss has been defeated. Its corpse lies here."));
@@ -49,5 +57,26 @@ public class RoomInteractionVisitor : IRoomVisitor
         {
             MessageLog.Instance.Add(new LogEntry(Loggers.Game, "The boss is still alive! Prepare for battle!"));
         }
+    }
+
+    private bool CollectFloorLoot(Room room)
+    {
+        var lootAtPosition = room.LootDrops
+            .Where(l => l.PositionInRoom.Equals(_player.PositionInRoom))
+            .ToList();
+
+        if (lootAtPosition.Count == 0)
+        {
+            return false;
+        }
+
+        foreach (var loot in lootAtPosition)
+        {
+            string message = loot.Collect(_player);
+            MessageLog.Instance.Add(new LogEntry(Loggers.Game, message));
+            room.LootDrops.Remove(loot);
+        }
+
+        return true;
     }
 }
