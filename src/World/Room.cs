@@ -1,10 +1,11 @@
-using System.Text.Json.Serialization;
+using DungeonCrawler.src.Iterators;
 using Serilog;
+using System.Text.Json.Serialization;
 
 [JsonDerivedType(typeof(StandardRoom), typeDiscriminator: "StandardRoom")]
 [JsonDerivedType(typeof(TreasureRoom), typeDiscriminator: "TreasureRoom")]
 [JsonDerivedType(typeof(BossRoom), typeDiscriminator: "BossRoom")]
-public abstract class Room : IRoomComposite, IVisitableRoom
+public abstract class Room : IRoomComposite, IVisitableRoom, IterableCollection<Character>
 {
     public abstract void Accept(IRoomVisitor visitor);
 
@@ -41,7 +42,10 @@ public abstract class Room : IRoomComposite, IVisitableRoom
         LootDrops = lootDrops;
         BoundaryPoints = boundaryPoints;
     }
-
+    public Iterator<Character> CreateIterator()
+    {
+        return new RoomCharacterIterator(Occupants);
+    }
     protected void InitializeBoundaries(WorldGrid world, int minExits, int maxExits)
     {
         Dictionary<Direction, Room?> locality = new()

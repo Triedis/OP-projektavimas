@@ -2,116 +2,148 @@ using System.Text.Json.Serialization;
 using Serilog;
 namespace OP_Projektavimas.Utils
 {
-    public interface EnemyStrategy
+    public abstract class EnemyStrategy
     {
-        ICommand? TickAI(Enemy enemy);
-    }
-    internal class RangedStrategy : EnemyStrategy
-    {
+        // TEMPLATE METHOD
         public ICommand? TickAI(Enemy enemy)
         {
             if (enemy.Dead) return null;
 
             Character? nearestPlayer = enemy.GetClosestOpponent();
-            // Log.Debug("Nearest player for {skeleton} is {nearestPlayer}", enemy, nearestPlayer);
             if (nearestPlayer is null) return null;
 
-            int distance = enemy.GetDistanceTo(nearestPlayer);
-            Weapon weapon = enemy.Weapon;
-            Bow bow = (Bow)weapon;
-            // Attack if in range
-            if (weapon is Bow && distance == bow.MaxRange && !nearestPlayer.Dead)
-            {
-                Log.Debug("{enemy} attacks {player} with {weapon}", enemy, nearestPlayer, weapon);
-                return new UseWeaponCommand(enemy.Identity);
-            }
-            else if (weapon is Bow && distance > bow.MaxRange && !nearestPlayer.Dead)
-            {
-                // Otherwise, move toward player
-                Vector2 direction = new(
-                    nearestPlayer.PositionInRoom.X > enemy.PositionInRoom.X ? 1 :
-                    nearestPlayer.PositionInRoom.X < enemy.PositionInRoom.X ? -1 : 0,
-                    nearestPlayer.PositionInRoom.Y > enemy.PositionInRoom.Y ? 1 :
-                    nearestPlayer.PositionInRoom.Y < enemy.PositionInRoom.Y ? -1 : 0
-                );
+            Log.Debug("Nearest player for {enemy} is {nearestPlayer}", enemy, nearestPlayer);
 
-                Vector2 newPosition = enemy.PositionInRoom + direction;
-                Log.Debug("{enemy} moves toward {player} to {newPos}", enemy, nearestPlayer, newPosition);
+            if (enemy.attackTick > 0)
+                enemy.attackTick--;
 
-                return new MoveCommand(newPosition, enemy.Identity);
-            }
-            else
-            {
-                // Move away from the player
-                Vector2 direction = new(
-                    nearestPlayer.PositionInRoom.X > enemy.PositionInRoom.X ? -1 :
-                    nearestPlayer.PositionInRoom.X < enemy.PositionInRoom.X ? 1 : 0,
-                    nearestPlayer.PositionInRoom.Y > enemy.PositionInRoom.Y ? -1 :
-                    nearestPlayer.PositionInRoom.Y < enemy.PositionInRoom.Y ? 1 : 0
-                );
+            ICommand? special = TrySpecialAction(enemy, nearestPlayer);
+            if (special != null) return special;
 
-                Vector2 newPosition = enemy.PositionInRoom + direction;
-                Log.Debug("{enemy} moves away from {player} to {newPos}", enemy, nearestPlayer, newPosition);
+            if (TryAttack(enemy, nearestPlayer, out ICommand? attackCmd))
+                return attackCmd;
 
-                return new MoveCommand(newPosition, enemy.Identity);
-            }
+            
+            return Move(enemy, nearestPlayer);
         }
 
-    }
-    internal class MeleeStrategy : EnemyStrategy
-    {
-        public ICommand? TickAI(Enemy enemy)
+        protected virtual ICommand? TrySpecialAction(Enemy enemy, Character player) => null;
+
+
+        protected abstract bool TryAttack(
+            Enemy enemy,
+            Character player,
+            out ICommand? command
+        );
+
+        protected virtual ICommand Move(Enemy enemy, Character player)
         {
-            if (enemy.Dead) return null;
-
-            Character? nearestPlayer = enemy.GetClosestOpponent();
-            Log.Debug("Nearest player for {zombie} is {nearestPlayer}", enemy, nearestPlayer);
-            if (nearestPlayer is null) return null;
-
-            int distance = enemy.GetDistanceTo(nearestPlayer);
-            Weapon weapon = enemy.Weapon;
-            if (enemy.attackTick > 0) enemy.attackTick -= 1;
-            // Attack if in range
-            if (distance <= weapon.MaxRange && !nearestPlayer.Dead && enemy.attackTick <= 0)
-            {
-                enemy.attackTick = 5;
-                Log.Debug("{enemy} attacks {player} with {weapon}", enemy, nearestPlayer, weapon);
-                return new UseWeaponCommand(enemy.Identity);
-            }
-
-            // Otherwise, move toward player
             Vector2 direction = new(
-                nearestPlayer.PositionInRoom.X > enemy.PositionInRoom.X ? 1 :
-                nearestPlayer.PositionInRoom.X < enemy.PositionInRoom.X ? -1 : 0,
-                nearestPlayer.PositionInRoom.Y > enemy.PositionInRoom.Y ? 1 :
-                nearestPlayer.PositionInRoom.Y < enemy.PositionInRoom.Y ? -1 : 0
+                player.PositionInRoom.X > enemy.PositionInRoom.X ? 1 :
+                player.PositionInRoom.X < enemy.PositionInRoom.X ? -1 : 0,
+                player.PositionInRoom.Y > enemy.PositionInRoom.Y ? 1 :
+                player.PositionInRoom.Y < enemy.PositionInRoom.Y ? -1 : 0
             );
 
             Vector2 newPosition = enemy.PositionInRoom + direction;
-            Log.Debug("{enemy} moves toward {player} to {newPos}", enemy, nearestPlayer, newPosition);
+
+            Log.Debug("{enemy} moves toward {player} to {newPos}",
+                enemy, player, newPosition);
 
             return new MoveCommand(newPosition, enemy.Identity);
+        }
+    }
+    internal sealed class RangedStrategy : EnemyStrategy
+    {
+        protected override bool TryAttack(
+            Enemy enemy,
+            Character player,
+            out ICommand? command)
+        {
+            command = null;
+
+            Weapon weapon = enemy.Weapon;
+            if (weapon is not Bow bow) return false;
+
+            int distance = enemy.GetDistanceTo(player);
+
+            if (!player.Dead && distance == bow.MaxRange)
+            {
+                Log.Debug("{enemy} attacks {player} with {weapon}",
+                    enemy, player, weapon);
+
+                command = new UseWeaponCommand(enemy.Identity);
+                return true;
+            }
+
+            return false;
+        }
+
+        protected override ICommand Move(Enemy enemy, Character player)
+        {
+            Weapon weapon = enemy.Weapon;
+            Bow bow = (Bow)weapon;
+
+            int distance = enemy.GetDistanceTo(player);
+
+            // Move AWAY if too close
+            if (distance < bow.MaxRange)
+            {
+                Vector2 direction = new(
+                    player.PositionInRoom.X > enemy.PositionInRoom.X ? -1 :
+                    player.PositionInRoom.X < enemy.PositionInRoom.X ? 1 : 0,
+                    player.PositionInRoom.Y > enemy.PositionInRoom.Y ? -1 :
+                    player.PositionInRoom.Y < enemy.PositionInRoom.Y ? 1 : 0
+                );
+
+                Vector2 newPosition = enemy.PositionInRoom + direction;
+
+                Log.Debug("{enemy} moves away from {player} to {newPos}",
+                    enemy, player, newPosition);
+
+                return new MoveCommand(newPosition, enemy.Identity);
+            }
+
+            return base.Move(enemy, player);
+        }
+
+    }
+    internal sealed class MeleeStrategy : EnemyStrategy
+    {
+        protected override bool TryAttack(
+            Enemy enemy,
+            Character player,
+            out ICommand? command)
+        {
+            command = null;
+
+            int distance = enemy.GetDistanceTo(player);
+            Weapon weapon = enemy.Weapon;
+
+            if (!player.Dead && distance <= weapon.MaxRange && enemy.attackTick <= 0)
+            {
+                enemy.attackTick = 5;
+
+                Log.Debug("{enemy} attacks {player} with {weapon}",
+                    enemy, player, weapon);
+
+                command = new UseWeaponCommand(enemy.Identity);
+                return true;
+            }
+
+            return false;
         }
 
     }
 
-    internal class ShallowSplitStrategy : EnemyStrategy
+    internal sealed class ShallowSplitStrategy : EnemyStrategy
     {
-        public ICommand? TickAI(Enemy enemy)
+        protected override ICommand? TrySpecialAction(Enemy enemy, Character player)
         {
-            if (enemy.Dead) return null;
-
-            Character? nearestPlayer = enemy.GetClosestOpponent();
-            Log.Debug("Nearest player for {zombie} is {nearestPlayer}", enemy, nearestPlayer);
-            if (nearestPlayer is null) return null;
-
-            int distance = enemy.GetDistanceTo(nearestPlayer);
-            Weapon weapon = enemy.Weapon;
-            if (enemy.attackTick > 0) enemy.attackTick -= 1;
-
             if (!enemy.HasSplit && enemy.Health <= enemy.StartingHealth / 2)
             {
                 enemy.HasSplit = true;
+
                 Enemy clone = enemy.ShallowClone();
                 clone.SetPositionInRoom(enemy.PositionInRoom + new Vector2(1, 0));
 
@@ -124,45 +156,41 @@ namespace OP_Projektavimas.Utils
                 return new SpawnEnemyCommand(clone);
             }
 
-            // Attack if in range
-            if (weapon is Dagger sword && distance <= sword.MaxRange && !nearestPlayer.Dead && enemy.attackTick <= 0)
+            return null;
+        }
+
+        protected override bool TryAttack(
+            Enemy enemy,
+            Character player,
+            out ICommand? command)
+        {
+            command = null;
+
+            if (enemy.Weapon is Dagger dagger &&
+                enemy.GetDistanceTo(player) <= dagger.MaxRange &&
+                enemy.attackTick <= 0)
             {
                 enemy.attackTick = 5;
-                Log.Debug("{enemy} attacks {player} with {weapon}", enemy, nearestPlayer, weapon);
-                return new UseWeaponCommand(enemy.Identity);
+
+                Log.Debug("{enemy} attacks {player} with {weapon}",
+                    enemy, player, dagger);
+
+                command = new UseWeaponCommand(enemy.Identity);
+                return true;
             }
 
-
-            // Otherwise, move toward player
-            Vector2 direction = new(
-                nearestPlayer.PositionInRoom.X > enemy.PositionInRoom.X ? 1 :
-                nearestPlayer.PositionInRoom.X < enemy.PositionInRoom.X ? -1 : 0,
-                nearestPlayer.PositionInRoom.Y > enemy.PositionInRoom.Y ? 1 :
-                nearestPlayer.PositionInRoom.Y < enemy.PositionInRoom.Y ? -1 : 0
-            );
-
-            Vector2 newPosition = enemy.PositionInRoom + direction;
-            return new MoveCommand(newPosition, enemy.Identity);
+            return false;
         }
     }
 
-    internal class DeepSplitStrategy : EnemyStrategy
+    internal sealed class DeepSplitStrategy : EnemyStrategy
     {
-        public ICommand? TickAI(Enemy enemy)
+        protected override ICommand? TrySpecialAction(Enemy enemy, Character player)
         {
-            if (enemy.Dead) return null;
-
-            Character? nearestPlayer = enemy.GetClosestOpponent();
-            Log.Debug("Nearest player for {zombie} is {nearestPlayer}", enemy, nearestPlayer);
-            if (nearestPlayer is null) return null;
-
-            int distance = enemy.GetDistanceTo(nearestPlayer);
-            Weapon weapon = enemy.Weapon;
-            if (enemy.attackTick > 0) enemy.attackTick -= 1;
-
             if (!enemy.HasSplit && enemy.Health <= enemy.StartingHealth / 2)
             {
                 enemy.HasSplit = true;
+
                 Enemy clone = enemy.DeepClone();
                 clone.SetPositionInRoom(enemy.PositionInRoom + new Vector2(1, 0));
 
@@ -175,25 +203,28 @@ namespace OP_Projektavimas.Utils
                 return new SpawnEnemyCommand(clone);
             }
 
-            // Attack if in range
-            if (weapon is Dagger sword && distance <= sword.MaxRange && !nearestPlayer.Dead && enemy.attackTick <= 0)
+            return null;
+        }
+
+        protected override bool TryAttack(
+            Enemy enemy,
+            Character player,
+            out ICommand? command)
+        {
+            command = null;
+
+            if (enemy.Weapon is Dagger dagger &&
+                enemy.GetDistanceTo(player) <= dagger.MaxRange &&
+                enemy.attackTick <= 0)
             {
                 enemy.attackTick = 5;
-                return new UseWeaponCommand(enemy.Identity);
+                command = new UseWeaponCommand(enemy.Identity);
+                return true;
             }
 
-
-            // Otherwise, move toward player
-            Vector2 direction = new(
-                nearestPlayer.PositionInRoom.X > enemy.PositionInRoom.X ? 1 :
-                nearestPlayer.PositionInRoom.X < enemy.PositionInRoom.X ? -1 : 0,
-                nearestPlayer.PositionInRoom.Y > enemy.PositionInRoom.Y ? 1 :
-                nearestPlayer.PositionInRoom.Y < enemy.PositionInRoom.Y ? -1 : 0
-            );
-
-            Vector2 newPosition = enemy.PositionInRoom + direction;
-            return new MoveCommand(newPosition, enemy.Identity);
+            return false;
         }
     }
-
 }
+
+

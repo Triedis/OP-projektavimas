@@ -1,3 +1,5 @@
+using DungeonCrawler.src.Interpreter;
+using Serilog;
 using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.Net;
@@ -5,7 +7,6 @@ using System.Net.Sockets;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.Json;
-using Serilog;
 
 public class ClientStateController : IStateController
 {
@@ -110,6 +111,8 @@ public class ClientStateController : IStateController
 
     private async Task GameLoop(CancellationToken token)
     {
+        var interpreter = new DungeonCrawler.src.Interpreter.CommandInterpreter();
+
         while (!token.IsCancellationRequested)
         {
             if (Identity is null)
@@ -123,50 +126,53 @@ public class ClientStateController : IStateController
             {
                 Log.Debug($"Key pressed: {key}");
 
-                Vector2? moveDirection = null;
-                bool shouldUseWeapon = false;
+                
                 switch (key)
                 {
-                    case ConsoleKey.W:
-                        moveDirection = new Vector2(0, -1);
-                        break;
-                    case ConsoleKey.S:
-                        moveDirection = new Vector2(0, 1);
-                        break;
-                    case ConsoleKey.A:
-                        moveDirection = new Vector2(-1, 0);
-                        break;
-                    case ConsoleKey.D:
-                        moveDirection = new Vector2(1, 0);
-                        break;
-                    case ConsoleKey.Spacebar:
-                        shouldUseWeapon = true;
-                        break;
-                case ConsoleKey.E: // Enemy count visitor
-                    var enemyCountVisitor = new EnemyCountVisitor();
-                    worldGrid.Accept(enemyCountVisitor);
-                    MessageLog.Instance.Add(new LogEntry(Loggers.Game, enemyCountVisitor.GetReport()));
-                    break;
-                case ConsoleKey.I: // Room interaction visitor
-                    if (Identity?.Room is IVisitableRoom interactableRoom)
-                    {
-                        var roomInteractionVisitor = new RoomInteractionVisitor(Identity);
-                        interactableRoom.Accept(roomInteractionVisitor);
-                    }
-                    break;
-                }
-                if (moveDirection is not null)
-                {
-                    Log.Information("Moving");
-                    Vector2 movePosition = Identity.PositionInRoom + moveDirection;
-                    MoveCommand command = new(movePosition, Identity.Identity);
-                    await command.ExecuteOnClient(this);
+                    case ConsoleKey.E:
+                        var enemyCountVisitor = new EnemyCountVisitor();
+                        worldGrid.Accept(enemyCountVisitor);
+                        MessageLog.Instance.Add(
+                            new LogEntry(Loggers.Game, enemyCountVisitor.GetReport())
+                        );
+                        continue;
+
+                    case ConsoleKey.I:
+                        if (Identity.Room is IVisitableRoom interactableRoom)
+                        {
+                            var roomInteractionVisitor = new RoomInteractionVisitor(Identity);
+                            interactableRoom.Accept(roomInteractionVisitor);
+                        }
+                        continue;
                 }
 
-                if (shouldUseWeapon)
+                // INTERPRETER dalis (jud?jimas + attack)
+                string? input = key switch
                 {
-                    UseWeaponCommand command = new(Identity.Identity);
+                    ConsoleKey.W => "w",
+                    ConsoleKey.A => "a",
+                    ConsoleKey.S => "s",
+                    ConsoleKey.D => "d",
+                    ConsoleKey.Spacebar => "space",
+                    _ => null
+                };
+
+                if (input is null)
+                    continue;
+
+                try
+                {
+                    var expression = interpreter.Parse(input);
+
+                    var context = new GameContext(Identity, worldGrid);
+
+                    ICommand command = expression.Interpret(context);
+
                     await command.ExecuteOnClient(this);
+                }
+                catch (InvalidOperationException)
+                {
+                    Log.Debug("Unknown command input: {input}", input);
                 }
             }
 

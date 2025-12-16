@@ -36,47 +36,34 @@ class TerminalRenderer
 
         RenderRoom(currentRoom);
 
-        foreach (Enemy enemy in state.enemies.Where(s => s.Room.Equals(currentRoom)))
+        var characterIterator = currentRoom.CreateIterator();
+
+        while (characterIterator.HasNext())
         {
-            ConsoleColor color;
-            if (!enemy.Dead)
-            {
-                color = ConsoleColor.Red;
-            }
-            else
-            {
-                color = ConsoleColor.DarkGray;
-            }
+            var character = characterIterator.Next();
+
+            if (character is not Enemy enemy)
+                continue;
+
+            ConsoleColor color = enemy.Dead ? ConsoleColor.DarkGray : ConsoleColor.Red;
             Console.ForegroundColor = color;
             Console.SetCursorPosition(enemy.PositionInRoom.X, enemy.PositionInRoom.Y);
-            char enemySymbol = 'E';
-            if (enemy is Skeleton)
+
+            char enemySymbol = enemy switch
             {
-                enemySymbol = 'S';
-            }
-            else if (enemy is Zombie)
-            {
-                enemySymbol = 'Z';
-            }
-            else if (enemy is Orc)
-            {
-                enemySymbol = 'O';
-            }
-            else if (enemy is Slime)
-            {
-                enemySymbol = 'L';
-            }
-            else if (enemy is PlayerEnemyAdapter)
-            {
-                enemySymbol = 'A';
-            }
-            else
-            {
-                Log.Warning("Invalid enemy type");
-            }
+                Skeleton => 'S',
+                Zombie => 'Z',
+                Orc => 'O',
+                Slime => 'L',
+                PlayerEnemyAdapter => 'A',
+                _ => 'E'
+            };
+
             Console.Write(enemySymbol);
             Console.ResetColor();
         }
+
+
 
         foreach (var l in currentRoom.LootDrops)
         {
