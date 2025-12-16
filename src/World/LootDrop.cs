@@ -2,6 +2,7 @@ using System.Text.Json.Serialization;
 
 // An abstract base class for different types of loot that can be dropped in a room.
 [JsonDerivedType(typeof(WeaponLootDrop), typeDiscriminator: "Weapon")]
+[JsonDerivedType(typeof(StatLootDrop), typeDiscriminator: "Stat")]
 public abstract class LootDrop
 {
     public Vector2 PositionInRoom { get; set; }

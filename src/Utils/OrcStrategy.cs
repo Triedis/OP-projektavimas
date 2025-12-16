@@ -7,12 +7,14 @@ public class OrcStrategy : EnemyStrategy
     private int locateDistance = 2;
     public ICommand? TickAI(Enemy enemy)
     {
-        if (enemy.Dead) {
+        if (enemy.Dead)
+        {
             return null;
         }
         Character? nearestPlayer = enemy.GetClosestOpponent();
-        Log.Debug("Nearest player for {orc} is {nearestPlayer}", this, nearestPlayer);
-        if (nearestPlayer is not null) {
+        // Log.Debug("Nearest player for {orc} is {nearestPlayer}", this, nearestPlayer);
+        if (nearestPlayer is not null)
+        {
             int distance = enemy.GetDistanceTo(nearestPlayer);
             if (distance <= locateDistance)
             {

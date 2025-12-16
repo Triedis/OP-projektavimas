@@ -65,7 +65,7 @@ namespace OP_Projektavimas.Utils
             if (enemy.Dead) return null;
 
             Character? nearestPlayer = enemy.GetClosestOpponent();
-            Log.Debug("Nearest player for {zombie} is {nearestPlayer}", enemy, nearestPlayer);
+            // Log.Debug("Nearest player for {zombie} is {nearestPlayer}", enemy, nearestPlayer);
             if (nearestPlayer is null) return null;
 
             int distance = enemy.GetDistanceTo(nearestPlayer);
@@ -102,7 +102,7 @@ namespace OP_Projektavimas.Utils
             if (enemy.Dead) return null;
 
             Character? nearestPlayer = enemy.GetClosestOpponent();
-            Log.Debug("Nearest player for {zombie} is {nearestPlayer}", enemy, nearestPlayer);
+            // Log.Debug("Nearest player for {zombie} is {nearestPlayer}", enemy, nearestPlayer);
             if (nearestPlayer is null) return null;
 
             int distance = enemy.GetDistanceTo(nearestPlayer);
@@ -153,7 +153,7 @@ namespace OP_Projektavimas.Utils
             if (enemy.Dead) return null;
 
             Character? nearestPlayer = enemy.GetClosestOpponent();
-            Log.Debug("Nearest player for {zombie} is {nearestPlayer}", enemy, nearestPlayer);
+            // Log.Debug("Nearest player for {zombie} is {nearestPlayer}", enemy, nearestPlayer);
             if (nearestPlayer is null) return null;
 
             int distance = enemy.GetDistanceTo(nearestPlayer);

@@ -45,7 +45,7 @@ class TerminalRenderer
             }
             else
             {
-                color = ConsoleColor.DarkGray;
+                color = ConsoleColor.DarkMagenta;
             }
             Console.ForegroundColor = color;
             Console.SetCursorPosition(enemy.PositionInRoom.X, enemy.PositionInRoom.Y);
@@ -107,6 +107,10 @@ class TerminalRenderer
                     Log.Warning("Invalid loot type");
                 }
             }
+            else if (l is StatLootDrop)
+            {
+                lootSymbol = '+';
+            }
             Console.Write(lootSymbol);
             Console.ResetColor();
         }
@@ -126,7 +130,7 @@ class TerminalRenderer
 
     private static void RenderRoom(Room currentRoom)
     {
-        Console.ForegroundColor = ConsoleColor.Gray;
+        Console.ForegroundColor = ConsoleColor.White;
         for (int y = 0; y < currentRoom.Shape.Y; y++)
         {
             for (int x = 0; x < currentRoom.Shape.X; x++)
@@ -183,7 +187,7 @@ class TerminalRenderer
         Console.SetCursorPosition(0, logStartY);
 
         IReadOnlyList<string> messagesToDisplay = [.. state.MessagesToDisplay.Reverse().Take(RENDER_N_LAST_MESSAGES)];
-        Console.ForegroundColor = ConsoleColor.DarkGray; // Distinct color for logs
+        Console.ForegroundColor = ConsoleColor.Gray; // Distinct color for logs
         foreach (string message in messagesToDisplay)
         {
             Console.WriteLine(message);

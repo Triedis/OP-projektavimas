@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using TemplateMethod;
 
 [JsonDerivedType(typeof(Player), typeDiscriminator: "Player")]
 [JsonDerivedType(typeof(Skeleton), typeDiscriminator: "Skeleton")]
@@ -55,7 +56,32 @@ public abstract class Character
             LogEntry characterDiedLogEntry = LogEntry.ForRoom($"{this} has died", Room);
             MessageLog.Instance.Add(characterDiedLogEntry);
 
-            OnDeath?.Invoke(this); 
+            if (this is Enemy)
+            {
+                var rng = new Random();
+
+                // Refactored to use Template Method Pattern (LootGenerator)
+                LootGenerator generator;
+                double globalMagnitude = Vector2.Distance(new Vector2(0, 0), this.Room.WorldGridPosition);
+                if (rng.NextDouble() < 0.1 * globalMagnitude)
+                {
+                    generator = new WeaponLootGenerator();
+                }
+                else
+                {
+                    generator = new StatLootGenerator();
+                }
+
+                LootDrop? drop = generator.GenerateLoot(PositionInRoom);
+
+                if (drop != null)
+                {
+                    Room.LootDrops.Add(drop);
+                    MessageLog.Instance.Add(LogEntry.ForRoom($"Something dropped at {PositionInRoom}!", Room));
+                }
+            }
+
+            OnDeath?.Invoke(this);
         }
     }
 

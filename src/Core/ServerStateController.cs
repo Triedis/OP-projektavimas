@@ -29,6 +29,7 @@ public class ServerStateController(int port) : IStateController
     private IRoomFactory _treasureRoomFactory;
     private IRoomFactory _bossRoomFactory;
     private GameLoggerHandler? _loggerChain;
+    public readonly PlayerStateCaretaker _playerStateCaretaker = new();
 
 
     public async Task Run()
@@ -531,6 +532,14 @@ public class ServerStateController(int port) : IStateController
         initialRoom.Enter(player);
 
         players.Add(player);
+
+        player.OnDeath += (character) =>
+        {
+            if (character is Player p)
+            {
+                _playerStateCaretaker.Undo(p);
+            }
+        };
 
         var playerJoinEntry = LogEntry.ForGlobal($"Player {username} has appeared.");
         MessageLog.Instance.Add(playerJoinEntry);
